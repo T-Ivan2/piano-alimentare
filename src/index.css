@@ -1,52 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Fraunces", Georgia, serif;
+  --font-display: "Fraunces", serif;
   --font-sans: "Nunito Sans", system-ui, sans-serif;
 }
 
-:root {
-  font-family: "Nunito Sans", system-ui, sans-serif;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color-scheme: dark;
-  font-optical-sizing: auto;
-}
-
-html, body, #root { min-height: 100%; margin: 0; }
-html { background: #171C18; }
-body { color: var(--theme-text, #F2F3E8); -webkit-tap-highlight-color: transparent; }
-button, input { font: inherit; }
-button { cursor: pointer; touch-action: manipulation; }
-button:focus-visible, input:focus-visible {
-  outline: 2px solid var(--theme-accent, #C1D98A);
-  outline-offset: 3px;
-}
-::selection { background: var(--theme-accent, #C1D98A); color: var(--theme-on-accent, #171C18); }
-.text-muted { color: var(--theme-muted, #B5C1AA); }
-.theme-page {
-  color: var(--theme-text, #F2F3E8);
-  background-image: radial-gradient(ellipse 115% 34rem at 50% -12rem, var(--theme-glow, transparent), transparent 75%);
-}
-.theme-card {
-  border: 1px solid var(--theme-line, transparent);
-  box-shadow: 0 10px 32px rgba(0, 0, 0, .10);
-}
-.theme-nav {
-  border-top: 1px solid var(--theme-line, transparent);
-  box-shadow: 0 -12px 30px rgba(0, 0, 0, .16);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-.theme-nav button { transition: color .18s ease, background-color .18s ease, transform .18s ease; }
-.theme-nav button:active { transform: scale(.95); }
-.theme-nav button[aria-current="page"] { background: var(--theme-active, rgba(255,255,255,.08)); }
-.theme-action { transition: filter .18s ease, transform .18s ease; }
-.theme-action:hover { filter: brightness(1.08); }
-.theme-action:active { transform: scale(.97); }
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
-}
+html, body { margin: 0; background: #1E1916; color: #F3EADD; -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+.text-muted { color: #B8A998; }

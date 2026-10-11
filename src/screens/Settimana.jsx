@@ -20,10 +20,10 @@ export default function Settimana({ plan, theme }) {
           const on = i === sel;
           return (
             <button key={s} role="tab" aria-selected={on} aria-label={plan.data.giorni[i].nome} onClick={() => setSel(i)}
-              className="theme-card theme-action h-[62px] rounded-[20px] border-0 text-[13px] font-bold flex flex-col items-center justify-center gap-1.5"
-              style={{ background: on ? theme.acc : theme.surf, color: on ? theme.onAcc : theme.text }}>
+              className="h-[62px] rounded-[20px] border-0 text-[13px] font-bold flex flex-col items-center justify-center gap-1.5"
+              style={{ background: on ? theme.acc : theme.surf, color: on ? '#1A1512' : '#F3EADD' }}>
               {s}
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: i === todayIdx ? (on ? theme.onAcc : theme.acc) : 'transparent' }} />
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: i === todayIdx ? (on ? '#1A1512' : theme.acc) : 'transparent' }} />
             </button>
           );
         })}
@@ -33,7 +33,7 @@ export default function Settimana({ plan, theme }) {
 
       <div className="flex flex-col gap-2.5">
         {day.pasti.map((t, i) => (
-          <div key={i} className="theme-card rounded-[22px] px-4 py-3.5" style={{ background: theme.surf }}>
+          <div key={i} className="rounded-[22px] px-4 py-3.5" style={{ background: theme.surf }}>
             <p className="m-0 text-[13px] font-bold" style={{ color: MEAL_TINTS[i] }}>{MEAL_TYPES[i]}</p>
             <p className="m-0 text-[15px] leading-snug">{t}</p>
           </div>
@@ -42,7 +42,7 @@ export default function Settimana({ plan, theme }) {
 
       {plan.data.consigli?.length > 0 && (
         <div className="rounded-[22px] px-4 py-3.5 text-sm leading-relaxed flex flex-col gap-1.5"
-          style={{ border: `1.5px dashed ${theme.surf2}`, color: theme.muted }}>
+          style={{ border: `1.5px dashed ${theme.surf2}`, color: '#C9BBA8' }}>
           {plan.data.consigli.map((c) => <p key={c} className="m-0">{c}</p>)}
         </div>
       )}

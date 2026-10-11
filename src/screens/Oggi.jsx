@@ -52,13 +52,13 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
           <h1 className="font-display text-[28px] leading-tight font-semibold m-0">{theme.greet}</h1>
         </div>
         <button onClick={() => setMenu(!menu)} aria-label="Profilo e impostazioni" aria-expanded={menu}
-          className="theme-card w-[46px] h-[46px] shrink-0 rounded-full border-0 font-display font-semibold"
-          style={{ background: theme.surf2, color: theme.text }}>IT</button>
+          className="w-[46px] h-[46px] shrink-0 rounded-full border-0 font-display font-semibold"
+          style={{ background: theme.surf2, color: '#F3EADD' }}>IT</button>
       </header>
 
       {menu && (
-        <div className="theme-card rounded-[22px] p-2 flex flex-col" style={{ background: theme.surf }}>
-          <button onClick={onToggleThemes} className="text-left px-3 py-3 bg-transparent border-0 text-[15px]" style={{ color: theme.text }}>
+        <div className="rounded-[22px] p-2 flex flex-col" style={{ background: theme.surf }}>
+          <button onClick={onToggleThemes} className="text-left px-3 py-3 bg-transparent border-0 text-[15px]" style={{ color: '#F3EADD' }}>
             Temi stagionali: <b>{themesOn ? 'attivi' : 'spenti'}</b>
           </button>
           <button onClick={() => supabase.auth.signOut()} className="text-left px-3 py-3 bg-transparent border-0 text-[15px]" style={{ color: '#F0A08A' }}>
@@ -69,7 +69,7 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
 
       <Illustration name={theme.key} />
 
-      <section className="theme-card rounded-[26px] px-[18px] py-4 flex gap-4 items-center" style={{ background: theme.surf }}>
+      <section className="rounded-[26px] px-[18px] py-4 flex gap-4 items-center" style={{ background: theme.surf }}>
         <Ring value={doneToday} max={meals.length} theme={theme} />
         <div>
           <p className="font-display font-semibold text-[17px] m-0">{theme.tag}</p>
@@ -78,7 +78,7 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
       </section>
 
       {plan.data.indicazioni?.map((ind) => (
-        <label key={ind} className="theme-card rounded-[20px] px-4 py-3 flex gap-3 items-center text-[15px]" style={{ background: theme.surf }}>
+        <label key={ind} className="rounded-[20px] px-4 py-3 flex gap-3 items-center text-[15px]" style={{ background: theme.surf }}>
           <input type="checkbox" checked={!!log.checks[ind]} style={{ accentColor: theme.acc, width: 22, height: 22 }}
             onChange={(e) => save({ ...log, checks: { ...log.checks, [ind]: e.target.checked } })} />
           <span>{ind} · <span className="text-muted">consiglio del mese</span></span>
@@ -89,7 +89,7 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
         {meals.map((text, i) => {
           const done = !!log.meals[i];
           return (
-            <div key={i} className="theme-card rounded-[22px] py-3.5 pl-4 pr-3.5 flex gap-3 items-center" style={{ background: theme.surf }}>
+            <div key={i} className="rounded-[22px] py-3.5 pl-4 pr-3.5 flex gap-3 items-center" style={{ background: theme.surf }}>
               <div className="flex-1 min-w-0">
                 <p className="m-0 text-[13px] font-bold" style={{ color: MEAL_TINTS[i] }}>{MEAL_TYPES[i]}</p>
                 <p className="m-0 text-[15px] leading-snug">{text}</p>
@@ -103,8 +103,8 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
               <button onClick={() => save({ ...log, meals: { ...log.meals, [i]: !done } })}
                 aria-label={done ? `${MEAL_TYPES[i]}: fatto, tocca per annullare` : `Segna ${MEAL_TYPES[i]} come fatto`}
                 aria-pressed={done}
-                className="theme-action w-[46px] h-[46px] shrink-0 rounded-full flex items-center justify-center"
-                style={{ background: done ? theme.acc : 'transparent', border: done ? 'none' : `2px dashed ${theme.surf2}`, color: theme.onAcc }}>
+                className="w-[46px] h-[46px] shrink-0 rounded-full flex items-center justify-center"
+                style={{ background: done ? theme.acc : 'transparent', border: done ? 'none' : `2px dashed ${theme.surf2}`, color: '#1A1512' }}>
                 {done && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10" /></svg>}
               </button>
             </div>
@@ -112,7 +112,7 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
         })}
       </section>
 
-      <section className="theme-card rounded-[22px] px-4 py-3.5 flex flex-col gap-2.5" style={{ background: theme.surf }}>
+      <section className="rounded-[22px] px-4 py-3.5 flex flex-col gap-2.5" style={{ background: theme.surf }}>
         <div className="flex justify-between items-baseline">
           <h2 className="font-display font-semibold text-base m-0">Acqua</h2>
           <span className="text-muted text-sm">{((log.water * GLASS_ML) / 1000).toLocaleString('it-IT')} di {((glasses * GLASS_ML) / 1000).toLocaleString('it-IT')} L</span>
