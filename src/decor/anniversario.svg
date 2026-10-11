@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120">
+  <defs>
+    <linearGradient id="an-hill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3E4A2E"/>
+      <stop offset="1" stop-color="#2A3220"/>
+    </linearGradient>
+    <linearGradient id="an-hill2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4E5C38"/>
+      <stop offset="1" stop-color="#36402A"/>
+    </linearGradient>
+    <linearGradient id="an-fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="0.1" stop-color="#FFFFFF"/>
+      <stop offset="0.9" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="an-mask"><rect width="360" height="120" fill="url(#an-fade)"/></mask>
+    <linearGradient id="an-medal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFE7A8"/>
+      <stop offset="1" stop-color="#D9A441"/>
+    </linearGradient>
+    <radialGradient id="an-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#E8C17D" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#E8C17D" stop-opacity="0"/>
+    </radialGradient>
+    <path id="an-tw" d="M0 -4 C0.6 -1 1 -0.6 4 0 C1 0.6 0.6 1 0 4 C-0.6 1 -1 0.6 -4 0 C-1 -0.6 -0.6 -1 0 -4 Z"/>
+    <path id="an-laurel" d="M0 0 C-3 -3 -3 -8 0 -11 C3 -8 3 -3 0 0 Z"/>
+  </defs>
+
+  <!-- stelle -->
+  <use href="#an-tw" transform="translate(40 20)" fill="#F3F0E6" opacity="0.7"/>
+  <use href="#an-tw" transform="translate(150 14) scale(0.7)" fill="#F3F0E6" opacity="0.6"/>
+  <use href="#an-tw" transform="translate(326 66) scale(0.8)" fill="#F3F0E6" opacity="0.6"/>
+  <circle cx="96" cy="30" r="1.1" fill="#F3F0E6" opacity="0.6"/>
+  <circle cx="200" cy="24" r="1" fill="#F3F0E6" opacity="0.5"/>
+  <circle cx="20" cy="56" r="1" fill="#F3F0E6" opacity="0.5"/>
+
+  <!-- colline e sentiero -->
+  <g mask="url(#an-mask)">
+    <path d="M0 120 L0 96 Q60 80 120 92 Q170 100 220 84 Q250 74 280 60 Q310 50 360 76 L360 120 Z" fill="url(#an-hill)"/>
+    <path d="M0 120 L0 106 Q80 94 160 104 Q240 112 360 98 L360 120 Z" fill="url(#an-hill2)"/>
+  </g>
+  <path d="M30 112 C70 104 100 110 130 102 C160 94 190 98 214 86 C236 76 250 70 270 62" stroke="#E8D9B0" stroke-width="2.4" stroke-dasharray="5 5" stroke-linecap="round" fill="none" opacity="0.75"/>
+  <circle cx="70" cy="106" r="3" fill="#E8C17D"/>
+  <circle cx="130" cy="102" r="3" fill="#E8C17D"/>
+  <circle cx="186" cy="94" r="3" fill="#E8C17D"/>
+  <circle cx="232" cy="78" r="3" fill="#E8C17D"/>
+
+  <!-- bandiera sulla cima -->
+  <path d="M272 62 L272 32" stroke="#E8E0CC" stroke-width="2" stroke-linecap="round"/>
+  <path d="M273 32 C282 30 288 36 298 33 L298 47 C288 50 282 44 273 46 Z" fill="#B4CB86"/>
+  <path d="M283 38 L284.6 41.2 L288 41.6 L285.5 43.8 L286.2 47 L283 45.4 L279.8 47 L280.5 43.8 L278 41.6 L281.4 41.2 Z" fill="#F3F0E6" transform="translate(2 -5)"/>
+
+  <!-- medaglia con alloro -->
+  <circle cx="172" cy="46" r="34" fill="url(#an-glow)"/>
+  <path d="M162 12 L156 32 L166 34 L172 22 Z" fill="#B4CB86"/>
+  <path d="M182 12 L188 32 L178 34 L172 22 Z" fill="#8FA86A"/>
+  <circle cx="172" cy="50" r="17" fill="url(#an-medal)"/>
+  <circle cx="172" cy="50" r="12.5" fill="none" stroke="#C99434" stroke-width="1.2" opacity="0.7"/>
+  <path d="M172 41 L174.6 46.3 L180.5 47.1 L176.2 51.2 L177.3 57 L172 54.2 L166.7 57 L167.8 51.2 L163.5 47.1 L169.4 46.3 Z" fill="#FFF3D0"/>
+  <ellipse cx="165" cy="44" rx="2.4" ry="4" fill="#FFFFFF" opacity="0.35" transform="rotate(30 165 44)"/>
+  <g fill="#B4CB86">
+    <use href="#an-laurel" transform="translate(152 66) rotate(-70)"/>
+    <use href="#an-laurel" transform="translate(148 58) rotate(-40)"/>
+    <use href="#an-laurel" transform="translate(148 48) rotate(-15)"/>
+    <use href="#an-laurel" transform="translate(150 38) rotate(10)"/>
+    <use href="#an-laurel" transform="translate(192 66) rotate(70)"/>
+    <use href="#an-laurel" transform="translate(196 58) rotate(40)"/>
+    <use href="#an-laurel" transform="translate(196 48) rotate(15)"/>
+    <use href="#an-laurel" transform="translate(194 38) rotate(-10)"/>
+  </g>
+  <path d="M152 66 C146 56 146 44 152 34 M192 66 C198 56 198 44 192 34" stroke="#8FA86A" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+
+  <!-- coriandoli dorati -->
+  <rect x="120" y="40" width="4" height="2.4" rx="0.6" fill="#E8C17D" transform="rotate(30 122 41)"/>
+  <rect x="226" y="34" width="4" height="2.4" rx="0.6" fill="#B4CB86" transform="rotate(-30 228 35)"/>
+  <rect x="106" y="70" width="4" height="2.4" rx="0.6" fill="#F3F0E6" transform="rotate(50 108 71)"/>
+  <circle cx="232" cy="54" r="1.4" fill="#E8C17D"/>
+  <circle cx="118" cy="22" r="1.2" fill="#B4CB86"/>
+  <circle cx="320" cy="30" r="1.3" fill="#E8C17D"/>
+</svg>

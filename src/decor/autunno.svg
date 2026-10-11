@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120">
+  <defs>
+    <path id="au-maple" d="M0 -20 L3.5 -11 L8.5 -14 L7.5 -6 L16 -9.5 L13.5 -2.5 L19 0 L10 4.5 L12 9.5 L4 7.5 L1.5 13 L0 10 L-1.5 13 L-4 7.5 L-12 9.5 L-10 4.5 L-19 0 L-13.5 -2.5 L-16 -9.5 L-7.5 -6 L-8.5 -14 L-3.5 -11 Z" stroke-linejoin="round"/>
+    <g id="au-leaf">
+      <use href="#au-maple"/>
+      <path d="M0 -15 V18 M0 2 L-11 -4 M0 2 L11 -4 M0 -4 L-6 -11 M0 -4 L6 -11" stroke="#000000" stroke-opacity="0.22" stroke-width="1" fill="none" stroke-linecap="round"/>
+    </g>
+    <linearGradient id="au-cap" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C47A3E"/>
+      <stop offset="1" stop-color="#8A4A22"/>
+    </linearGradient>
+    <linearGradient id="au-stem" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FBF0DC"/>
+      <stop offset="1" stop-color="#E2CDA8"/>
+    </linearGradient>
+    <linearGradient id="au-ground" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3A2618" stop-opacity="0"/>
+      <stop offset="0.2" stop-color="#3A2618"/>
+      <stop offset="0.8" stop-color="#3A2618"/>
+      <stop offset="1" stop-color="#3A2618" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="au-acorn" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E0A15A"/>
+      <stop offset="1" stop-color="#A8672E"/>
+    </linearGradient>
+    <radialGradient id="au-apple" cx="0.35" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#F06A55"/>
+      <stop offset="1" stop-color="#B93A2E"/>
+    </radialGradient>
+  </defs>
+
+  <!-- foglie che cadono -->
+  <use href="#au-leaf" transform="translate(34 24) rotate(-24) scale(0.62)" fill="#E06A2C"/>
+  <use href="#au-leaf" transform="translate(150 18) rotate(18) scale(0.5)" fill="#F0A45E"/>
+  <use href="#au-leaf" transform="translate(222 40) rotate(-12) scale(0.44)" fill="#C9452E"/>
+  <use href="#au-leaf" transform="translate(300 20) rotate(32) scale(0.66)" fill="#E9B44C"/>
+  <use href="#au-leaf" transform="translate(340 62) rotate(-30) scale(0.42)" fill="#E06A2C"/>
+
+  <!-- terreno -->
+  <path d="M0 120 L0 107 Q80 100 170 105 Q260 110 360 102 L360 120 Z" fill="url(#au-ground)"/>
+
+  <!-- riccio -->
+  <ellipse cx="96" cy="111" rx="36" ry="3.5" fill="#000000" opacity="0.3"/>
+  <path d="M62 108 L59 98 L66 100 L64 90 L71 94 L72 84 L79 90 L82 80 L88 88 L93 78 L98 87 L104 80 L107 90 L114 85 L114 95 L121 93 L118 103 L124 106 L120 109 Z" fill="#6B4A33" stroke="#6B4A33" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M68 104 L70 96 M76 100 L78 90 M85 98 L88 87 M95 97 L98 86 M104 99 L107 90" stroke="#8E6A4C" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M106 109 C104 96 112 89 121 91 C128 92 132 97 139 100 C143 102 142 106 138 107 C129 110 117 111 106 109 Z" fill="#E8C9A0"/>
+  <ellipse cx="114" cy="92" rx="3.4" ry="4" fill="#D8B48A" transform="rotate(-20 114 92)"/>
+  <ellipse cx="114" cy="92.5" rx="1.6" ry="2.2" fill="#C49A70" transform="rotate(-20 114 92.5)"/>
+  <circle cx="140.5" cy="103.5" r="2.6" fill="#2A1A10"/>
+  <circle cx="125" cy="98" r="2" fill="#2A1A10"/>
+  <circle cx="125.6" cy="97.3" r="0.7" fill="#FFFFFF"/>
+  <ellipse cx="121" cy="104" rx="3" ry="1.6" fill="#F08E7A" opacity="0.6"/>
+  <ellipse cx="114" cy="110" rx="4" ry="2" fill="#5A3C28"/>
+  <ellipse cx="78" cy="110" rx="4" ry="2" fill="#5A3C28"/>
+  <circle cx="88" cy="78" r="7" fill="url(#au-apple)"/>
+  <path d="M88 71 C88 68 89 66 91 65" stroke="#5A3C28" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+  <path d="M90 68 C94 64 98 66 97 68 C95 70 92 70 90 68 Z" fill="#7FA04A"/>
+  <circle cx="85.5" cy="75.5" r="1.4" fill="#FFFFFF" opacity="0.5"/>
+
+  <!-- funghi -->
+  <ellipse cx="190" cy="111" rx="30" ry="3" fill="#000000" opacity="0.28"/>
+  <path d="M175 94 C173 103 173 107 171 110 L191 110 C189 107 188 103 187 94 Z" fill="url(#au-stem)"/>
+  <path d="M159 94 C159 74 203 74 203 94 C203 98 159 98 159 94 Z" fill="url(#au-cap)"/>
+  <ellipse cx="172" cy="83" rx="6" ry="3" fill="#E8A86A" opacity="0.45" transform="rotate(-20 172 83)"/>
+  <path d="M203 99 C202 105 202 108 200 110 L212 110 C211 108 210 105 209 99 Z" fill="url(#au-stem)"/>
+  <path d="M195 100 C195 88 218 88 218 100 C218 102 195 102 195 100 Z" fill="url(#au-cap)"/>
+  <ellipse cx="202" cy="94" rx="3.5" ry="1.8" fill="#E8A86A" opacity="0.45" transform="rotate(-20 202 94)"/>
+
+  <!-- ghiande e castagna -->
+  <ellipse cx="252" cy="111" rx="26" ry="2.6" fill="#000000" opacity="0.25"/>
+  <ellipse cx="240" cy="103" rx="6.5" ry="8" fill="url(#au-acorn)"/>
+  <path d="M232 98 C232 92 248 92 248 98 C248 100 232 100 232 98 Z" fill="#7A5230"/>
+  <path d="M235 95.5 h10 M234 97.5 h12" stroke="#5E3E22" stroke-width="0.8" stroke-dasharray="1.2 1.2"/>
+  <path d="M240 93 L241 89" stroke="#5E3E22" stroke-width="1.6" stroke-linecap="round"/>
+  <ellipse cx="238" cy="102" rx="1.6" ry="3" fill="#FFFFFF" opacity="0.25"/>
+  <path d="M256 110 C254 100 260 94 267 94 C274 94 280 100 278 110 Z" fill="#7A4628"/>
+  <path d="M256 110 C258 107 276 107 278 110 Z" fill="#D8B888"/>
+  <path d="M267 94 L267 91" stroke="#5A3420" stroke-width="2" stroke-linecap="round"/>
+  <ellipse cx="262" cy="100" rx="2" ry="3.6" fill="#FFFFFF" opacity="0.18"/>
+
+  <!-- foglie a terra -->
+  <use href="#au-leaf" transform="translate(140 110) rotate(70) scale(0.36)" fill="#C9452E"/>
+  <use href="#au-leaf" transform="translate(222 109) rotate(-60) scale(0.34)" fill="#E9B44C"/>
+  <use href="#au-leaf" transform="translate(296 108) rotate(100) scale(0.4)" fill="#E06A2C"/>
+  <use href="#au-leaf" transform="translate(44 109) rotate(-80) scale(0.34)" fill="#F0A45E"/>
+</svg>

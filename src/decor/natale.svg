@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120">
+  <defs>
+    <linearGradient id="nt-tree" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4FA772"/>
+      <stop offset="0.55" stop-color="#3A8A5C"/>
+      <stop offset="1" stop-color="#2A6B45"/>
+    </linearGradient>
+    <radialGradient id="nt-starglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFE7A0" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#FFE7A0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="nt-gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFE9A8"/>
+      <stop offset="1" stop-color="#E2B45A"/>
+    </linearGradient>
+    <linearGradient id="nt-snow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E8F0EC" stop-opacity="0"/>
+      <stop offset="0.2" stop-color="#E8F0EC" stop-opacity="0.9"/>
+      <stop offset="0.8" stop-color="#E8F0EC" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#E8F0EC" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="nt-bulbglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <g id="nt-bulb">
+      <circle r="7" fill="url(#nt-bulbglow)"/>
+      <rect x="-1.6" y="-4.6" width="3.2" height="2.6" rx="0.6" fill="#8A9A90"/>
+      <ellipse cy="1" rx="2.8" ry="3.8"/>
+      <ellipse cx="-0.9" cy="-0.2" rx="0.8" ry="1.3" fill="#FFFFFF" opacity="0.6"/>
+    </g>
+    <path id="nt-flake" d="M0 -3.5 V3.5 M-3 -1.75 L3 1.75 M-3 1.75 L3 -1.75" stroke="#E8F0EC" stroke-width="1" stroke-linecap="round"/>
+  </defs>
+
+  <!-- lucine -->
+  <path d="M-4 6 Q60 30 120 12 Q180 -2 240 14 Q300 30 364 8" stroke="#56685D" stroke-width="1.2" fill="none"/>
+  <use href="#nt-bulb" transform="translate(22 15) rotate(-14)" fill="#E8504A"/>
+  <use href="#nt-bulb" transform="translate(52 22) rotate(-4)" fill="#E9C875"/>
+  <use href="#nt-bulb" transform="translate(84 21) rotate(8)" fill="#7CC3E8"/>
+  <use href="#nt-bulb" transform="translate(206 9) rotate(-10)" fill="#E8504A"/>
+  <use href="#nt-bulb" transform="translate(240 15) rotate(0)" fill="#9BD67F"/>
+  <use href="#nt-bulb" transform="translate(274 22) rotate(8)" fill="#E9C875"/>
+  <use href="#nt-bulb" transform="translate(308 22) rotate(-6)" fill="#F49BAF"/>
+  <use href="#nt-bulb" transform="translate(340 14) rotate(-16)" fill="#7CC3E8"/>
+
+  <!-- neve -->
+  <use href="#nt-flake" transform="translate(30 50)" opacity="0.7"/>
+  <use href="#nt-flake" transform="translate(70 70) scale(0.8)" opacity="0.6"/>
+  <use href="#nt-flake" transform="translate(262 52) scale(0.9)" opacity="0.7"/>
+  <use href="#nt-flake" transform="translate(330 64)" opacity="0.6"/>
+  <circle cx="46" cy="38" r="1.2" fill="#E8F0EC" opacity="0.6"/>
+  <circle cx="290" cy="44" r="1.2" fill="#E8F0EC" opacity="0.6"/>
+  <circle cx="314" cy="86" r="1" fill="#E8F0EC" opacity="0.5"/>
+  <circle cx="18" cy="84" r="1" fill="#E8F0EC" opacity="0.5"/>
+  <path d="M0 120 L0 108 Q60 101 140 106 Q230 111 360 103 L360 120 Z" fill="url(#nt-snow)"/>
+
+  <!-- albero -->
+  <ellipse cx="150" cy="111" rx="40" ry="3.5" fill="#000000" opacity="0.25"/>
+  <rect x="145" y="99" width="10" height="11" rx="2" fill="#7A5236"/>
+  <path d="M150 50 L196 100 Q186 104 173 101 Q162 105 150 101 Q138 105 127 101 Q114 104 104 100 Z" fill="url(#nt-tree)"/>
+  <path d="M106 99 Q114 103 127 100 Q138 104 150 100 Q162 104 173 100 Q186 103 194 99" stroke="#EAF3EE" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0.9"/>
+  <path d="M150 33 L184 77 Q175 81 165 78 Q157 82 150 78 Q143 82 135 78 Q125 81 116 77 Z" fill="url(#nt-tree)"/>
+  <path d="M118 76 Q125 80 135 77 Q143 81 150 77 Q157 81 165 77 Q175 80 182 76" stroke="#EAF3EE" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0.9"/>
+  <path d="M150 17 L172 53 Q165 56 158 54 Q154 57 150 54 Q146 57 142 54 Q135 56 128 53 Z" fill="url(#nt-tree)"/>
+  <path d="M130 52 Q135 55 142 53 Q146 56 150 53 Q154 56 158 53 Q165 55 170 52" stroke="#EAF3EE" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0.9"/>
+  <path d="M136 46 Q152 54 164 42 M124 70 Q150 82 176 64 M114 92 Q150 104 186 86" stroke="#E9C875" stroke-width="1.2" stroke-dasharray="0.1 3.2" stroke-linecap="round" fill="none"/>
+  <circle cx="141" cy="45" r="3" fill="#E8504A"/><circle cx="140" cy="44" r="0.9" fill="#FFFFFF" opacity="0.7"/>
+  <circle cx="160" cy="40" r="2.6" fill="#E9C875"/><circle cx="159.2" cy="39.2" r="0.8" fill="#FFFFFF" opacity="0.7"/>
+  <circle cx="132" cy="70" r="3.2" fill="#E9C875"/><circle cx="131" cy="69" r="0.9" fill="#FFFFFF" opacity="0.7"/>
+  <circle cx="155" cy="66" r="3" fill="#7CC3E8"/><circle cx="154" cy="65" r="0.9" fill="#FFFFFF" opacity="0.7"/>
+  <circle cx="172" cy="71" r="3.2" fill="#E8504A"/><circle cx="171" cy="70" r="0.9" fill="#FFFFFF" opacity="0.7"/>
+  <circle cx="122" cy="93" r="3.4" fill="#E8504A"/><circle cx="121" cy="92" r="1" fill="#FFFFFF" opacity="0.7"/>
+  <circle cx="145" cy="88" r="3.2" fill="#F49BAF"/><circle cx="144" cy="87" r="0.9" fill="#FFFFFF" opacity="0.7"/>
+  <circle cx="166" cy="94" r="3.4" fill="#E9C875"/><circle cx="165" cy="93" r="1" fill="#FFFFFF" opacity="0.7"/>
+  <circle cx="184" cy="91" r="3" fill="#7CC3E8"/><circle cx="183" cy="90" r="0.9" fill="#FFFFFF" opacity="0.7"/>
+  <circle cx="150" cy="15" r="18" fill="url(#nt-starglow)"/>
+  <path d="M150 5 L152.9 11.1 L159.5 11.9 L154.6 16.4 L155.9 23 L150 19.7 L144.1 23 L145.4 16.4 L140.5 11.9 L147.1 11.1 Z" fill="url(#nt-gold)" stroke="#D9A441" stroke-width="0.6" stroke-linejoin="round"/>
+
+  <!-- regali -->
+  <ellipse cx="225" cy="111" rx="30" ry="2.8" fill="#000000" opacity="0.25"/>
+  <rect x="198" y="86" width="30" height="24" rx="2.5" fill="#D9534F"/>
+  <rect x="196" y="82" width="34" height="7" rx="2" fill="#E8655F"/>
+  <rect x="210" y="82" width="6" height="28" fill="#F5E6C4"/>
+  <path d="M213 82 C206 74 199 76 202 80 C204 82 209 82 213 82 C217 82 222 82 224 80 C227 76 220 74 213 82 Z" fill="#F5E6C4"/>
+  <rect x="231" y="95" width="21" height="15" rx="2" fill="#F2E6C9"/>
+  <rect x="229.5" y="92" width="24" height="5" rx="1.5" fill="#FBF3DF"/>
+  <rect x="239" y="92" width="5" height="18" fill="#3A8A5C"/>
+  <path d="M241.5 92 C236 86 232 88 234 91 Z M241.5 92 C247 86 251 88 249 91 Z" fill="#3A8A5C"/>
+  <rect x="84" y="94" width="22" height="16" rx="2" fill="#E9C875"/>
+  <rect x="82.5" y="91" width="25" height="5" rx="1.5" fill="#F3D88E"/>
+  <rect x="92.5" y="91" width="5" height="19" fill="#D9534F"/>
+  <path d="M95 91 C90 85 86 87 88 90 Z M95 91 C100 85 104 87 102 90 Z" fill="#D9534F"/>
+  <ellipse cx="95" cy="111" rx="14" ry="2" fill="#000000" opacity="0.22"/>
+
+  <!-- bastoncino di zucchero -->
+  <path d="M66 110 L66 86 C66 78 76 78 76 86" stroke="#FFFFFF" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+  <path d="M66 110 L66 86 C66 78 76 78 76 86" stroke="#E8504A" stroke-width="4.5" fill="none" stroke-linecap="butt" stroke-dasharray="3 4"/>
+</svg>
