@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../supabase';
 import Illustration from '../components/Illustration';
+import Sostituzioni, { groupsFor } from '../components/Sostituzioni';
 import { weekdayIndex, isoDay, startOfWeek, longDate, MEAL_TYPES, MEAL_TINTS } from '../dates';
 
 const GLASS_ML = 250;
-const empty = { meals: {}, water: 0, checks: {} };
+const empty = { meals: {}, water: 0, checks: {}, subs: {} };
 
 export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
   const now = new Date();
@@ -17,14 +18,15 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
   const [week, setWeek] = useState({ done: 0, total: 0 });
   const [menu, setMenu] = useState(false);
   const [saveError, setSaveError] = useState('');
+  const [swap, setSwap] = useState(null);
 
   useEffect(() => {
-    supabase.from('day_logs').select('day, meals, water, checks')
+    supabase.from('day_logs').select('*')
       .gte('day', isoDay(startOfWeek(now))).lte('day', today)
       .then(({ data }) => {
         const rows = data || [];
         const t = rows.find((r) => r.day === today);
-        if (t) setLog({ meals: t.meals || {}, water: t.water || 0, checks: t.checks || {} });
+        if (t) setLog({ meals: t.meals || {}, water: t.water || 0, checks: t.checks || {}, subs: t.subs || {} });
         const others = rows.filter((r) => r.day !== today)
           .reduce((n, r) => n + Object.values(r.meals || {}).filter(Boolean).length, 0);
         setWeek({ done: others, total: (wd + 1) * 4 });
@@ -91,6 +93,12 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
               <div className="flex-1 min-w-0">
                 <p className="m-0 text-[13px] font-bold" style={{ color: MEAL_TINTS[i] }}>{MEAL_TYPES[i]}</p>
                 <p className="m-0 text-[15px] leading-snug">{text}</p>
+                {log.subs[i] && <p className="m-0 mt-1 text-[13px]" style={{ color: theme.acc }}>↻ {log.subs[i]}</p>}
+                {groupsFor(plan, text).length > 0 && (
+                  <button onClick={() => setSwap(i)} className="mt-1 p-0 bg-transparent border-0 text-[13px] font-semibold" style={{ color: theme.acc }}>
+                    {log.subs[i] ? 'Cambia sostituzione' : 'Sostituisci'}
+                  </button>
+                )}
               </div>
               <button onClick={() => save({ ...log, meals: { ...log.meals, [i]: !done } })}
                 aria-label={done ? `${MEAL_TYPES[i]}: fatto, tocca per annullare` : `Segna ${MEAL_TYPES[i]} come fatto`}
@@ -116,6 +124,13 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
           ))}
         </div>
       </section>
+
+      {swap !== null && (
+        <Sostituzioni plan={plan} theme={theme} mealType={MEAL_TYPES[swap]} text={meals[swap]} current={log.subs[swap]}
+          onPick={(label) => { save({ ...log, subs: { ...log.subs, [swap]: label } }); setSwap(null); }}
+          onClear={() => { const s = { ...log.subs }; delete s[swap]; save({ ...log, subs: s }); setSwap(null); }}
+          onClose={() => setSwap(null)} />
+      )}
 
       {saveError && <p className="m-0 text-sm" style={{ color: '#F0A08A' }}>{saveError}</p>}
     </div>

@@ -4,7 +4,8 @@ import { getTheme } from './themes';
 import Login from './screens/Login';
 import Oggi from './screens/Oggi';
 import Settimana from './screens/Settimana';
-import Presto from './screens/Presto';
+import Spesa from './screens/Spesa';
+import Progressi from './screens/Progressi';
 import Nav from './components/Nav';
 
 export default function App() {
@@ -56,8 +57,8 @@ export default function App() {
           <Oggi plan={plan} theme={theme} user={session.user} themesOn={themesOn} onToggleThemes={toggleThemes} />
         )}
         {plan && tab === 'settimana' && <Settimana plan={plan} theme={theme} />}
-        {tab === 'spesa' && <Presto theme={theme} title="La spesa" text="La lista generata dal piano arriva nella prossima fase." />}
-        {tab === 'progressi' && <Presto theme={theme} title="Progressi" text="Peso, massa grassa e misure arrivano nella prossima fase." />}
+        {plan && tab === 'spesa' && <Spesa plan={plan} theme={theme} user={session.user} />}
+        {tab === 'progressi' && <Progressi theme={theme} />}
       </main>
       <Nav tab={tab} setTab={setTab} theme={theme} />
     </div>
