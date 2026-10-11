@@ -1,0 +1,10 @@
+{
+  "name": "Piano Alimentare",
+  "short_name": "Piano",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1E1916",
+  "theme_color": "#1E1916",
+  "lang": "it",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
