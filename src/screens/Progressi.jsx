@@ -36,7 +36,7 @@ export default function Progressi({ theme }) {
     setForm(null); setErr(''); load();
   };
 
-  const card = { background: theme.surf };
+  const card = { background: theme.surf, border: `1px solid ${theme.line}`, boxShadow: '0 10px 32px rgba(0,0,0,.10)' };
   const tile = { background: theme.surf2 };
 
   return (
@@ -47,7 +47,7 @@ export default function Progressi({ theme }) {
           <h1 className="font-display text-[30px] font-semibold m-0">Progressi</h1>
         </div>
         <button onClick={() => setForm(form ? null : { taken_on: isoDay(new Date()) })} aria-expanded={!!form}
-          className="h-11 px-4 rounded-full border-0 font-bold text-sm" style={{ background: theme.acc, color: '#1A1512' }}>
+          className="h-11 px-4 rounded-full border-0 font-bold text-sm" style={{ background: theme.acc, color: theme.onAcc }}>
           {form ? 'Chiudi' : '+ Misura'}
         </button>
       </header>
@@ -56,18 +56,18 @@ export default function Progressi({ theme }) {
         <form onSubmit={submit} className="rounded-[24px] p-4 flex flex-col gap-3" style={card}>
           <label className="flex flex-col gap-1 text-sm">Data
             <input type="date" required value={form.taken_on} onChange={(e) => setForm({ ...form, taken_on: e.target.value })}
-              className="h-11 rounded-xl px-3 text-base border-0" style={{ ...tile, color: '#F3EADD', colorScheme: 'dark' }} />
+              className="h-11 rounded-xl px-3 text-base border-0" style={{ ...tile, color: theme.text, colorScheme: 'dark' }} />
           </label>
           <div className="grid grid-cols-2 gap-2.5">
             {FIELDS.map(([k, l]) => (
               <label key={k} className="flex flex-col gap-1 text-[13px]">{l}
                 <input inputMode="decimal" value={form[k] || ''} onChange={(e) => setForm({ ...form, [k]: e.target.value })}
-                  className="h-11 rounded-xl px-3 text-base border-0" style={{ ...tile, color: '#F3EADD' }} />
+                  className="h-11 rounded-xl px-3 text-base border-0" style={{ ...tile, color: theme.text }} />
               </label>
             ))}
           </div>
           <p className="m-0 text-xs text-muted">Compila solo quello che hai misurato.</p>
-          <button type="submit" className="h-12 rounded-full border-0 font-bold" style={{ background: theme.acc, color: '#1A1512' }}>Salva misura</button>
+          <button type="submit" className="h-12 rounded-full border-0 font-bold" style={{ background: theme.acc, color: theme.onAcc }}>Salva misura</button>
         </form>
       )}
 
@@ -75,7 +75,7 @@ export default function Progressi({ theme }) {
         <section className="rounded-[24px] p-4 flex flex-col gap-3" style={card}>
           <div className="flex justify-between items-baseline">
             <h2 className="font-display font-semibold text-[17px] m-0">Peso</h2>
-            <span className="text-muted text-sm"><b className="text-lg" style={{ color: '#F3EADD' }}>{fmt(lastW.weight)} kg</b> · {signed(lastW.weight - firstW.weight)} dall'inizio</span>
+            <span className="text-muted text-sm"><b className="text-lg" style={{ color: theme.text }}>{fmt(lastW.weight)} kg</b> · {signed(lastW.weight - firstW.weight)} dall'inizio</span>
           </div>
           <div className="flex items-end gap-2 h-[150px] overflow-x-auto" role="img"
             aria-label={'Andamento del peso: ' + weights.map((r) => `${label(r)} ${fmt(r.weight)} kg`).join(', ')}>
@@ -84,8 +84,8 @@ export default function Progressi({ theme }) {
               const h = 20 + ((r.weight - wMin) / Math.max(wMax - wMin, 1)) * 100;
               return (
                 <div key={r.id} className="flex-1 min-w-[38px] flex flex-col items-center justify-end gap-1.5 h-full">
-                  <span className="text-xs" style={{ color: '#C9BBA8' }}>{fmt(r.weight)}</span>
-                  <div className="w-full" style={{ height: h, borderRadius: '10px 10px 4px 4px', background: isLast ? '#E2B866' : r.source === 'carlotta' ? '#5C5047' : '#4A4038', outline: r.source === 'personale' ? `1.5px dashed ${theme.surf2}` : 'none' }} />
+                  <span className="text-xs" style={{ color: theme.muted }}>{fmt(r.weight)}</span>
+                  <div className="w-full" style={{ height: h, borderRadius: '10px 10px 4px 4px', background: isLast ? theme.acc : r.source === 'carlotta' ? theme.surf2 : `${theme.acc}55`, outline: r.source === 'personale' ? `1.5px dashed ${theme.acc}` : 'none' }} />
                   <span className="text-xs text-muted whitespace-nowrap">{label(r).replace('Mese ', 'M')}</span>
                 </div>
               );
@@ -127,7 +127,7 @@ export default function Progressi({ theme }) {
         </section>
       )}
 
-      <p className="rounded-[22px] px-4 py-3.5 m-0 text-sm leading-relaxed" style={{ border: `1.5px dashed ${theme.surf2}`, color: '#C9BBA8' }}>
+      <p className="rounded-[22px] px-4 py-3.5 m-0 text-sm leading-relaxed" style={{ border: `1.5px dashed ${theme.surf2}`, color: theme.muted }}>
         Le barre scure sono i controlli con Carlotta, quelle tratteggiate le tue misure personali. L'interpretazione dei numeri spetta a lei.
       </p>
       {err && <p className="m-0 text-sm" style={{ color: '#F0A08A' }}>{err}</p>}

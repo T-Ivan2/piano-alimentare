@@ -17,6 +17,15 @@ export default function App() {
     try { return localStorage.getItem('temi') !== 'off'; } catch { return true; }
   });
   const theme = useMemo(() => getTheme(new Date(), themesOn), [themesOn]);
+  const themeVars = {
+    '--theme-text': theme.text,
+    '--theme-muted': theme.muted,
+    '--theme-accent': theme.acc,
+    '--theme-on-accent': theme.onAcc,
+    '--theme-line': theme.line,
+    '--theme-glow': theme.glow,
+    '--theme-active': theme.active,
+  };
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
@@ -45,13 +54,13 @@ export default function App() {
     try { localStorage.setItem('temi', v ? 'on' : 'off'); } catch { /* ignora */ }
   };
 
-  if (session === undefined) return <div className="min-h-dvh" style={{ background: theme.bg }} />;
+  if (session === undefined) return <div className="theme-page min-h-dvh" style={{ ...themeVars, backgroundColor: theme.bg }} />;
   if (!session) return <Login theme={theme} />;
 
   return (
-    <div className="min-h-dvh flex flex-col font-sans" style={{ background: theme.bg }}>
-      <main className="flex-1 w-full max-w-md mx-auto px-5 pt-7 pb-28">
-        {error && <p className="rounded-2xl p-4 mb-4" style={{ background: theme.surf }}>{error}</p>}
+    <div className="theme-page min-h-dvh flex flex-col font-sans" style={{ ...themeVars, backgroundColor: theme.bg }}>
+      <main className="flex-1 w-full max-w-md mx-auto px-4 sm:px-5 pt-6 sm:pt-7 pb-28">
+        {error && <p className="theme-card rounded-2xl p-4 mb-4" style={{ background: theme.surf }}>{error}</p>}
         {!plan && !error && <p className="text-muted">Caricamento…</p>}
         {plan && tab === 'oggi' && (
           <Oggi plan={plan} theme={theme} user={session.user} themesOn={themesOn} onToggleThemes={toggleThemes} />
