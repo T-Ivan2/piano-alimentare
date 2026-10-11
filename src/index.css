@@ -46,6 +46,12 @@ button:focus-visible, input:focus-visible {
 .theme-action { transition: filter .18s ease, transform .18s ease; }
 .theme-action:hover { filter: brightness(1.08); }
 .theme-action:active { transform: scale(.97); }
+.theme-photo {
+  height: clamp(6rem, 25vw, 9rem);
+  background: var(--theme-surface-2, #303B30);
+  box-shadow: inset 0 0 0 1px var(--theme-line, transparent);
+}
+.theme-photo img { display: block; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }

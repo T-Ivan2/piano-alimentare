@@ -25,6 +25,7 @@ export default function App() {
     '--theme-line': theme.line,
     '--theme-glow': theme.glow,
     '--theme-active': theme.active,
+    '--theme-surface-2': theme.surf2,
   };
 
   useEffect(() => {
