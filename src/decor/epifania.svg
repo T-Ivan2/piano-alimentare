@@ -21,22 +21,24 @@
   </defs>
 
   <!-- cielo -->
-  <circle cx="250" cy="38" r="40" fill="url(#ep-moonglow)"/>
-  <circle cx="250" cy="38" r="22" fill="url(#ep-moon)"/>
-  <circle cx="243" cy="33" r="3.5" fill="#E2C47A" opacity="0.4"/>
-  <circle cx="257" cy="45" r="5" fill="#E2C47A" opacity="0.3"/>
+  <circle cx="254" cy="44" r="58" fill="url(#ep-moonglow)"/>
+  <circle cx="254" cy="44" r="35" fill="url(#ep-moon)"/>
+  <circle cx="242" cy="34" r="5.5" fill="#E2C47A" opacity="0.4"/>
+  <circle cx="270" cy="30" r="3" fill="#E2C47A" opacity="0.35"/>
+  <circle cx="246" cy="62" r="3.5" fill="#E2C47A" opacity="0.3"/>
+  <circle cx="266" cy="54" r="7.5" fill="#E2C47A" opacity="0.3"/>
   <use href="#ep-star" transform="translate(30 20)" fill="#F0D276"/>
   <use href="#ep-star" transform="translate(130 16) scale(0.7)" fill="#F0D276"/>
-  <use href="#ep-star" transform="translate(330 28) scale(0.85)" fill="#F0D276"/>
+  <use href="#ep-star" transform="translate(338 22) scale(0.85)" fill="#F0D276"/>
   <use href="#ep-tw" transform="translate(90 36)" fill="#DCE6FA" opacity="0.8"/>
   <use href="#ep-tw" transform="translate(190 12) scale(0.8)" fill="#DCE6FA" opacity="0.7"/>
-  <use href="#ep-tw" transform="translate(310 66) scale(0.7)" fill="#DCE6FA" opacity="0.7"/>
+  <use href="#ep-tw" transform="translate(330 80) scale(0.7)" fill="#DCE6FA" opacity="0.7"/>
   <circle cx="60" cy="50" r="1.1" fill="#DCE6FA" opacity="0.6"/>
   <circle cx="166" cy="40" r="1" fill="#DCE6FA" opacity="0.6"/>
   <circle cx="350" cy="10" r="1.1" fill="#DCE6FA" opacity="0.6"/>
 
   <!-- Befana sulla scopa, davanti alla luna -->
-  <g transform="translate(250 40) rotate(-14)">
+  <g transform="translate(256 52) rotate(-14) scale(1.25)">
     <path d="M-34 6 L30 -2" stroke="#8A6040" stroke-width="2.4" stroke-linecap="round"/>
     <path d="M30 -2 L44 -10 L46 -2 L45 4 L31 2 Z" fill="#C9A060"/>
     <path d="M34 -3 L44 -7 M34 0 L45 -1 M33 2 L44 3" stroke="#A8803E" stroke-width="0.8"/>

@@ -30,14 +30,18 @@
       <path d="M-19 3 Q-9 7 0 3 Q9 7 19 3 L16 -2 Q8 1 0 -2 Q-8 1 -16 -2 Z" fill="#EAF3FA" opacity="0.9"/>
       <rect x="-3" y="4" width="6" height="7" fill="#5A4636"/>
     </g>
+    <radialGradient id="iv-window" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFD27A" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#FFD27A" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
   <!-- cielo -->
-  <circle cx="306" cy="30" r="34" fill="url(#iv-moonglow)"/>
-  <path d="M312 14 A17 17 0 1 0 314 46 A13 13 0 1 1 312 14 Z" fill="#EAF4FB"/>
+  <g transform="translate(26 -4)"><circle cx="306" cy="30" r="30" fill="url(#iv-moonglow)"/>
+  <path d="M312 14 A17 17 0 1 0 314 46 A13 13 0 1 1 312 14 Z" fill="#EAF4FB"/></g>
   <use href="#iv-flake" transform="translate(30 22)"/>
   <use href="#iv-flake" transform="translate(110 14) scale(0.7)" opacity="0.8"/>
-  <use href="#iv-flake" transform="translate(236 26) scale(0.85)"/>
+  <use href="#iv-flake" transform="translate(222 46) scale(0.7)"/>
   <use href="#iv-flake" transform="translate(338 72) scale(0.6)" opacity="0.8"/>
   <use href="#iv-flake" transform="translate(124 58) scale(0.5)" opacity="0.6"/>
   <circle cx="64" cy="44" r="1.3" fill="#DDEBF6" opacity="0.7"/>
@@ -48,7 +52,8 @@
   <!-- alberi -->
   <use href="#iv-tree" transform="translate(52 99)"/>
   <use href="#iv-tree" transform="translate(84 103) scale(0.72)"/>
-  <use href="#iv-tree" transform="translate(268 104) scale(0.8)"/>
+  <use href="#iv-tree" transform="translate(322 104) scale(0.7)"/>
+  <use href="#iv-tree" transform="translate(344 106) scale(0.5)"/>
 
   <!-- neve a terra -->
   <path d="M0 120 L0 106 Q50 98 110 104 Q170 110 240 103 Q300 97 360 104 L360 120 Z" fill="url(#iv-snow)"/>
@@ -83,11 +88,28 @@
   <path d="M164 38 C166 41 167 43 168 45 M172 36 V44 M180 38 C178 41 177 43 176 45" stroke="#5E9CC8" stroke-width="1" stroke-linecap="round"/>
   <circle cx="172" cy="33" r="4.5" fill="#EAF4FB"/>
 
-  <!-- tazza calda -->
-  <ellipse cx="226" cy="111" rx="14" ry="2" fill="#000000" opacity="0.22"/>
-  <path d="M215 94 L237 94 L235 109 C235 110 234 111 233 111 L219 111 C218 111 217 110 217 109 Z" fill="#E8504A"/>
-  <path d="M237 97 C243 97 243 105 236 105" stroke="#E8504A" stroke-width="2.6" fill="none"/>
-  <ellipse cx="226" cy="94" rx="11" ry="2.4" fill="#6B4E36"/>
-  <path d="M222 102 h8" stroke="#FFFFFF" stroke-opacity="0.5" stroke-width="1.6" stroke-linecap="round"/>
-  <path d="M222 89 C219 85 225 83 222 78 M229 89 C226 85 232 83 229 78" stroke="#DDEBF6" stroke-opacity="0.7" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+  <!-- chalet con camino -->
+  <circle cx="248" cy="96" r="22" fill="url(#iv-window)"/>
+  <rect x="274" y="54" width="9" height="20" fill="#7A5A44"/>
+  <rect x="272.5" y="51" width="12" height="5" rx="1.5" fill="#EAF3FA"/>
+  <circle cx="278" cy="44" r="4" fill="#E4EDF4" opacity="0.6"/>
+  <circle cx="273" cy="35" r="5.5" fill="#E4EDF4" opacity="0.45"/>
+  <circle cx="264" cy="25" r="7" fill="#E4EDF4" opacity="0.3"/>
+  <circle cx="252" cy="15" r="8" fill="#E4EDF4" opacity="0.18"/>
+  <ellipse cx="258" cy="111" rx="36" ry="3" fill="#000000" opacity="0.22"/>
+  <rect x="228" y="80" width="60" height="30" fill="#8A5A3A"/>
+  <path d="M228 86 H288 M228 92 H288 M228 98 H288 M228 104 H288" stroke="#6E452A" stroke-width="1" opacity="0.7"/>
+  <path d="M220 84 L258 54 L296 84 L290 86 L258 61 L226 86 Z" fill="#5A3A26"/>
+  <path d="M216 85 C214 82 216 80 220 80 L258 50 L296 80 C300 80 302 82 300 85 C297 88 294 84 292 87 C289 90 287 84 284 86 L258 64 L232 86 C229 84 227 90 224 87 C222 84 219 88 216 85 Z" fill="#EAF3FA"/>
+  <path d="M252 72 L264 72 L264 80 L252 80 Z" fill="#FFD98A"/>
+  <path d="M258 72 V80 M252 76 H264" stroke="#6E452A" stroke-width="1.2"/>
+  <path d="M252 72 L264 72 L264 80 L252 80 Z" fill="none" stroke="#6E452A" stroke-width="1.4"/>
+  <rect x="235" y="88" width="16" height="12" fill="#FFD27A"/>
+  <path d="M243 88 V100 M235 94 H251" stroke="#6E452A" stroke-width="1.4"/>
+  <rect x="235" y="88" width="16" height="12" fill="none" stroke="#5A3A26" stroke-width="1.6"/>
+  <path d="M233 101 H253" stroke="#EAF3FA" stroke-width="2.4" stroke-linecap="round"/>
+  <rect x="263" y="90" width="15" height="20" rx="1.5" fill="#5A3A26"/>
+  <circle cx="275" cy="100" r="1.1" fill="#E9C875"/>
+  <path d="M261 90 H280" stroke="#EAF3FA" stroke-width="2" stroke-linecap="round"/>
+  <path d="M224 110 C236 106 248 112 260 108 C272 106 284 111 294 109 L294 112 L224 112 Z" fill="#EAF3FA"/>
 </svg>

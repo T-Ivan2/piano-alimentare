@@ -35,6 +35,7 @@
       <stop offset="0" stop-color="#E8B068"/>
       <stop offset="1" stop-color="#C98A42"/>
     </linearGradient>
+    <linearGradient id="es-lens" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F49BAF"/><stop offset="1" stop-color="#7A4A8A"/></linearGradient>
   </defs>
 
   <!-- sole -->
@@ -53,14 +54,31 @@
   <path d="M0 120 L0 107 Q90 100 180 105 Q270 110 360 102 L360 120 Z" fill="url(#es-ground)"/>
 
   <!-- girasoli -->
-  <path d="M52 110 C52 90 54 70 56 50 M86 110 C86 96 85 84 84 72" stroke="#6E9E4E" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <path d="M54 82 C42 76 34 80 34 86 C42 88 50 86 54 82 Z M55 66 C66 58 74 62 74 68 C66 70 58 70 55 66 Z" fill="#7FB05A"/>
-  <path d="M85 94 C96 88 104 92 104 98 C96 100 89 98 85 94 Z" fill="#7FB05A"/>
-  <use href="#es-sunflower" transform="translate(56 44) rotate(-10)"/>
-  <use href="#es-sunflower" transform="translate(84 70) rotate(12) scale(0.72)"/>
+  <g stroke="#6E9E4E" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M40 110 C40 92 42 74 44 56"/>
+    <path d="M72 110 C72 90 73 66 74 40"/>
+    <path d="M104 110 C104 94 103 80 102 68"/>
+    <path d="M134 110 C134 92 136 70 138 50"/>
+    <path d="M164 110 C164 98 163 88 162 78"/>
+  </g>
+  <g fill="#7FB05A">
+    <path d="M42 86 C30 80 22 84 22 90 C30 92 38 90 42 86 Z"/>
+    <path d="M73 76 C84 68 92 72 92 78 C84 80 76 80 73 76 Z"/>
+    <path d="M73 96 C62 90 54 94 54 100 C62 102 70 100 73 96 Z"/>
+    <path d="M103 92 C114 86 122 90 122 96 C114 98 106 96 103 92 Z"/>
+    <path d="M136 80 C124 74 116 78 116 84 C124 86 132 84 136 80 Z"/>
+    <path d="M137 96 C148 90 156 94 156 100 C148 102 140 100 137 96 Z"/>
+    <path d="M163 96 C172 92 178 95 178 100 C172 101 166 100 163 96 Z"/>
+  </g>
+  <path d="M30 88 L40 86 M82 76 L74 76 M112 94 L104 92 M126 82 L134 80" stroke="#5E8A40" stroke-width="0.8" opacity="0.6"/>
+  <use href="#es-sunflower" transform="translate(44 52) rotate(-12) scale(0.85)"/>
+  <use href="#es-sunflower" transform="translate(74 36) rotate(6)"/>
+  <use href="#es-sunflower" transform="translate(102 64) rotate(-4) scale(0.7)"/>
+  <use href="#es-sunflower" transform="translate(138 46) rotate(14) scale(0.9)"/>
+  <use href="#es-sunflower" transform="translate(162 74) rotate(-8) scale(0.6)"/>
 
   <!-- ape -->
-  <g transform="translate(118 36) rotate(-10)">
+  <g transform="translate(196 40) rotate(-10)">
     <ellipse cx="-2" cy="-6" rx="4.5" ry="3" fill="#FFFFFF" opacity="0.75" transform="rotate(-30 -2 -6)"/>
     <ellipse cx="3" cy="-6" rx="4.5" ry="3" fill="#FFFFFF" opacity="0.75" transform="rotate(30 3 -6)"/>
     <ellipse rx="7" ry="5" fill="#F5C243"/>
@@ -68,35 +86,25 @@
     <circle cx="5" cy="-1" r="0.9" fill="#3A2A1A"/>
     <path d="M-7 0 L-9.5 0.5" stroke="#3A2A1A" stroke-width="1.2" stroke-linecap="round"/>
   </g>
-  <path d="M100 52 Q106 40 110 40" stroke="#F5C243" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="1.5 3" fill="none"/>
+  <path d="M164 30 Q176 22 186 34" stroke="#F5C243" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="1.5 3" fill="none"/>
 
-  <!-- gelato -->
-  <ellipse cx="176" cy="111" rx="16" ry="2.4" fill="#000000" opacity="0.25"/>
-  <path d="M164 74 L176 110 L188 74 Z" fill="url(#es-cone)"/>
-  <path d="M168 80 L184 92 M166 86 L181 98 M172 78 L186 86 M184 80 L170 92 M186 86 L171 98 M182 76 L168 86" stroke="#A86E30" stroke-width="0.9" opacity="0.6"/>
-  <circle cx="169" cy="70" r="10" fill="#F49BAF"/>
-  <circle cx="183" cy="70" r="10" fill="#F7E0B0"/>
-  <circle cx="176" cy="58" r="11" fill="#9A6A4A"/>
-  <path d="M164 74 C166 78 168 76 170 79 C172 76 174 79 176 76 C178 79 181 76 183 79 C185 76 187 78 188 74 Z" fill="#F7E0B0"/>
-  <path d="M169 74 C169 78 167 79 168 82" stroke="#F49BAF" stroke-width="3" stroke-linecap="round" fill="none"/>
-  <circle cx="176" cy="45" r="4" fill="#E8504A"/>
-  <path d="M176 41 C177 37 179 35 182 34" stroke="#6E9E4E" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-  <ellipse cx="171" cy="54" rx="2.6" ry="1.6" fill="#FFFFFF" opacity="0.3"/>
-  <ellipse cx="165" cy="66" rx="2.4" ry="1.4" fill="#FFFFFF" opacity="0.35"/>
-
-  <!-- limoni -->
-  <ellipse cx="248" cy="111" rx="34" ry="2.8" fill="#000000" opacity="0.25"/>
-  <path d="M216 98 C216 89 227 84 238 84 C249 84 260 89 260 98 C260 107 249 112 238 112 C227 112 216 107 216 98 Z" fill="#F5D44C"/>
-  <ellipse cx="214.5" cy="98" rx="3" ry="2.2" fill="#E9C43C"/>
-  <ellipse cx="261.5" cy="98" rx="3" ry="2.2" fill="#E9C43C"/>
-  <path d="M238 84 C238 79 240 76 243 75" stroke="#7A5A30" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-  <path d="M241 78 C246 72 254 72 256 76 C252 81 246 81 241 78 Z" fill="#7FB05A"/>
-  <ellipse cx="228" cy="93" rx="7" ry="3" fill="#FFF3B0" opacity="0.55" transform="rotate(-12 228 93)"/>
-  <g fill="#E9C43C" opacity="0.6"><circle cx="246" cy="100" r="0.8"/><circle cx="250" cy="96" r="0.8"/><circle cx="242" cy="105" r="0.8"/><circle cx="252" cy="103" r="0.8"/></g>
-  <circle cx="276" cy="103" r="10" fill="#F5D44C"/>
-  <circle cx="276" cy="103" r="8.2" fill="#FFF0A8"/>
-  <g stroke="#F5D44C" stroke-width="1.2">
-    <path d="M276 95 V111 M268 103 H284 M270.3 97.3 L281.7 108.7 M281.7 97.3 L270.3 108.7"/>
+  <!-- cappello di paglia e occhiali da sole -->
+  <ellipse cx="262" cy="111" rx="44" ry="3.4" fill="#000000" opacity="0.28"/>
+  <ellipse cx="262" cy="104" rx="44" ry="9" fill="#E8C27A"/>
+  <ellipse cx="262" cy="103" rx="38" ry="6.5" fill="#F0D08E"/>
+  <path d="M241 102 C238 72 286 72 283 102 Z" fill="#E8C27A"/>
+  <path d="M244 84 C252 80 272 80 280 84 M242 91 C252 87 272 87 282 91" stroke="#C9A060" stroke-width="0.9" opacity="0.6" fill="none"/>
+  <path d="M240 98 C250 102 274 102 284 98 L284 102 C274 106 250 106 240 102 Z" fill="#E8504A"/>
+  <path d="M278 101 C286 96 292 100 288 104 C286 106 282 104 278 101 Z M278 101 C282 106 284 112 280 112 C277 111 277 106 278 101 Z" fill="#D63F3A"/>
+  <g stroke="#C9A060" stroke-width="0.7" opacity="0.5">
+    <path d="M226 104 C240 110 284 110 298 104 M222 101 C238 107 286 107 302 101"/>
   </g>
-  <circle cx="276" cy="103" r="1.6" fill="#F5D44C"/>
+  
+  <g transform="translate(318 106) rotate(-6) scale(1.2)">
+    <path d="M-15 -4 C-15 -9 -4 -9 -4 -4 C-4 1 -15 1 -15 -4 Z" fill="url(#es-lens)" stroke="#C9864A" stroke-width="1.4"/>
+    <path d="M15 -4 C15 -9 4 -9 4 -4 C4 1 15 1 15 -4 Z" fill="url(#es-lens)" stroke="#C9864A" stroke-width="1.4"/>
+    <path d="M-4 -5.5 C-2 -7 2 -7 4 -5.5" stroke="#C9864A" stroke-width="1.6" fill="none"/>
+    <path d="M-15 -5 L-20 -7 M15 -5 L20 -7" stroke="#C9864A" stroke-width="1.4" stroke-linecap="round"/>
+    <path d="M-12 -6 L-9 -3 M7 -6 L10 -3" stroke="#FFFFFF" stroke-width="1.2" opacity="0.7" stroke-linecap="round"/>
+  </g>
 </svg>
