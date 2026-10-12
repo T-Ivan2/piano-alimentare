@@ -33,15 +33,16 @@ export default function App() {
     return () => data.subscription.unsubscribe();
   }, []);
 
+  const [planVersion, setPlanVersion] = useState(0);
   useEffect(() => {
     if (!session) return;
     supabase.from('plans').select('*').eq('active', true).limit(1).maybeSingle()
       .then(({ data, error }) => {
         if (error) setError('Non riesco a leggere il piano: ' + error.message);
         else if (!data) setError('Nessun piano attivo nel database.');
-        else setPlan(data);
+        else { setError(''); setPlan(data); }
       });
-  }, [session]);
+  }, [session, planVersion]);
 
   useEffect(() => {
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme.bg);
@@ -63,7 +64,7 @@ export default function App() {
         {error && <p className="theme-card rounded-2xl p-4 mb-4" style={{ background: theme.surf }}>{error}</p>}
         {!plan && !error && <p className="text-muted">Caricamento…</p>}
         {plan && tab === 'oggi' && (
-          <Oggi plan={plan} theme={theme} user={session.user} themesOn={themesOn} onToggleThemes={toggleThemes} />
+          <Oggi key={plan.id} plan={plan} theme={theme} user={session.user} themesOn={themesOn} onToggleThemes={toggleThemes} onPlanChanged={() => setPlanVersion((v) => v + 1)} />
         )}
         {plan && tab === 'settimana' && <Settimana plan={plan} theme={theme} />}
         {plan && tab === 'spesa' && <Spesa plan={plan} theme={theme} user={session.user} />}

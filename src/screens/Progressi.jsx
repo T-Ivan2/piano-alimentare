@@ -29,7 +29,8 @@ export default function Progressi({ theme }) {
 
   const submit = async (e) => {
     e.preventDefault();
-    const rec = { taken_on: form.taken_on, source: 'personale' };
+    const rec = { taken_on: form.taken_on, source: form.source || 'personale' };
+    if (form.source === 'carlotta' && form.label) rec.label = form.label;
     FIELDS.forEach(([k]) => { if (form[k] !== '' && form[k] != null) rec[k] = parseFloat(String(form[k]).replace(',', '.')); });
     const { error } = await supabase.from('measurements').insert(rec);
     if (error) { setErr('Non sono riuscito a salvare: ' + error.message); return; }
@@ -46,7 +47,7 @@ export default function Progressi({ theme }) {
           <p className="text-muted m-0 text-sm">{lastW ? `Ultimo controllo · ${label(lastW)}` : 'Nessuna misura ancora'}</p>
           <h1 className="font-display text-[30px] font-semibold m-0">Progressi</h1>
         </div>
-        <button onClick={() => setForm(form ? null : { taken_on: isoDay(new Date()) })} aria-expanded={!!form}
+        <button onClick={() => setForm(form ? null : { taken_on: isoDay(new Date()), source: 'personale' })} aria-expanded={!!form}
           className="h-11 px-4 rounded-full border-0 font-bold text-sm" style={{ background: theme.acc, color: theme.onAcc }}>
           {form ? 'Chiudi' : '+ Misura'}
         </button>
@@ -66,6 +67,18 @@ export default function Progressi({ theme }) {
               </label>
             ))}
           </div>
+          <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-label="Fonte della misura">
+            {[['personale', 'Misura mia'], ['carlotta', 'Controllo Carlotta']].map(([v, l]) => (
+              <button type="button" key={v} role="radio" aria-checked={form.source === v} onClick={() => setForm({ ...form, source: v })}
+                className="h-11 rounded-full text-sm font-bold" style={{ background: form.source === v ? theme.acc : 'transparent', color: form.source === v ? theme.onAcc : theme.text, border: `1.5px solid ${form.source === v ? theme.acc : theme.surf2}` }}>{l}</button>
+            ))}
+          </div>
+          {form.source === 'carlotta' && (
+            <label className="flex flex-col gap-1 text-[13px]">Nome del controllo
+              <input value={form.label || ''} placeholder="es. Mese 7" onChange={(e) => setForm({ ...form, label: e.target.value })}
+                className="h-11 rounded-xl px-3 text-base border-0" style={{ ...tile, color: theme.text }} />
+            </label>
+          )}
           <p className="m-0 text-xs text-muted">Compila solo quello che hai misurato.</p>
           <button type="submit" className="h-12 rounded-full border-0 font-bold" style={{ background: theme.acc, color: theme.onAcc }}>Salva misura</button>
         </form>

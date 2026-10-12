@@ -3,12 +3,13 @@ import { supabase } from '../supabase';
 import Illustration from '../components/Illustration';
 import Sostituzioni, { groupsFor } from '../components/Sostituzioni';
 import Promemoria from '../components/Promemoria';
+import GestionePiano from '../components/GestionePiano';
 import { weekdayIndex, isoDay, startOfWeek, longDate, MEAL_TYPES, MEAL_TINTS } from '../dates';
 
 const GLASS_ML = 250;
 const empty = { meals: {}, water: 0, checks: {}, subs: {} };
 
-export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
+export default function Oggi({ plan, theme, user, themesOn, onToggleThemes, onPlanChanged }) {
   const now = new Date();
   const today = isoDay(now);
   const wd = weekdayIndex(now);
@@ -21,6 +22,7 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
   const [saveError, setSaveError] = useState('');
   const [swap, setSwap] = useState(null);
   const [reminders, setReminders] = useState(false);
+  const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     supabase.from('day_logs').select('*')
@@ -60,6 +62,9 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
 
       {menu && (
         <div className="theme-card rounded-[22px] p-2 flex flex-col" style={{ background: theme.surf }}>
+          <button onClick={() => { setAdmin(true); setMenu(false); }} className="text-left px-3 py-3 bg-transparent border-0 text-[15px]" style={{ color: theme.text }}>
+            Gestisci il piano
+          </button>
           <button onClick={() => { setReminders(true); setMenu(false); }} className="text-left px-3 py-3 bg-transparent border-0 text-[15px]" style={{ color: theme.text }}>
             Promemoria e notifiche
           </button>
@@ -130,6 +135,7 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
         </div>
       </section>
 
+      {admin && <GestionePiano theme={theme} activePlan={plan} onClose={() => setAdmin(false)} onChanged={onPlanChanged} />}
       {reminders && <Promemoria theme={theme} user={user} onClose={() => setReminders(false)} />}
 
       {swap !== null && (
