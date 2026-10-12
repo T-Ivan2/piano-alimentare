@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../supabase';
 import Illustration from '../components/Illustration';
 import Sostituzioni, { groupsFor } from '../components/Sostituzioni';
+import Promemoria from '../components/Promemoria';
 import { weekdayIndex, isoDay, startOfWeek, longDate, MEAL_TYPES, MEAL_TINTS } from '../dates';
 
 const GLASS_ML = 250;
@@ -19,6 +20,7 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
   const [menu, setMenu] = useState(false);
   const [saveError, setSaveError] = useState('');
   const [swap, setSwap] = useState(null);
+  const [reminders, setReminders] = useState(false);
 
   useEffect(() => {
     supabase.from('day_logs').select('*')
@@ -58,6 +60,9 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
 
       {menu && (
         <div className="theme-card rounded-[22px] p-2 flex flex-col" style={{ background: theme.surf }}>
+          <button onClick={() => { setReminders(true); setMenu(false); }} className="text-left px-3 py-3 bg-transparent border-0 text-[15px]" style={{ color: theme.text }}>
+            Promemoria e notifiche
+          </button>
           <button onClick={onToggleThemes} className="text-left px-3 py-3 bg-transparent border-0 text-[15px]" style={{ color: theme.text }}>
             Temi stagionali: <b>{themesOn ? 'attivi' : 'spenti'}</b>
           </button>
@@ -124,6 +129,8 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes }) {
           ))}
         </div>
       </section>
+
+      {reminders && <Promemoria theme={theme} user={user} onClose={() => setReminders(false)} />}
 
       {swap !== null && (
         <Sostituzioni plan={plan} theme={theme} mealType={MEAL_TYPES[swap]} text={meals[swap]} current={log.subs[swap]}
