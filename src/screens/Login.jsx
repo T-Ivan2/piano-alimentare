@@ -16,11 +16,11 @@ export default function Login({ theme }) {
     setBusy(false);
   };
 
-  const field = { background: theme.surf, color: '#F3EADD', border: `1.5px solid ${theme.surf2}` };
+  const field = { background: theme.surf, color: theme.text, border: `1.5px solid ${theme.surf2}` };
 
   return (
-    <div className="min-h-dvh flex items-center justify-center px-5 font-sans" style={{ background: theme.bg }}>
-      <form onSubmit={submit} className="w-full max-w-sm flex flex-col gap-4">
+    <div className="theme-page min-h-dvh flex items-center justify-center px-5 py-8 font-sans" style={{ backgroundColor: theme.bg, color: theme.text, '--theme-text': theme.text, '--theme-muted': theme.muted, '--theme-accent': theme.acc, '--theme-on-accent': theme.onAcc, '--theme-line': theme.line, '--theme-glow': theme.glow }}>
+      <form onSubmit={submit} className="theme-card w-full max-w-sm flex flex-col gap-4 rounded-[28px] p-5 sm:p-6" style={{ background: theme.surf }}>
         <Illustration name={theme.key} />
         <div>
           <p className="text-muted m-0 text-sm">Il tuo piano alimentare</p>
@@ -37,8 +37,8 @@ export default function Login({ theme }) {
             className="h-12 rounded-2xl px-4 text-base outline-none" style={field} />
         </label>
         {error && <p className="m-0 text-sm" style={{ color: '#F0A08A' }}>{error}</p>}
-        <button type="submit" disabled={busy} className="h-13 py-3.5 rounded-full border-0 font-bold text-base"
-          style={{ background: theme.acc, color: '#1A1512', opacity: busy ? 0.6 : 1 }}>
+        <button type="submit" disabled={busy} className="theme-action h-13 py-3.5 rounded-full border-0 font-bold text-base"
+          style={{ background: theme.acc, color: theme.onAcc, opacity: busy ? 0.6 : 1 }}>
           {busy ? 'Accesso…' : 'Entra'}
         </button>
       </form>
