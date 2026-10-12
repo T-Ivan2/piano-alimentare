@@ -4,9 +4,12 @@ import { MEAL_TYPES } from '../dates';
 
 const clone = (x) => JSON.parse(JSON.stringify(x));
 
-export default function GestionePiano({ theme, activePlan, onClose, onChanged }) {
+export default function GestionePiano({ theme, activePlan, onClose, onChanged, initialDraft, reviewMode }) {
   const [plans, setPlans] = useState([]);
-  const [draft, setDraft] = useState(null); // { id?, title, month_label, goal, data }
+  const [draft, setDraft] = useState(() => (initialDraft
+    ? { id: initialDraft.id, title: initialDraft.title, month_label: initialDraft.month_label, goal: initialDraft.goal || '', data: clone(initialDraft.data) }
+    : null)); // { id?, title, month_label, goal, data }
+  const [importing, setImporting] = useState(false);
   const [day, setDay] = useState(0);
   const [msg, setMsg] = useState('');
   const [busy, setBusy] = useState(false);
@@ -49,9 +52,35 @@ export default function GestionePiano({ theme, activePlan, onClose, onChanged })
 
   const activatePlan = async (id, refresh = true) => {
     const { error: e1 } = await supabase.from('plans').update({ active: false }).neq('id', id);
-    const { error: e2 } = await supabase.from('plans').update({ active: true }).eq('id', id);
+    const { error: e2 } = await supabase.from('plans').update({ active: true, status: 'ok' }).eq('id', id);
     if (e1 || e2) { setMsg('Errore: ' + (e1 || e2).message); return; }
     if (refresh) { setMsg('Piano attivato.'); load(); onChanged(); }
+  };
+
+  const importPdf = async (e) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    if (!file) return;
+    if (file.size > 4.5 * 1024 * 1024) { setMsg('Il PDF è troppo grande (max 4,5 MB).'); return; }
+    setImporting(true); setMsg('');
+    try {
+      const b64 = await new Promise((ok, ko) => {
+        const fr = new FileReader();
+        fr.onload = () => ok(String(fr.result).split(',')[1]);
+        fr.onerror = ko;
+        fr.readAsDataURL(file);
+      });
+      const { data: { session } } = await supabase.auth.getSession();
+      const res = await fetch('/.netlify/functions/importa-piano-background', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', authorization: `Bearer ${session.access_token}` },
+        body: JSON.stringify({ pdf_base64: b64, filename: file.name }),
+      });
+      setMsg(res.ok ? 'PDF inviato. Lo sto leggendo: ti arriva una notifica quando il piano è pronto da verificare (1-3 minuti).' : `Invio non riuscito (${res.status}).`);
+    } catch (err) {
+      setMsg('Invio non riuscito: ' + err.message);
+    }
+    setImporting(false);
   };
 
   const input = { background: theme.surf2, color: theme.text, border: 0 };
@@ -62,10 +91,10 @@ export default function GestionePiano({ theme, activePlan, onClose, onChanged })
       <div className="max-w-md mx-auto px-4 pt-6 pb-16 flex flex-col gap-4">
         <header className="flex justify-between items-start gap-3">
           <div>
-            <p className="m-0 text-sm" style={{ color: theme.muted }}>{draft ? (draft.id ? 'Modifica piano attivo' : 'Nuovo piano') : 'Gestione'}</p>
+            <p className="m-0 text-sm" style={{ color: theme.muted }}>{reviewMode ? 'Correggi il piano importato' : draft ? (draft.id ? 'Modifica piano attivo' : 'Nuovo piano') : 'Gestione'}</p>
             <h1 className="m-0 font-display text-[28px] font-semibold">{draft ? 'Piano alimentare' : 'I tuoi piani'}</h1>
           </div>
-          <button onClick={draft ? () => setDraft(null) : onClose} aria-label={draft ? 'Annulla modifiche' : 'Chiudi'}
+          <button onClick={draft && !reviewMode ? () => setDraft(null) : onClose} aria-label={draft ? 'Annulla modifiche' : 'Chiudi'}
             className="w-11 h-11 shrink-0 rounded-full border-0 flex items-center justify-center" style={{ background: theme.surf, color: theme.text }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
           </button>
@@ -75,6 +104,10 @@ export default function GestionePiano({ theme, activePlan, onClose, onChanged })
 
         {!draft && (
           <>
+            <label className="theme-action h-12 rounded-full font-bold flex items-center justify-center cursor-pointer" style={{ border: `1.5px solid ${theme.acc}`, color: theme.acc, opacity: importing ? 0.6 : 1 }}>
+              {importing ? 'Invio del PDF…' : 'Importa da PDF di Carlotta'}
+              <input type="file" accept="application/pdf" className="sr-only" disabled={importing} onChange={importPdf} />
+            </label>
             <button onClick={startNew} className="theme-action h-12 rounded-full border-0 font-bold" style={{ background: theme.acc, color: theme.onAcc }}>
               + Nuovo piano (parti da quello attuale)
             </button>
@@ -166,9 +199,9 @@ export default function GestionePiano({ theme, activePlan, onClose, onChanged })
             </section>
 
             <div className="flex flex-col gap-2 sticky bottom-3">
-              <button disabled={busy} onClick={() => save(true)} className="theme-action h-12 rounded-full border-0 font-bold"
-                style={{ background: theme.acc, color: theme.onAcc, opacity: busy ? 0.6 : 1 }}>{draft.id ? 'Salva modifiche' : 'Salva e attiva'}</button>
-              {!draft.id && (
+              <button disabled={busy} onClick={() => save(!reviewMode)} className="theme-action h-12 rounded-full border-0 font-bold"
+                style={{ background: theme.acc, color: theme.onAcc, opacity: busy ? 0.6 : 1 }}>{reviewMode ? 'Salva e torna alla revisione' : draft.id ? 'Salva modifiche' : 'Salva e attiva'}</button>
+              {!draft.id && !reviewMode && (
                 <button disabled={busy} onClick={() => save(false)} className="h-11 rounded-full font-bold text-sm"
                   style={{ background: theme.bg, border: `1.5px solid ${theme.surf2}`, color: theme.text }}>Salva come bozza</button>
               )}

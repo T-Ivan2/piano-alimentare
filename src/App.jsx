@@ -11,6 +11,7 @@ import Nav from './components/Nav';
 export default function App() {
   const [session, setSession] = useState(undefined);
   const [plan, setPlan] = useState(null);
+  const [pending, setPending] = useState(null);
   const [error, setError] = useState('');
   const [tab, setTab] = useState('oggi');
   const [themesOn, setThemesOn] = useState(() => {
@@ -42,6 +43,8 @@ export default function App() {
         else if (!data) setError('Nessun piano attivo nel database.');
         else { setError(''); setPlan(data); }
       });
+    supabase.from('plans').select('*').eq('status', 'review').order('created_at', { ascending: false }).limit(1).maybeSingle()
+      .then(({ data }) => setPending(data || null));
   }, [session, planVersion]);
 
   useEffect(() => {
@@ -64,7 +67,7 @@ export default function App() {
         {error && <p className="theme-card rounded-2xl p-4 mb-4" style={{ background: theme.surf }}>{error}</p>}
         {!plan && !error && <p className="text-muted">Caricamento…</p>}
         {plan && tab === 'oggi' && (
-          <Oggi key={plan.id} plan={plan} theme={theme} user={session.user} themesOn={themesOn} onToggleThemes={toggleThemes} onPlanChanged={() => setPlanVersion((v) => v + 1)} />
+          <Oggi key={plan.id} plan={plan} theme={theme} user={session.user} themesOn={themesOn} onToggleThemes={toggleThemes} pending={pending} onPlanChanged={() => setPlanVersion((v) => v + 1)} />
         )}
         {plan && tab === 'settimana' && <Settimana plan={plan} theme={theme} />}
         {plan && tab === 'spesa' && <Spesa plan={plan} theme={theme} user={session.user} />}

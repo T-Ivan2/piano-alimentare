@@ -4,12 +4,13 @@ import Illustration from '../components/Illustration';
 import Sostituzioni, { groupsFor } from '../components/Sostituzioni';
 import Promemoria from '../components/Promemoria';
 import GestionePiano from '../components/GestionePiano';
+import Revisione from '../components/Revisione';
 import { weekdayIndex, isoDay, startOfWeek, longDate, MEAL_TYPES, MEAL_TINTS } from '../dates';
 
 const GLASS_ML = 250;
 const empty = { meals: {}, water: 0, checks: {}, subs: {} };
 
-export default function Oggi({ plan, theme, user, themesOn, onToggleThemes, onPlanChanged }) {
+export default function Oggi({ plan, theme, user, themesOn, onToggleThemes, onPlanChanged, pending }) {
   const now = new Date();
   const today = isoDay(now);
   const wd = weekdayIndex(now);
@@ -23,6 +24,7 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes, onPl
   const [swap, setSwap] = useState(null);
   const [reminders, setReminders] = useState(false);
   const [admin, setAdmin] = useState(false);
+  const [review, setReview] = useState(false);
 
   useEffect(() => {
     supabase.from('day_logs').select('*')
@@ -75,6 +77,18 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes, onPl
             Esci
           </button>
         </div>
+      )}
+
+      {pending && (
+        <button onClick={() => setReview(true)} className="theme-card theme-action rounded-[22px] px-4 py-3.5 flex items-center gap-3 text-left border-0"
+          style={{ background: theme.acc, color: theme.onAcc }}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z" /><path d="M4 7l8 6 8-6" /></svg>
+          <span className="flex-1">
+            <span className="block font-bold">Nuovo piano di Carlotta</span>
+            <span className="block text-sm opacity-80">Tocca per verificarlo e confermarlo</span>
+          </span>
+          <span aria-hidden="true" className="text-xl">›</span>
+        </button>
       )}
 
       <Illustration name={theme.key} />
@@ -135,6 +149,8 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes, onPl
         </div>
       </section>
 
+      {review && pending && <Revisione theme={theme} pending={pending} activePlan={plan} onClose={() => setReview(false)}
+        onDone={(keep) => { onPlanChanged(); if (!keep) setReview(false); }} />}
       {admin && <GestionePiano theme={theme} activePlan={plan} onClose={() => setAdmin(false)} onChanged={onPlanChanged} />}
       {reminders && <Promemoria theme={theme} user={user} onClose={() => setReminders(false)} />}
 
