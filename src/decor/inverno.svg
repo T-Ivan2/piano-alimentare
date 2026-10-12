@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120">
+  <defs>
+    <radialGradient id="iv-ball" cx="0.38" cy="0.32" r="0.75">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#C9DAE8"/>
+    </radialGradient>
+    <linearGradient id="iv-snow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E4EEF6" stop-opacity="0"/>
+      <stop offset="0.2" stop-color="#E4EEF6" stop-opacity="0.92"/>
+      <stop offset="0.8" stop-color="#E4EEF6" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#E4EEF6" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="iv-pine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3D6E7A"/>
+      <stop offset="1" stop-color="#2A4F5A"/>
+    </linearGradient>
+    <radialGradient id="iv-moonglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#CFE6F7" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#CFE6F7" stop-opacity="0"/>
+    </radialGradient>
+    <g id="iv-flake" stroke="#DDEBF6" stroke-width="1.1" stroke-linecap="round" fill="none">
+      <path d="M0 -7 V7 M-1.8 -5 L0 -3.4 L1.8 -5 M-1.8 5 L0 3.4 L1.8 5"/>
+      <path d="M0 -7 V7 M-1.8 -5 L0 -3.4 L1.8 -5 M-1.8 5 L0 3.4 L1.8 5" transform="rotate(60)"/>
+      <path d="M0 -7 V7 M-1.8 -5 L0 -3.4 L1.8 -5 M-1.8 5 L0 3.4 L1.8 5" transform="rotate(120)"/>
+    </g>
+    <g id="iv-tree">
+      <path d="M0 -40 L18 -8 L-18 -8 Z M0 -28 L22 4 L-22 4 Z" fill="url(#iv-pine)"/>
+      <path d="M-6 -30 Q0 -26 6 -30 L0 -40 Z" fill="#EAF3FA"/>
+      <path d="M-14 -9 Q-6 -5 0 -9 Q6 -5 14 -9 L11 -14 Q4 -11 0 -14 Q-4 -11 -11 -14 Z" fill="#EAF3FA" opacity="0.9"/>
+      <path d="M-19 3 Q-9 7 0 3 Q9 7 19 3 L16 -2 Q8 1 0 -2 Q-8 1 -16 -2 Z" fill="#EAF3FA" opacity="0.9"/>
+      <rect x="-3" y="4" width="6" height="7" fill="#5A4636"/>
+    </g>
+    <radialGradient id="iv-window" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFD27A" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#FFD27A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- cielo -->
+  <g transform="translate(26 -4)"><circle cx="306" cy="30" r="30" fill="url(#iv-moonglow)"/>
+  <path d="M312 14 A17 17 0 1 0 314 46 A13 13 0 1 1 312 14 Z" fill="#EAF4FB"/></g>
+  <use href="#iv-flake" transform="translate(30 22)"/>
+  <use href="#iv-flake" transform="translate(110 14) scale(0.7)" opacity="0.8"/>
+  <use href="#iv-flake" transform="translate(222 46) scale(0.7)"/>
+  <use href="#iv-flake" transform="translate(338 72) scale(0.6)" opacity="0.8"/>
+  <use href="#iv-flake" transform="translate(124 58) scale(0.5)" opacity="0.6"/>
+  <circle cx="64" cy="44" r="1.3" fill="#DDEBF6" opacity="0.7"/>
+  <circle cx="146" cy="30" r="1.1" fill="#DDEBF6" opacity="0.6"/>
+  <circle cx="270" cy="58" r="1.2" fill="#DDEBF6" opacity="0.6"/>
+  <circle cx="16" cy="64" r="1" fill="#DDEBF6" opacity="0.5"/>
+
+  <!-- alberi -->
+  <use href="#iv-tree" transform="translate(52 99)"/>
+  <use href="#iv-tree" transform="translate(84 103) scale(0.72)"/>
+  <use href="#iv-tree" transform="translate(322 104) scale(0.7)"/>
+  <use href="#iv-tree" transform="translate(344 106) scale(0.5)"/>
+
+  <!-- neve a terra -->
+  <path d="M0 120 L0 106 Q50 98 110 104 Q170 110 240 103 Q300 97 360 104 L360 120 Z" fill="url(#iv-snow)"/>
+
+  <!-- pupazzo di neve -->
+  <ellipse cx="172" cy="112" rx="28" ry="3.2" fill="#000000" opacity="0.2"/>
+  <circle cx="172" cy="90" r="22" fill="url(#iv-ball)"/>
+  <circle cx="172" cy="56" r="15.5" fill="url(#iv-ball)"/>
+  <path d="M150 74 L132 62 M137 65 L132 58 M137 65 L130 67" stroke="#6B4E36" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M194 74 L212 60 M207 64 L210 56 M207 64 L215 65" stroke="#6B4E36" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <circle cx="172" cy="82" r="2" fill="#2E3A44"/>
+  <circle cx="172" cy="92" r="2" fill="#2E3A44"/>
+  <circle cx="172" cy="102" r="2" fill="#2E3A44"/>
+  <!-- sciarpa -->
+  <path d="M157 66 C164 72 180 72 187 66 L188 71 C180 77 164 77 156 71 Z" fill="#E8504A"/>
+  <path d="M180 72 L184 88 L177 89 L175 73 Z" fill="#D63F3A"/>
+  <path d="M177 89 L176 92 M180 88.6 L180 91.6 M183 88.2 L184 91" stroke="#D63F3A" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M160 69 L162 73 M166 71 L167 75 M173 72 L173 76 M180 71 L179 75" stroke="#FFFFFF" stroke-width="1.2" stroke-opacity="0.5" stroke-linecap="round"/>
+  <!-- viso -->
+  <circle cx="166" cy="53" r="1.9" fill="#2E3A44"/>
+  <circle cx="178" cy="53" r="1.9" fill="#2E3A44"/>
+  <path d="M172 57 L186 60 L172 61 Z" fill="#F0913F"/>
+  <circle cx="166" cy="62" r="0.9" fill="#2E3A44"/>
+  <circle cx="169" cy="63.6" r="0.9" fill="#2E3A44"/>
+  <circle cx="175" cy="63.6" r="0.9" fill="#2E3A44"/>
+  <circle cx="178" cy="62" r="0.9" fill="#2E3A44"/>
+  <ellipse cx="162" cy="58" rx="2.6" ry="1.5" fill="#F3A9C4" opacity="0.6"/>
+  <ellipse cx="182" cy="58" rx="2.6" ry="1.5" fill="#F3A9C4" opacity="0.6"/>
+  <!-- berretto -->
+  <path d="M157 47 C157 33 187 33 187 47 Z" fill="#7CB7E0"/>
+  <rect x="155" y="44" width="34" height="6" rx="3" fill="#A9D5F2"/>
+  <path d="M164 38 C166 41 167 43 168 45 M172 36 V44 M180 38 C178 41 177 43 176 45" stroke="#5E9CC8" stroke-width="1" stroke-linecap="round"/>
+  <circle cx="172" cy="33" r="4.5" fill="#EAF4FB"/>
+
+  <!-- chalet con camino -->
+  <circle cx="248" cy="96" r="22" fill="url(#iv-window)"/>
+  <rect x="274" y="54" width="9" height="20" fill="#7A5A44"/>
+  <rect x="272.5" y="51" width="12" height="5" rx="1.5" fill="#EAF3FA"/>
+  <circle cx="278" cy="44" r="4" fill="#E4EDF4" opacity="0.6"/>
+  <circle cx="273" cy="35" r="5.5" fill="#E4EDF4" opacity="0.45"/>
+  <circle cx="264" cy="25" r="7" fill="#E4EDF4" opacity="0.3"/>
+  <circle cx="252" cy="15" r="8" fill="#E4EDF4" opacity="0.18"/>
+  <ellipse cx="258" cy="111" rx="36" ry="3" fill="#000000" opacity="0.22"/>
+  <rect x="228" y="80" width="60" height="30" fill="#8A5A3A"/>
+  <path d="M228 86 H288 M228 92 H288 M228 98 H288 M228 104 H288" stroke="#6E452A" stroke-width="1" opacity="0.7"/>
+  <path d="M220 84 L258 54 L296 84 L290 86 L258 61 L226 86 Z" fill="#5A3A26"/>
+  <path d="M216 85 C214 82 216 80 220 80 L258 50 L296 80 C300 80 302 82 300 85 C297 88 294 84 292 87 C289 90 287 84 284 86 L258 64 L232 86 C229 84 227 90 224 87 C222 84 219 88 216 85 Z" fill="#EAF3FA"/>
+  <path d="M252 72 L264 72 L264 80 L252 80 Z" fill="#FFD98A"/>
+  <path d="M258 72 V80 M252 76 H264" stroke="#6E452A" stroke-width="1.2"/>
+  <path d="M252 72 L264 72 L264 80 L252 80 Z" fill="none" stroke="#6E452A" stroke-width="1.4"/>
+  <rect x="235" y="88" width="16" height="12" fill="#FFD27A"/>
+  <path d="M243 88 V100 M235 94 H251" stroke="#6E452A" stroke-width="1.4"/>
+  <rect x="235" y="88" width="16" height="12" fill="none" stroke="#5A3A26" stroke-width="1.6"/>
+  <path d="M233 101 H253" stroke="#EAF3FA" stroke-width="2.4" stroke-linecap="round"/>
+  <rect x="263" y="90" width="15" height="20" rx="1.5" fill="#5A3A26"/>
+  <circle cx="275" cy="100" r="1.1" fill="#E9C875"/>
+  <path d="M261 90 H280" stroke="#EAF3FA" stroke-width="2" stroke-linecap="round"/>
+  <path d="M224 110 C236 106 248 112 260 108 C272 106 284 111 294 109 L294 112 L224 112 Z" fill="#EAF3FA"/>
+</svg>

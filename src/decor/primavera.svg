@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120">
+  <defs>
+    <linearGradient id="pv-petal" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#F7C6D7"/>
+      <stop offset="1" stop-color="#FFF0F5"/>
+    </linearGradient>
+    <path id="pv-p" d="M0 0 C-4 -3 -5 -8 -2.6 -10.5 L0 -8.8 L2.6 -10.5 C5 -8 4 -3 0 0 Z"/>
+    <g id="pv-flower">
+      <use href="#pv-p" fill="url(#pv-petal)"/>
+      <use href="#pv-p" fill="url(#pv-petal)" transform="rotate(72)"/>
+      <use href="#pv-p" fill="url(#pv-petal)" transform="rotate(144)"/>
+      <use href="#pv-p" fill="url(#pv-petal)" transform="rotate(216)"/>
+      <use href="#pv-p" fill="url(#pv-petal)" transform="rotate(288)"/>
+      <circle r="2.6" fill="#E77FA2"/>
+      <circle cy="-4" r="0.8" fill="#F6D27A"/><circle cx="3.8" cy="-1.2" r="0.8" fill="#F6D27A"/><circle cx="2.4" cy="3.2" r="0.8" fill="#F6D27A"/><circle cx="-2.4" cy="3.2" r="0.8" fill="#F6D27A"/><circle cx="-3.8" cy="-1.2" r="0.8" fill="#F6D27A"/>
+    </g>
+    <path id="pv-fall" d="M0 0 C-2.5 -2 -3 -5 -1.5 -6.5 L0 -5.5 L1.5 -6.5 C3 -5 2.5 -2 0 0 Z"/>
+    <g id="pv-daisy">
+      <path d="M0 10 C0 6 0.5 3 0 0" stroke="#6E9E4E" stroke-width="1.2" fill="none"/>
+      <path d="M0 8 C-3 6 -5 7 -5 8 C-3 9 -1 9 0 8 Z" fill="#7FB05A"/>
+      <g fill="#FFFFFF">
+        <ellipse rx="1.3" ry="3.4" cy="-3"/><ellipse rx="1.3" ry="3.4" cy="-3" transform="rotate(36)"/><ellipse rx="1.3" ry="3.4" cy="-3" transform="rotate(72)"/><ellipse rx="1.3" ry="3.4" cy="-3" transform="rotate(108)"/><ellipse rx="1.3" ry="3.4" cy="-3" transform="rotate(144)"/>
+        <ellipse rx="1.3" ry="3.4" cy="-3" transform="rotate(180)"/><ellipse rx="1.3" ry="3.4" cy="-3" transform="rotate(216)"/><ellipse rx="1.3" ry="3.4" cy="-3" transform="rotate(252)"/><ellipse rx="1.3" ry="3.4" cy="-3" transform="rotate(288)"/><ellipse rx="1.3" ry="3.4" cy="-3" transform="rotate(324)"/>
+      </g>
+      <g fill="#F7B6C8" opacity="0.7">
+        <ellipse rx="0.6" ry="1.2" cy="-5.6"/><ellipse rx="0.6" ry="1.2" cy="-5.6" transform="rotate(72)"/><ellipse rx="0.6" ry="1.2" cy="-5.6" transform="rotate(144)"/><ellipse rx="0.6" ry="1.2" cy="-5.6" transform="rotate(216)"/><ellipse rx="0.6" ry="1.2" cy="-5.6" transform="rotate(288)"/>
+      </g>
+      <circle r="1.8" fill="#F6D27A"/>
+      <circle cx="-0.5" cy="-0.5" r="0.6" fill="#FFF3B0"/>
+    </g>
+    <radialGradient id="pv-c1" cx="0.4" cy="0.35" r="0.7"><stop offset="0" stop-color="#FFE3EC"/><stop offset="1" stop-color="#F3A9C4"/></radialGradient>
+    <radialGradient id="pv-c2" cx="0.4" cy="0.35" r="0.7"><stop offset="0" stop-color="#FBD0DE"/><stop offset="1" stop-color="#E28AAA"/></radialGradient>
+    <linearGradient id="pv-trunk" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7A5248"/><stop offset="1" stop-color="#5A3A34"/></linearGradient>
+    <linearGradient id="pv-ground" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#34442A" stop-opacity="0"/>
+      <stop offset="0.15" stop-color="#34442A"/>
+      <stop offset="0.85" stop-color="#34442A"/>
+      <stop offset="1" stop-color="#34442A" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- prato -->
+  <path d="M0 120 L0 106 Q90 99 180 104 Q270 109 360 101 L360 120 Z" fill="url(#pv-ground)"/>
+
+  <!-- ciliegio -->
+  <ellipse cx="128" cy="110" rx="46" ry="4" fill="#000000" opacity="0.28"/>
+  <path d="M120 110 C122 96 121 84 118 74 C116 66 110 60 102 56 L106 53 C113 57 119 62 122 68 C124 60 130 54 140 50 L142 53 C134 58 128 64 127 74 C126 86 128 98 134 110 Z" fill="url(#pv-trunk)"/>
+  <path d="M121 82 C112 78 104 72 98 64" stroke="#6A4840" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  <path d="M127 76 C138 72 148 66 154 60" stroke="#6A4840" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  <path d="M123 100 C122 92 122 86 121 80" stroke="#8E6458" stroke-width="1.4" opacity="0.6" fill="none" stroke-linecap="round"/>
+  <g>
+    <circle cx="96" cy="54" r="20" fill="url(#pv-c2)"/>
+    <circle cx="160" cy="52" r="20" fill="url(#pv-c2)"/>
+    <circle cx="112" cy="36" r="22" fill="url(#pv-c1)"/>
+    <circle cx="146" cy="34" r="22" fill="url(#pv-c1)"/>
+    <circle cx="128" cy="24" r="20" fill="url(#pv-c1)"/>
+    <circle cx="80" cy="44" r="14" fill="url(#pv-c1)"/>
+    <circle cx="176" cy="42" r="14" fill="url(#pv-c1)"/>
+    <circle cx="128" cy="52" r="20" fill="url(#pv-c1)"/>
+    <circle cx="104" cy="62" r="13" fill="url(#pv-c1)"/>
+    <circle cx="152" cy="62" r="13" fill="url(#pv-c1)"/>
+  </g>
+  <path d="M110 18 C116 14 124 12 130 13" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" opacity="0.4" fill="none"/>
+  <use href="#pv-flower" transform="translate(84 40) scale(0.7)"/>
+  <use href="#pv-flower" transform="translate(104 26) rotate(20) scale(0.75)"/>
+  <use href="#pv-flower" transform="translate(132 14) rotate(-15) scale(0.7)"/>
+  <use href="#pv-flower" transform="translate(156 30) rotate(30) scale(0.8)"/>
+  <use href="#pv-flower" transform="translate(178 46) scale(0.65)"/>
+  <use href="#pv-flower" transform="translate(120 46) rotate(10) scale(0.7)"/>
+  <use href="#pv-flower" transform="translate(146 54) rotate(-30) scale(0.65)"/>
+  <use href="#pv-flower" transform="translate(96 62) rotate(40) scale(0.6)"/>
+  <use href="#pv-flower" transform="translate(166 64) rotate(15) scale(0.55)"/>
+  <use href="#pv-flower" transform="translate(70 50) rotate(-10) scale(0.5)"/>
+
+  <!-- petali che cadono e a terra -->
+  <use href="#pv-fall" transform="translate(200 40) rotate(40)" fill="#F7C6D7" opacity="0.9"/>
+  <use href="#pv-fall" transform="translate(222 24) rotate(-30) scale(0.8)" fill="#F3A9C4" opacity="0.8"/>
+  <use href="#pv-fall" transform="translate(190 76) rotate(110) scale(0.9)" fill="#F7C6D7" opacity="0.8"/>
+  <use href="#pv-fall" transform="translate(56 76) rotate(-60) scale(0.8)" fill="#F3A9C4" opacity="0.7"/>
+  <use href="#pv-fall" transform="translate(36 34) rotate(20) scale(0.8)" fill="#F7C6D7" opacity="0.7"/>
+  <use href="#pv-fall" transform="translate(250 62) rotate(70) scale(0.7)" fill="#F7C6D7" opacity="0.6"/>
+  <use href="#pv-fall" transform="translate(150 106) rotate(80) scale(0.7)" fill="#F7C6D7" opacity="0.8"/>
+  <use href="#pv-fall" transform="translate(98 107) rotate(-100) scale(0.7)" fill="#F3A9C4" opacity="0.8"/>
+  <use href="#pv-fall" transform="translate(176 105) rotate(20) scale(0.6)" fill="#F7C6D7" opacity="0.7"/>
+
+  <!-- farfalla -->
+  <g transform="translate(282 44) rotate(-14)">
+    <path d="M0 0 C-4 -12 -16 -14 -16 -6 C-16 0 -8 2 0 0 Z" fill="#F6D27A"/>
+    <path d="M0 0 C-3 6 -11 10 -12 5 C-12 2 -6 0 0 0 Z" fill="#F3A9C4"/>
+    <path d="M0 0 C4 -12 16 -14 16 -6 C16 0 8 2 0 0 Z" fill="#F6D27A"/>
+    <path d="M0 0 C3 6 11 10 12 5 C12 2 6 0 0 0 Z" fill="#F3A9C4"/>
+    <circle cx="-9" cy="-6" r="1.6" fill="#E77FA2"/><circle cx="9" cy="-6" r="1.6" fill="#E77FA2"/>
+    <ellipse rx="1.3" ry="5" fill="#4A3440"/>
+    <path d="M-0.5 -4.5 C-2 -8 -3 -9 -4.5 -9.5 M0.5 -4.5 C2 -8 3 -9 4.5 -9.5" stroke="#4A3440" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+  </g>
+  <path d="M244 72 Q256 60 268 54" stroke="#F6D27A" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="1.5 3" fill="none"/>
+  <path d="M330 22 C330.6 25 331 25.4 334 26 C331 26.6 330.6 27 330 30 C329.4 27 329 26.6 326 26 C329 25.4 329.4 25 330 22 Z" fill="#FBE3EC" opacity="0.7"/>
+
+  <!-- pratoline -->
+  <use href="#pv-daisy" transform="translate(28 102) scale(0.9)"/>
+  <use href="#pv-daisy" transform="translate(48 106) scale(0.7)"/>
+  <use href="#pv-daisy" transform="translate(196 102)"/>
+  <use href="#pv-daisy" transform="translate(214 106) scale(0.75)"/>
+  <use href="#pv-daisy" transform="translate(234 100) scale(0.9)"/>
+  <use href="#pv-daisy" transform="translate(256 104) scale(1.1)"/>
+  <use href="#pv-daisy" transform="translate(276 99) scale(0.8)"/>
+  <use href="#pv-daisy" transform="translate(296 104)"/>
+  <use href="#pv-daisy" transform="translate(316 100) scale(0.75)"/>
+  <use href="#pv-daisy" transform="translate(336 104) scale(0.9)"/>
+  <use href="#pv-daisy" transform="translate(268 108) scale(0.6)"/>
+  <use href="#pv-daisy" transform="translate(226 109) scale(0.55)"/>
+  <use href="#pv-daisy" transform="translate(70 108) scale(0.6)"/>
+  <g stroke="#7FB05A" stroke-width="1" stroke-linecap="round" opacity="0.7">
+    <path d="M10 110 L12 104 M14 110 L13 105 M184 108 L186 102 M188 108 L187 103 M246 110 L248 104 M306 110 L305 104 M350 108 L352 102"/>
+  </g>
+</svg>

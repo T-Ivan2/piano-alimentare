@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120">
+  <defs>
+    <linearGradient id="cv-mask" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8A6AD8"/>
+      <stop offset="0.5" stop-color="#A88AEA"/>
+      <stop offset="1" stop-color="#7A5AC8"/>
+    </linearGradient>
+    <linearGradient id="cv-gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFE29A"/>
+      <stop offset="1" stop-color="#E6B04A"/>
+    </linearGradient>
+    <linearGradient id="cv-pastry" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F2C98A"/>
+      <stop offset="1" stop-color="#D99E58"/>
+    </linearGradient>
+    <linearGradient id="cv-ground" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2E2840" stop-opacity="0"/>
+      <stop offset="0.2" stop-color="#2E2840"/>
+      <stop offset="0.8" stop-color="#2E2840"/>
+      <stop offset="1" stop-color="#2E2840" stop-opacity="0"/>
+    </linearGradient>
+    <g id="cv-chiacchiera">
+      <path d="M-18 -4 C-15 -7 -12 -3 -9 -6 C-6 -9 -3 -5 0 -7 C3 -9 6 -5 9 -7 C12 -9 15 -5 18 -6 L17 4 C14 7 11 3 8 6 C5 8 2 4 -1 6 C-4 8 -7 4 -10 6 C-13 8 -16 5 -17 4 Z" fill="url(#cv-pastry)"/>
+      <path d="M-5 -0.5 H5" stroke="#B8803E" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M-16 -3 C-12 -5 -6 -4 0 -5" stroke="#FBF0DC" stroke-width="1" fill="none" opacity="0.6" stroke-linecap="round"/>
+      <g fill="#FFFFFF" opacity="0.9">
+        <circle cx="-12" cy="-1" r="0.8"/><circle cx="-8" cy="2" r="0.7"/><circle cx="8" cy="-3" r="0.8"/><circle cx="12" cy="1" r="0.7"/><circle cx="-14" cy="2" r="0.6"/><circle cx="6" cy="3" r="0.7"/><circle cx="0" cy="-4" r="0.7"/><circle cx="14" cy="-2" r="0.6"/><circle cx="-4" cy="3" r="0.6"/><circle cx="3" cy="-2" r="0.5"/>
+      </g>
+    </g>
+  </defs>
+
+  <!-- stelle filanti -->
+  <path d="M-4 30 C12 20 22 40 36 30 C48 22 52 6 66 10" stroke="#F3C96A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M10 64 C20 50 34 60 40 50 C46 40 40 28 52 24" stroke="#E86F6F" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M110 6 C118 18 106 26 116 36 C124 44 136 38 140 48" stroke="#5CC6C0" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M290 8 C300 20 288 30 300 38 C310 44 320 36 326 46" stroke="#F3C96A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M364 20 C350 26 352 42 340 46 C330 50 326 62 330 72" stroke="#9A7BD8" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+
+  <!-- coriandoli -->
+  <g>
+    <circle cx="80" cy="20" r="2" fill="#E86F6F"/><circle cx="160" cy="14" r="2" fill="#F3C96A"/><circle cx="240" cy="22" r="2" fill="#5CC6C0"/>
+    <circle cx="200" cy="50" r="1.6" fill="#9A7BD8"/><circle cx="270" cy="60" r="1.8" fill="#E86F6F"/><circle cx="24" cy="90" r="1.8" fill="#5CC6C0"/>
+    <circle cx="340" cy="92" r="1.8" fill="#F3C96A"/><circle cx="140" cy="76" r="1.5" fill="#F49BAF"/><circle cx="96" cy="50" r="1.5" fill="#5CC6C0"/>
+    <rect x="186" y="18" width="4" height="2.4" rx="0.6" fill="#E86F6F" transform="rotate(30 188 19)"/>
+    <rect x="62" y="74" width="4" height="2.4" rx="0.6" fill="#F3C96A" transform="rotate(-40 64 75)"/>
+    <rect x="316" y="66" width="4" height="2.4" rx="0.6" fill="#5CC6C0" transform="rotate(20 318 67)"/>
+    <rect x="226" y="88" width="4" height="2.4" rx="0.6" fill="#9A7BD8" transform="rotate(60 228 89)"/>
+  </g>
+
+  <!-- terreno -->
+  <path d="M0 120 L0 108 L360 108 L360 120 Z" fill="url(#cv-ground)"/>
+
+  <!-- maschera con piume -->
+  <g transform="translate(170 70)">
+    <path d="M22 -14 C30 -36 46 -44 54 -42 C46 -32 38 -22 28 -12 Z" fill="#E86F6F"/>
+    <path d="M24 -12 C36 -30 52 -34 58 -30 C48 -22 38 -16 28 -10 Z" fill="#F3C96A"/>
+    <path d="M24 -14 C34 -40 40 -46 46 -46 C42 -36 34 -24 26 -12 Z" fill="#5CC6C0"/>
+    <path d="M28 -13 L50 -40 M28 -11 L54 -31 M27 -13 L43 -44" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="0.8"/>
+    <path d="M-38 -6 C-40 -20 -24 -24 -10 -16 C-4 -13 4 -13 10 -16 C24 -24 40 -20 38 -6 C36 8 22 12 10 4 C4 0 -4 0 -10 4 C-22 12 -36 8 -38 -6 Z" fill="url(#cv-mask)"/>
+    <path d="M-38 -6 C-40 -20 -24 -24 -10 -16 C-4 -13 4 -13 10 -16 C24 -24 40 -20 38 -6" stroke="url(#cv-gold)" stroke-width="2.4" fill="none"/>
+    <path d="M-28 -6 C-26 -12 -18 -12 -14 -6 C-18 -2 -26 -2 -28 -6 Z" fill="#1A1724"/>
+    <path d="M28 -6 C26 -12 18 -12 14 -6 C18 -2 26 -2 28 -6 Z" fill="#1A1724"/>
+    <g fill="#FFE29A"><circle cx="0" cy="-8" r="2.4"/><circle cx="-32" cy="2" r="1.4"/><circle cx="32" cy="2" r="1.4"/><circle cx="-20" cy="5" r="1.2"/><circle cx="20" cy="5" r="1.2"/></g>
+    <path d="M-34 -14 C-28 -18 -22 -18 -18 -16" stroke="#FFFFFF" stroke-width="1.4" stroke-opacity="0.45" fill="none" stroke-linecap="round"/>
+    <path d="M-37 -4 C-46 2 -48 12 -42 22 C-38 28 -44 32 -48 30" stroke="#F3C96A" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  </g>
+  <ellipse cx="170" cy="111" rx="40" ry="2.4" fill="#000000" opacity="0.2"/>
+
+  <!-- piatto di chiacchiere -->
+  <ellipse cx="282" cy="111" rx="38" ry="3" fill="#000000" opacity="0.3"/>
+  <ellipse cx="282" cy="106" rx="36" ry="6" fill="#EDE6F5"/>
+  <ellipse cx="282" cy="105" rx="30" ry="4.4" fill="#F8F4FB"/>
+  <use href="#cv-chiacchiera" transform="translate(270 98) rotate(-8)"/>
+  <use href="#cv-chiacchiera" transform="translate(294 98) rotate(10)"/>
+  <use href="#cv-chiacchiera" transform="translate(282 90) rotate(-2) scale(0.95)"/>
+  <g fill="#FFFFFF" opacity="0.7"><circle cx="258" cy="104" r="0.7"/><circle cx="306" cy="104" r="0.7"/><circle cx="300" cy="106" r="0.6"/></g>
+</svg>
