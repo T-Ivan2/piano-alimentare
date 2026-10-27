@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../supabase';
 import { VAPID_PUBLIC_KEY } from '../config';
-import { MEAL_TYPES } from '../dates';
+import { MEAL_TYPES, MEAL_TIMES } from '../dates';
 
-const DEFAULTS = { pastiOn: true, pasti: ['08:00', '13:00', '16:30', '20:00'], acquaOn: true, acqua: ['10:30', '12:30', '15:30', '18:00'] };
+const DEFAULTS = { pastiOn: true, pasti: MEAL_TIMES, acquaOn: true, acqua: ['10:30', '12:30', '15:30', '18:00'] };
 
 const keyBytes = (b64) => {
   const pad = '='.repeat((4 - (b64.length % 4)) % 4);

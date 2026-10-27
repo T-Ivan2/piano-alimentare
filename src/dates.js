@@ -17,3 +17,6 @@ export const longDate = (d) => {
 
 export const MEAL_TYPES = ['Colazione', 'Pranzo', 'Spuntino', 'Cena'];
 export const MEAL_TINTS = ['#E39A72', '#B4CB86', '#E2B866', '#8FBFCD'];
+// Orari predefiniti dei pasti (gli stessi dei promemoria)
+export const MEAL_TIMES = ['08:00', '13:00', '16:30', '20:00'];
+export const toMinutes = (hhmm) => { const [h, m] = String(hhmm).split(':').map(Number); return h * 60 + (m || 0); };

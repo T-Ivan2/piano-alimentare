@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{width:390px;height:844px;overflow:hidden}
+body{font-family:Archivo,Helvetica,sans-serif;background:#F4F3EF;color:#1C1C1C}
+.top{padding:18px 20px 0;display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:#55534E}
+.top b{color:#1C1C1C;font-weight:800;font-size:15px}
+.band{margin:12px 0 0;background:#E2231A;color:#fff;padding:18px 20px 22px;position:relative}
+.band .k{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
+.band h1{font-size:54px;line-height:1;font-weight:800;letter-spacing:-.02em;margin-top:6px}
+.band .t{position:absolute;right:20px;top:20px;font-size:28px;font-weight:800}
+.band p{font-size:19px;line-height:1.3;margin-top:12px;max-width:290px}
+.band .sub{margin-top:10px;font-size:14px;text-decoration:underline;text-underline-offset:3px}
+.check{position:absolute;right:20px;bottom:-30px;width:64px;height:64px;border-radius:50%;background:#fff;border:3px solid #1C1C1C;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#1C1C1C}
+.line{padding:34px 20px 0}
+.line h2{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#55534E;margin-bottom:12px}
+.stop{display:grid;grid-template-columns:44px 1fr auto;align-items:center;min-height:58px;position:relative}
+.stop::before{content:"";position:absolute;left:15px;top:0;bottom:0;width:8px;background:#B9B6AF}
+.stop.cur::before{background:#E2231A}
+.stop:first-child::before{top:50%}
+.stop:last-child::before{bottom:50%}
+.dot{width:24px;height:24px;border-radius:50%;background:#fff;border:4px solid #B9B6AF;position:relative;z-index:1;margin-left:7px}
+.done .dot{background:#1C1C1C;border-color:#1C1C1C}
+.cur .dot{border-color:#E2231A;width:30px;height:30px;margin-left:4px}
+.n{font-size:20px;font-weight:800}
+.done .n{color:#55534E}
+.m{font-size:13px;color:#55534E;margin-top:2px}
+.time{font-size:16px;font-weight:600;color:#55534E}
+.stamp{font-size:11px;font-weight:800;letter-spacing:.06em;border:2px solid #1C1C1C;padding:2px 6px;transform:rotate(-4deg);color:#1C1C1C}
+.water{margin:18px 20px 0;display:flex;align-items:center;gap:12px}
+.water .l{font-size:15px;font-weight:800;width:62px}
+.cells{flex:1;display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+.cells i{height:30px;background:#DCD9D2}
+.cells i.on{background:#0072BC}
+.water .v{font-size:14px;color:#55534E}
+nav{position:absolute;bottom:0;left:0;right:0;background:#1C1C1C;display:grid;grid-template-columns:repeat(4,1fr);padding:12px 8px 26px}
+nav a{color:#B9B6AF;font-size:13px;font-weight:600;text-align:center;padding:8px 0}
+nav a.on{color:#fff;font-weight:800;box-shadow:inset 0 -4px #E2231A}
+</style></head><body>
+<div class="top"><b>Martedì 27 ottobre</b><span>2 pasti su 4 · settimana 17/24</span></div>
+<section class="band">
+  <div class="k">Adesso · fermata 2 di 4</div>
+  <div class="t">13:00</div>
+  <h1>Pranzo</h1>
+  <p>80 g di pasta integrale con zucchine e 1 cucchiaio di parmigiano</p>
+  <div class="sub">Sostituisci</div>
+  <div class="check">FATTO</div>
+</section>
+<section class="line">
+  <h2>La linea di oggi</h2>
+  <div class="stop done"><div class="dot"></div><div><div class="n">Colazione</div><div class="m">Yogurt greco, 30 g di avena</div></div><span class="stamp">VIDIMATO 8:12</span></div>
+  <div class="stop cur"><div class="dot"></div><div><div class="n">Pranzo</div><div class="m">Sei qui</div></div><span class="time">13:00</span></div>
+  <div class="stop"><div class="dot"></div><div><div class="n">Spuntino</div><div class="m">1 frutto e 10 mandorle</div></div><span class="time">16:30</span></div>
+  <div class="stop"><div class="dot"></div><div><div class="n">Cena</div><div class="m">Merluzzo al forno, verdure</div></div><span class="time">20:00</span></div>
+</section>
+<div class="water"><span class="l">Acqua</span><div class="cells"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div><span class="v">1,25 L</span></div>
+<nav><a class="on">Oggi</a><a>Settimana</a><a>Spesa</a><a>Progressi</a></nav>
+</body></html>

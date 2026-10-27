@@ -26,6 +26,8 @@ export default function App() {
     '--theme-line': theme.line,
     '--theme-glow': theme.glow,
     '--theme-active': theme.active,
+    '--theme-bg': theme.bg,
+    '--theme-edge': theme.edge,
   };
 
   useEffect(() => {
@@ -69,7 +71,7 @@ export default function App() {
         {plan && tab === 'oggi' && (
           <Oggi key={plan.id} plan={plan} theme={theme} user={session.user} themesOn={themesOn} onToggleThemes={toggleThemes} pending={pending} onPlanChanged={() => setPlanVersion((v) => v + 1)} />
         )}
-        {plan && tab === 'settimana' && <Settimana plan={plan} theme={theme} />}
+        {plan && tab === 'settimana' && <Settimana plan={plan} theme={theme} user={session.user} />}
         {plan && tab === 'spesa' && <Spesa plan={plan} theme={theme} user={session.user} />}
         {tab === 'progressi' && <Progressi theme={theme} />}
       </main>
