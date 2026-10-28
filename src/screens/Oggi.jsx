@@ -5,7 +5,9 @@ import Sostituzioni, { groupsFor } from '../components/Sostituzioni';
 import Promemoria from '../components/Promemoria';
 import GestionePiano from '../components/GestionePiano';
 import Revisione from '../components/Revisione';
-import { weekdayIndex, isoDay, startOfWeek, longDate, MEAL_TYPES, MEAL_TIMES, toMinutes } from '../dates';
+import { SwapIcon, CheckIcon } from '../components/Icons';
+import useMealTimes from '../hooks/useMealTimes';
+import { weekdayIndex, isoDay, startOfWeek, longDate, MEAL_TYPES, toMinutes } from '../dates';
 
 const GLASS_ML = 250;
 const empty = { meals: {}, water: 0, checks: {}, subs: {} };
@@ -53,7 +55,7 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes, onPl
   const [log, setLog] = useState(empty);
   const [loaded, setLoaded] = useState(false);
   const [week, setWeek] = useState({ done: 0 });
-  const [times, setTimes] = useState(MEAL_TIMES);
+  const times = useMealTimes();
   const [menu, setMenu] = useState(false);
   const [saveError, setSaveError] = useState(null);
   const [swap, setSwap] = useState(null);
@@ -84,8 +86,6 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes, onPl
         setWeek({ done: others });
         setLoaded(true);
       });
-    supabase.from('push_subscriptions').select('reminders').eq('enabled', true).limit(1).maybeSingle()
-      .then(({ data }) => { if (data?.reminders?.pasti?.length) setTimes(data.reminders.pasti); });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -304,18 +304,10 @@ function MealRow({ i, text, time, done, isFocus, state, sub, canSwap, theme, onT
         style={done ? { background: theme.done, color: theme.onAcc, border: `1px solid ${theme.done}` }
           : { background: 'transparent', color: isFocus ? theme.acc : theme.text, border: `1px solid ${isFocus ? theme.acc : theme.edge}` }}>
         {done
-          ? <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="square" aria-hidden="true"><path d="M4 12l5 5L20 6" /></svg>
+          ? <CheckIcon />
           : <span className="w-3 h-3 shrink-0" style={{ border: '1.5px solid currentColor' }} aria-hidden="true" />}
         {state}
       </button>
     </div>
-  );
-}
-
-function SwapIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="square" aria-hidden="true" className="shrink-0 mt-[3px]">
-      <path d="M4 8h14l-4-4M20 16H6l4 4" />
-    </svg>
   );
 }

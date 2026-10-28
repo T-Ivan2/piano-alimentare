@@ -52,6 +52,11 @@ typography:
     fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.375
+  body-md:
+    fontFamily: "Barlow, system-ui, sans-serif"
+    fontSize: "15px"
+    fontWeight: 400
+    lineHeight: 1.375
   body-sm:
     fontFamily: "Barlow, system-ui, sans-serif"
     fontSize: "14px"
@@ -60,6 +65,16 @@ typography:
   label:
     fontFamily: "Rajdhani, system-ui, sans-serif"
     fontSize: "13px"
+    fontWeight: 700
+    letterSpacing: "0.16em"
+  label-sm:
+    fontFamily: "Rajdhani, system-ui, sans-serif"
+    fontSize: "11px"
+    fontWeight: 700
+    letterSpacing: "0.16em"
+  label-lg:
+    fontFamily: "Rajdhani, system-ui, sans-serif"
+    fontSize: "17px"
     fontWeight: 700
     letterSpacing: "0.16em"
 rounded:
@@ -261,8 +276,14 @@ Barra fissa in basso su Fondo Nav, filetto superiore in line, quattro voci solo 
 ### Menu del profilo
 Il pulsante profilo è un quadrato da 44px su Lavagna Alta con l'angolo in alto a sinistra tagliato e le iniziali in Rajdhani. Il menu si apre sotto la testata: Lavagna Notte, bordo 1px edge, voci di testo alte 48px, un filetto prima di "Esci" (in rosso).
 
+### Selettore dei giorni (Settimana)
+Sette schede a colonne uguali, alte almeno 64px: giorno abbreviato in etichetta da 11px ("Oggi" al posto del giorno corrente), numero del giorno in Rajdhani 22px e, per i giorni già iniziati, quattro quadratini da 6px (uno per pasto: pieno ciano se fatto, contorno edge se no). Scheda attiva: Lavagna Notte, testo e filetto superiore da 2px nell'accento; le altre hanno solo un filetto inferiore in line. Frecce sinistra/destra, Home e Fine spostano la scheda.
+
+### Diario del giorno (Settimana)
+Lo stesso tabellone di Oggi in sola lettura. Giorni futuri: colonne ORA / PASTO con il menù intero (si legge per organizzarsi). Giorni passati e oggi: anche la colonna STATO con un'etichetta non toccabile (FATTO pieno ciano; ADESSO, DOPO, APERTO col filetto in line), il riepilogo "n/4 fatti" accanto al titolo del giorno e i litri d'acqua in ciano. Una sostituzione registrata mostra il pasto scelto con l'icona di scambio e il menù originale barrato in muted.
+
 ### In sospeso
-Settimana (tranne i consigli), Spesa, Progressi, i fogli secondari (gestione del piano, promemoria, sostituzioni, revisione) e i campi di inserimento usano ancora le forme del vecchio sistema (arrotondate) e verranno portati in questo mondo più avanti. Le illustrazioni dei 16 temi verranno ridisegnate in stile cyberpunk; la bicromia è la soluzione nel frattempo. Nessuna di queste forme vecchie è parte del sistema.
+Spesa, Progressi, i fogli secondari (gestione del piano, promemoria, sostituzioni, revisione) e i campi di inserimento usano ancora le forme del vecchio sistema (arrotondate) e verranno portati in questo mondo più avanti. Le illustrazioni dei 16 temi verranno ridisegnate in stile cyberpunk; la bicromia è la soluzione nel frattempo. Nessuna di queste forme vecchie è parte del sistema.
 
 ## Do's and Don'ts
 
