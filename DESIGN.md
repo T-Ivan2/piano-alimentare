@@ -282,8 +282,14 @@ Sette schede a colonne uguali, alte almeno 64px: giorno abbreviato in etichetta 
 ### Diario del giorno (Settimana)
 Lo stesso tabellone di Oggi in sola lettura. Giorni futuri: colonne ORA / PASTO con il menù intero (si legge per organizzarsi). Giorni passati e oggi: anche la colonna STATO con un'etichetta non toccabile (FATTO pieno ciano; ADESSO, DOPO, APERTO col filetto in line), il riepilogo "n/4 fatti" accanto al titolo del giorno e i litri d'acqua in ciano. Una sostituzione registrata mostra il pasto scelto con l'icona di scambio e il menù originale barrato in muted.
 
+### Lista della spesa (Spesa)
+Gruppi con intestazione in etichetta e contatore "presi/totale" (ciano quando il gruppo è completo). Ogni voce è una riga toccabile alta almeno 56px: casella quadrata da 24px (contorno edge, piena ciano con spunta se presa), nome in Barlow 16px con il motivo sotto in muted, quantità in Rajdhani 19px a destra; una voce presa passa in muted e barrata. In testa un contatore "n di N presi" in ciano e una barra a segmenti, uno per voce, nello stesso ordine della lista.
+
+### Annulla temporaneo
+Le azioni che cancellano in blocco (es. "Azzera" la spesa) agiscono subito e mostrano per 6 secondi una barra sopra la nav: Lavagna Alta, bordo edge, testo dell'esito e "Annulla" in etichetta nell'accento. Niente finestre di conferma.
+
 ### In sospeso
-Spesa, Progressi, i fogli secondari (gestione del piano, promemoria, sostituzioni, revisione) e i campi di inserimento usano ancora le forme del vecchio sistema (arrotondate) e verranno portati in questo mondo più avanti. Le illustrazioni dei 16 temi verranno ridisegnate in stile cyberpunk; la bicromia è la soluzione nel frattempo. Nessuna di queste forme vecchie è parte del sistema.
+Progressi, i fogli secondari (gestione del piano, promemoria, sostituzioni, revisione) e i campi di inserimento usano ancora le forme del vecchio sistema (arrotondate) e verranno portati in questo mondo più avanti. Le illustrazioni dei 16 temi verranno ridisegnate in stile cyberpunk; la bicromia è la soluzione nel frattempo. Nessuna di queste forme vecchie è parte del sistema.
 
 ## Do's and Don'ts
 
