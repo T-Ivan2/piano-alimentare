@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../supabase';
-import Illustration from '../components/Illustration';
+import ThemeBand from '../components/ThemeBand';
 import Sostituzioni, { groupsFor } from '../components/Sostituzioni';
 import Promemoria from '../components/Promemoria';
 import GestionePiano from '../components/GestionePiano';
@@ -16,25 +16,6 @@ const mealName = (i) => MEAL_TYPES[i] || `Pasto ${i + 1}`;
 const pad = (n) => String(n).padStart(2, '0');
 const clock = (d) => `${pad(d.getHours())}:${pad(d.getMinutes())}`;
 const stamp = (d) => `${d.toLocaleDateString('it-IT', { weekday: 'short' }).replace('.', '')} ${pad(d.getDate())}.${pad(d.getMonth() + 1)} · ${clock(d)}`;
-const channels = (hex) => [1, 3, 5].map((k) => (parseInt(hex.slice(k, k + 2), 16) / 255).toFixed(3));
-
-// Bicromia fredda: ombre e toni medi sul fondo, solo le luci prendono l'accento del tema
-function Duotone({ id, dark, mid, light }) {
-  const d = channels(dark), m = channels(mid), l = channels(light);
-  return (
-    <svg width="0" height="0" className="absolute">
-      <filter id={id} colorInterpolationFilters="sRGB">
-        <feColorMatrix type="matrix" values=".3 .59 .11 0 0  .3 .59 .11 0 0  .3 .59 .11 0 0  0 0 0 1 0" />
-        <feComponentTransfer>
-          <feFuncR type="table" tableValues={`${d[0]} ${m[0]} ${l[0]}`} />
-          <feFuncG type="table" tableValues={`${d[1]} ${m[1]} ${l[1]}`} />
-          <feFuncB type="table" tableValues={`${d[2]} ${m[2]} ${l[2]}`} />
-        </feComponentTransfer>
-      </filter>
-    </svg>
-  );
-}
-
 // Il pasto "di adesso": l'ultimo il cui orario è arrivato; se è già fatto, il primo non fatto dopo di lui.
 // Prima del primo orario è la colazione. Null quando dal pasto attuale in poi è tutto fatto.
 function focusIndex(count, times, done, nowMin) {
@@ -121,10 +102,7 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes, onPl
           className="cut-tl w-11 h-11 shrink-0 border-0 font-display font-bold text-base"
           style={{ background: theme.surf2, color: theme.text }}>IT</button>
       </header>
-      <div className="band-art -mx-4 sm:-mx-5 h-[72px]" aria-hidden="true">
-        <Duotone id="duo" dark={theme.bg} mid={theme.bg} light={theme.acc} />
-        <Illustration name={theme.key} />
-      </div>
+      <ThemeBand theme={theme} className="-mx-4 sm:-mx-5" />
       <div className="ruler -mx-4 sm:-mx-5" />
 
       {menu && (

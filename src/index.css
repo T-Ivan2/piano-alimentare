@@ -18,7 +18,8 @@
 html, body, #root { min-height: 100%; margin: 0; }
 html { background: #0B0F14; }
 body { color: var(--theme-text, #E6EDF2); -webkit-tap-highlight-color: transparent; caret-color: var(--theme-accent, #FCEE0A); }
-button, input { font: inherit; }
+button, input, textarea { font: inherit; }
+p, li { text-wrap: pretty; } /* niente parole orfane a fine paragrafo */
 button { cursor: pointer; touch-action: manipulation; }
 button:focus-visible, input:focus-visible, a:focus-visible {
   outline: 2px solid var(--theme-accent, #FCEE0A);

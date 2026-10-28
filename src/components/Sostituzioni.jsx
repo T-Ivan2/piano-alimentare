@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import Sheet, { outlineStyle } from './Sheet';
+import { CheckIcon } from './Icons';
 
 // Gruppi di sostituzione pertinenti a un pasto, in base alle parole del testo
 export function groupsFor(plan, text) {
@@ -9,65 +11,65 @@ export function groupsFor(plan, text) {
 export default function Sostituzioni({ plan, theme, mealType, text, current, onPick, onClear, onClose }) {
   const groups = groupsFor(plan, text);
   const [tab, setTab] = useState(0);
+  const tabs = useRef([]);
   const g = groups[tab];
 
-  return (
-    <div className="fixed inset-0 z-20 flex items-end justify-center" style={{ background: 'rgba(10,8,6,0.6)' }} onClick={onClose}>
-      <div role="dialog" aria-modal="true" aria-label={`Sostituisci: ${mealType}`} onClick={(e) => e.stopPropagation()}
-        className="theme-page w-full max-w-md max-h-[88dvh] flex flex-col rounded-t-[28px]" style={{ backgroundColor: theme.bg, color: theme.text, '--theme-text': theme.text, '--theme-muted': theme.muted, '--theme-accent': theme.acc }}>
-        <div className="px-5 pt-5 pb-3 flex flex-col gap-3">
-          <div className="flex justify-between items-start gap-3">
-            <div>
-              <p className="m-0 text-[13px] font-bold" style={{ color: theme.acc }}>{mealType}</p>
-              <h2 className="m-0 font-display text-[24px] font-semibold">Sostituisci</h2>
-              <p className="m-0 mt-1 text-sm" style={{ color: theme.muted }}>{text}</p>
-            </div>
-            <button onClick={onClose} aria-label="Chiudi" className="w-11 h-11 shrink-0 rounded-full border-0 flex items-center justify-center"
-              style={{ background: theme.surf, color: theme.text }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
-            </button>
-          </div>
-          {groups.length > 1 && (
-            <div className="flex gap-2 flex-wrap" role="tablist">
-              {groups.map((x, i) => (
-                <button key={x.id} role="tab" aria-selected={i === tab} onClick={() => setTab(i)}
-                  className="h-11 px-4 rounded-full border-0 font-bold text-sm"
-                  style={{ background: i === tab ? theme.acc : theme.surf, color: i === tab ? theme.onAcc : theme.text }}>{x.titolo}</button>
-              ))}
-            </div>
-          )}
-          {current && (
-            <div className="rounded-2xl px-4 py-3 flex justify-between items-center gap-3 text-sm" style={{ background: theme.surf }}>
-              <span>Scelto: <b>{current}</b></span>
-              <button onClick={onClear} className="bg-transparent border-0 font-bold" style={{ color: '#F0A08A' }}>Rimuovi</button>
-            </div>
-          )}
-        </div>
+  const onKey = (e) => {
+    const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+    if (!d) return;
+    e.preventDefault();
+    const n = (tab + d + groups.length) % groups.length;
+    setTab(n);
+    tabs.current[n]?.focus();
+  };
 
-        <div className="overflow-y-auto px-5 pb-8 flex flex-col gap-4">
-          {!g && <p className="text-muted m-0">Per questo pasto non ci sono sostituzioni nel piano.</p>}
-          {g?.sezioni.map((s) => (
-            <section key={s.nome} className="flex flex-col gap-2">
-              <h3 className="m-0 text-[13px] font-bold uppercase tracking-wide text-muted">{s.nome}</h3>
-              {s.opzioni.map(([name, qty]) => {
-                const label = `${qty} ${name.toLowerCase()} al posto di ${g.titolo}`;
-                const on = current === label;
-                return (
-                  <button key={name} onClick={() => onPick(label)} aria-pressed={on}
-                    className="theme-action flex justify-between items-center gap-3 min-h-[52px] px-4 py-2.5 rounded-[18px] text-left text-[15px]"
-                    style={{ background: on ? theme.surf2 : theme.surf, border: `2px solid ${on ? theme.acc : 'transparent'}`, color: theme.text }}>
-                    <span>{name}</span>
-                    <span className="font-bold whitespace-nowrap" style={{ color: on ? theme.acc : theme.muted }}>{qty}</span>
-                  </button>
-                );
-              })}
-            </section>
-          ))}
-          {g?.nota && (
-            <p className="m-0 rounded-[20px] px-4 py-3 text-[13px] leading-relaxed" style={{ border: `1.5px dashed ${theme.surf2}`, color: theme.muted }}>{g.nota}</p>
-          )}
+  return (
+    <Sheet theme={theme} title={`Sostituisci: ${mealType.toLowerCase()}`} subtitle={text} onClose={onClose}>
+      {current && (
+        <div className="mb-4 flex justify-between items-center gap-3 pl-3 py-1 pr-1" style={{ border: `1px solid ${theme.acc}` }}>
+          <span className="text-[15px] min-w-0">Scelto: <b>{current}</b></span>
+          <button onClick={onClear} className="label min-h-11 px-3 shrink-0" style={outlineStyle(theme, theme.danger)}>Rimuovi</button>
         </div>
-      </div>
-    </div>
+      )}
+
+      {groups.length > 1 && (
+        <div className="flex gap-2 flex-wrap mb-4" role="tablist" aria-label="Cosa sostituire" onKeyDown={onKey}>
+          {groups.map((x, i) => {
+            const on = i === tab;
+            return (
+              <button key={x.id} ref={(el) => { tabs.current[i] = el; }} role="tab" aria-selected={on} tabIndex={on ? 0 : -1}
+                onClick={() => setTab(i)} className="label min-h-11 px-4"
+                style={{ background: on ? theme.surf2 : 'transparent', color: on ? theme.acc : theme.text, border: `1px solid ${on ? theme.acc : theme.edge}` }}>
+                {x.titolo}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {!g && <p className="m-0 text-[16px]" style={{ color: theme.muted }}>Per questo pasto non ci sono sostituzioni nel piano.</p>}
+      {g?.sezioni.map((s) => (
+        <section key={s.nome} className="mb-5" role={groups.length > 1 ? 'tabpanel' : undefined}>
+          <h3 className="label m-0 pb-2" style={{ color: theme.muted, borderBottom: `1px solid ${theme.line}` }}>{s.nome}</h3>
+          {s.opzioni.map(([name, qty]) => {
+            const label = `${qty} ${name.toLowerCase()} al posto di ${g.titolo}`;
+            const on = current === label;
+            return (
+              <button key={name} onClick={() => onPick(label)} aria-pressed={on}
+                className="w-full flex items-center gap-3 min-h-[52px] py-2 text-left bg-transparent border-0 text-[16px]"
+                style={{ color: theme.text, borderBottom: `1px solid ${theme.line}` }}>
+                <span className="w-6 h-6 shrink-0 flex items-center justify-center"
+                  style={on ? { background: theme.acc, color: theme.onAcc } : { border: `1px solid ${theme.edge}` }}>
+                  {on && <CheckIcon />}
+                </span>
+                <span className="flex-1 min-w-0">{name}</span>
+                <span className="font-display font-semibold text-[19px] whitespace-nowrap" style={{ color: on ? theme.acc : theme.text }}>{qty}</span>
+              </button>
+            );
+          })}
+        </section>
+      ))}
+      {g?.nota && <p className="m-0 text-[14px] leading-relaxed" style={{ color: theme.muted }}>{g.nota}</p>}
+    </Sheet>
   );
 }

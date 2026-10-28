@@ -66,7 +66,7 @@ export default function App() {
   return (
     <div className="theme-page min-h-dvh flex flex-col font-sans" style={{ ...themeVars, backgroundColor: theme.bg }}>
       <main className="flex-1 w-full max-w-md mx-auto px-4 sm:px-5 pt-6 sm:pt-7 pb-28">
-        {error && <p className="theme-card rounded-2xl p-4 mb-4" style={{ background: theme.surf }}>{error}</p>}
+        {error && <p role="alert" className="m-0 mb-4 px-3 py-3 text-[16px]" style={{ background: theme.surf, border: `1px solid ${theme.danger}` }}>{error}</p>}
         {!plan && !error && <p className="text-muted">Caricamento…</p>}
         {plan && tab === 'oggi' && (
           <Oggi key={plan.id} plan={plan} theme={theme} user={session.user} themesOn={themesOn} onToggleThemes={toggleThemes} pending={pending} onPlanChanged={() => setPlanVersion((v) => v + 1)} />

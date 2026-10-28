@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../supabase';
 import { VAPID_PUBLIC_KEY } from '../config';
 import { MEAL_TYPES, MEAL_TIMES } from '../dates';
+import Sheet, { fieldStyle, outlineStyle, primaryStyle } from './Sheet';
+import { CheckIcon } from './Icons';
 
 const DEFAULTS = { pastiOn: true, pasti: MEAL_TIMES, acquaOn: true, acqua: ['10:30', '12:30', '15:30', '18:00'] };
 
@@ -62,75 +64,67 @@ export default function Promemoria({ theme, user, onClose }) {
   };
 
   const update = (next) => { setRem(next); save(next); };
-  const field = { background: theme.surf2, color: theme.text, colorScheme: 'dark' };
+
+  // Riga con casella quadrata: accende o spegne un gruppo di promemoria
+  const Toggle = ({ on, label, onChange }) => (
+    <button type="button" onClick={() => onChange(!on)} aria-pressed={on}
+      className="w-full min-h-12 flex items-center justify-between gap-3 bg-transparent border-0 p-0 text-left" style={{ color: theme.text }}>
+      <span className="font-display font-bold uppercase tracking-wide text-[19px]">{label}</span>
+      <span className="label flex items-center gap-2" style={{ color: on ? theme.acc : theme.muted }}>
+        {on ? 'Attivi' : 'Spenti'}
+        <span className="w-6 h-6 flex items-center justify-center" style={on ? { background: theme.acc, color: theme.onAcc } : { border: `1px solid ${theme.edge}` }}>
+          {on && <CheckIcon />}
+        </span>
+      </span>
+    </button>
+  );
+  const time = 'h-11 px-3 text-[16px] font-display font-semibold';
 
   return (
-    <div className="fixed inset-0 z-20 flex items-end justify-center" style={{ background: 'rgba(10,8,6,0.6)' }} onClick={onClose}>
-      <div role="dialog" aria-modal="true" aria-label="Promemoria" onClick={(e) => e.stopPropagation()}
-        className="theme-page w-full max-w-md max-h-[88dvh] overflow-y-auto rounded-t-[28px] px-5 pt-5 pb-8 flex flex-col gap-4"
-        style={{ backgroundColor: theme.bg, color: theme.text }}>
-        <div className="flex justify-between items-start">
-          <div>
-            <h2 className="m-0 font-display text-[24px] font-semibold">Promemoria</h2>
-            <p className="m-0 text-sm" style={{ color: theme.muted }}>Notifiche per i pasti e l'acqua</p>
-          </div>
-          <button onClick={onClose} aria-label="Chiudi" className="w-11 h-11 rounded-full border-0 flex items-center justify-center"
-            style={{ background: theme.surf, color: theme.text }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
-          </button>
+    <Sheet theme={theme} title="Promemoria" subtitle="Notifiche per i pasti e l'acqua" onClose={onClose}>
+      {state === 'loading' && <p className="m-0 text-[16px]" style={{ color: theme.muted }}>Controllo le notifiche…</p>}
+      {state === 'unsupported' && <p className="m-0 text-[16px]" style={{ color: theme.muted }}>Questo browser non supporta le notifiche. Installa l'app dalla schermata Home (menu ⋮ → Installa app) e riprova da lì.</p>}
+      {state === 'denied' && <p className="m-0 text-[16px]" style={{ color: theme.muted }}>Le notifiche sono bloccate. Riattivale nelle impostazioni del sito in Chrome (lucchetto accanto all'indirizzo → Notifiche → Consenti), poi riapri questa finestra.</p>}
+      {state === 'off' && (
+        <div className="flex flex-col gap-3">
+          <p className="m-0 text-[16px]" style={{ color: theme.muted }}>Ricevi un avviso all'ora di ogni pasto e qualche richiamo per l'acqua.</p>
+          <button onClick={enable} className="cut-br theme-action label min-h-12 px-7 text-[17px] self-end" style={primaryStyle(theme)}>Attiva le notifiche</button>
         </div>
+      )}
 
-        {state === 'loading' && <p className="m-0" style={{ color: theme.muted }}>Controllo…</p>}
-        {state === 'unsupported' && <p className="m-0 text-sm" style={{ color: theme.muted }}>Questo browser non supporta le notifiche. Installa l'app dalla schermata Home (menu ⋮ → Installa app) e riprova da lì.</p>}
-        {state === 'denied' && <p className="m-0 text-sm" style={{ color: theme.muted }}>Le notifiche sono bloccate. Riattivale nelle impostazioni del sito in Chrome (lucchetto accanto all'indirizzo → Notifiche → Consenti), poi riapri questa finestra.</p>}
-        {state === 'off' && (
-          <button onClick={enable} className="theme-action h-12 rounded-full border-0 font-bold" style={{ background: theme.acc, color: theme.onAcc }}>
-            Attiva le notifiche
-          </button>
-        )}
-
-        {state === 'on' && (
-          <>
-            <section className="theme-card rounded-[22px] p-4 flex flex-col gap-3" style={{ background: theme.surf }}>
-              <label className="flex justify-between items-center gap-3 font-bold">
-                Pasti
-                <input type="checkbox" checked={rem.pastiOn} onChange={(e) => update({ ...rem, pastiOn: e.target.checked })}
-                  style={{ accentColor: theme.acc, width: 22, height: 22 }} />
+      {state === 'on' && (
+        <>
+          <section className="pb-4" style={{ borderBottom: `1px solid ${theme.line}` }}>
+            <Toggle on={rem.pastiOn} label="Pasti" onChange={(v) => update({ ...rem, pastiOn: v })} />
+            {rem.pastiOn && MEAL_TYPES.map((t, i) => (
+              <label key={t} className="flex justify-between items-center gap-3 text-[16px] mt-2">
+                {t}
+                <input type="time" value={rem.pasti[i]} onChange={(e) => update({ ...rem, pasti: rem.pasti.map((v, j) => (j === i ? e.target.value : v)) })}
+                  className={time} style={fieldStyle(theme)} />
               </label>
-              {rem.pastiOn && MEAL_TYPES.map((t, i) => (
-                <label key={t} className="flex justify-between items-center gap-3 text-[15px]">
-                  {t}
-                  <input type="time" value={rem.pasti[i]} onChange={(e) => update({ ...rem, pasti: rem.pasti.map((v, j) => (j === i ? e.target.value : v)) })}
-                    className="h-11 rounded-xl px-3 border-0 text-base" style={field} />
-                </label>
-              ))}
-              <p className="m-0 text-xs" style={{ color: theme.muted }}>Se hai già segnato il pasto come fatto, la notifica non arriva.</p>
-            </section>
+            ))}
+            <p className="m-0 mt-3 text-[14px]" style={{ color: theme.muted }}>Se hai già segnato il pasto come fatto, la notifica non arriva. Questi orari decidono anche il pasto "di adesso" in Oggi.</p>
+          </section>
 
-            <section className="theme-card rounded-[22px] p-4 flex flex-col gap-3" style={{ background: theme.surf }}>
-              <label className="flex justify-between items-center gap-3 font-bold">
-                Acqua
-                <input type="checkbox" checked={rem.acquaOn} onChange={(e) => update({ ...rem, acquaOn: e.target.checked })}
-                  style={{ accentColor: theme.acc, width: 22, height: 22 }} />
-              </label>
-              {rem.acquaOn && (
-                <div className="grid grid-cols-2 gap-2.5">
-                  {rem.acqua.map((v, i) => (
-                    <input key={i} type="time" value={v} aria-label={`Promemoria acqua ${i + 1}`}
-                      onChange={(e) => update({ ...rem, acqua: rem.acqua.map((x, j) => (j === i ? e.target.value : x)) })}
-                      className="h-11 rounded-xl px-3 border-0 text-base" style={field} />
-                  ))}
-                </div>
-              )}
-              <p className="m-0 text-xs" style={{ color: theme.muted }}>Smettono quando raggiungi l'obiettivo del giorno.</p>
-            </section>
+          <section className="py-4" style={{ borderBottom: `1px solid ${theme.line}` }}>
+            <Toggle on={rem.acquaOn} label="Acqua" onChange={(v) => update({ ...rem, acquaOn: v })} />
+            {rem.acquaOn && (
+              <div className="grid grid-cols-2 gap-3 mt-2">
+                {rem.acqua.map((v, i) => (
+                  <label key={i} className="flex flex-col gap-1 text-[14px]" style={{ color: theme.muted }}>Richiamo {i + 1}
+                    <input type="time" value={v} onChange={(e) => update({ ...rem, acqua: rem.acqua.map((x, j) => (j === i ? e.target.value : x)) })}
+                      className={time} style={fieldStyle(theme)} />
+                  </label>
+                ))}
+              </div>
+            )}
+            <p className="m-0 mt-3 text-[14px]" style={{ color: theme.muted }}>Smettono quando raggiungi l'obiettivo del giorno.</p>
+          </section>
 
-            <button onClick={disable} className="h-11 rounded-full bg-transparent font-bold text-sm"
-              style={{ border: `1.5px solid ${theme.surf2}`, color: '#F0A08A' }}>Disattiva le notifiche su questo telefono</button>
-          </>
-        )}
-        {msg && <p className="m-0 text-sm text-center" style={{ color: theme.muted }}>{msg}</p>}
-      </div>
-    </div>
+          <button onClick={disable} className="label min-h-11 px-4 mt-4" style={outlineStyle(theme, theme.danger)}>Disattiva su questo telefono</button>
+        </>
+      )}
+      {msg && <p role="status" className="m-0 mt-3 text-[15px]" style={{ color: msg === 'Salvato' ? theme.done : theme.danger }}>{msg}</p>}
+    </Sheet>
   );
 }

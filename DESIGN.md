@@ -297,8 +297,17 @@ Massa grassa e misure come tabellone: intestazioni di colonna in etichetta da 11
 ### Campi di inserimento
 Rettangoli alti 44px, fondo Lavagna Notte, bordo 1px edge (danger se il valore non va), testo 16px; i numeri in Rajdhani. Etichetta sopra in Barlow 14px muted, errore sotto in rosso 13px con un esempio del formato. Le scelte a due opzioni sono due pulsanti affiancati: quello scelto ha bordo e testo nell'accento su Lavagna Alta.
 
+### Pannelli (Sheet)
+Un solo componente per tutti i flussi secondari (`src/components/Sheet.jsx`), in due varianti con una regola fissa: **dal basso** per i compiti brevi (sostituzioni, promemoria), alto al massimo 88% dello schermo, su un velo scuro che chiude al tocco; **a tutto schermo** per i compiti lunghi (gestione e revisione del piano). Testata con titolo Headline e sottotitolo muted, pulsante chiudi quadrato da 44px a contorno, righello sotto la testata; azioni fisse in un piede su Fondo Nav con filetto sopra, la principale a destra come lastra. Esc chiude, il focus entra nel pannello e torna dove era, la pagina sotto è inerte e non scorre.
+
+### Conferma nel pannello
+Quando un'azione non si può annullare dopo (scartare un piano importato, uscire da una bozza con modifiche), il primo tocco apre sopra le azioni una riga con bordo rosso, la domanda e due pulsanti ("No"/"Continua" e "Scarta"). Mai `window.confirm`.
+
+### Login
+Titolo "Bentornato" in Display chiusura nell'accento, sottotitolo, la fascia illustrata del tema con il righello, due campi e la lastra "Entra" a destra. Gli errori di Supabase sono tradotti in italiano.
+
 ### In sospeso
-I fogli secondari (gestione del piano, promemoria, sostituzioni, revisione) e il login usano ancora le forme del vecchio sistema (arrotondate) e verranno portati in questo mondo più avanti. Le illustrazioni dei 16 temi verranno ridisegnate in stile cyberpunk; la bicromia è la soluzione nel frattempo. Nessuna di queste forme vecchie è parte del sistema.
+Le illustrazioni dei 16 temi verranno ridisegnate in stile cyberpunk; la bicromia è la soluzione nel frattempo.
 
 ## Do's and Don'ts
 
