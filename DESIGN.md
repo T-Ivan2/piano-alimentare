@@ -288,8 +288,17 @@ Gruppi con intestazione in etichetta e contatore "presi/totale" (ciano quando il
 ### Annulla temporaneo
 Le azioni che cancellano in blocco (es. "Azzera" la spesa) agiscono subito e mostrano per 6 secondi una barra sopra la nav: Lavagna Alta, bordo edge, testo dell'esito e "Annulla" in etichetta nell'accento. Niente finestre di conferma.
 
+### Grafico del peso (Progressi)
+Una sola serie: linea da 2px in Bianco Freddo su tre righe di griglia in line a passo intero uguale, valori dell'asse in Rajdhani 12px muted. Punti quadrati da 10px: pieni per i controlli con Carlotta, vuoti (fondo dentro, bordo testo) per le misure personali; l'ultimo punto è nell'accento. Sopra il grafico il valore del punto scelto in Rajdhani 40px (nell'accento se è l'ultimo) con data e fonte; si sceglie un punto toccando la sua colonna, a tutta altezza. Legenda solo quando ci sono entrambe le fonti, e una tabella "Vedi i dati" sotto.
+
+### Tabelle di valori (Progressi)
+Massa grassa e misure come tabellone: intestazioni di colonna in etichetta da 11px, nome in Title maiuscolo, valore in Rajdhani 19px allineato a destra, differenza dall'inizio in Body piccolo muted. Le differenze sono neutre: nessun colore per "meglio" o "peggio", l'interpretazione spetta alla nutrizionista.
+
+### Campi di inserimento
+Rettangoli alti 44px, fondo Lavagna Notte, bordo 1px edge (danger se il valore non va), testo 16px; i numeri in Rajdhani. Etichetta sopra in Barlow 14px muted, errore sotto in rosso 13px con un esempio del formato. Le scelte a due opzioni sono due pulsanti affiancati: quello scelto ha bordo e testo nell'accento su Lavagna Alta.
+
 ### In sospeso
-Progressi, i fogli secondari (gestione del piano, promemoria, sostituzioni, revisione) e i campi di inserimento usano ancora le forme del vecchio sistema (arrotondate) e verranno portati in questo mondo più avanti. Le illustrazioni dei 16 temi verranno ridisegnate in stile cyberpunk; la bicromia è la soluzione nel frattempo. Nessuna di queste forme vecchie è parte del sistema.
+I fogli secondari (gestione del piano, promemoria, sostituzioni, revisione) e il login usano ancora le forme del vecchio sistema (arrotondate) e verranno portati in questo mondo più avanti. Le illustrazioni dei 16 temi verranno ridisegnate in stile cyberpunk; la bicromia è la soluzione nel frattempo. Nessuna di queste forme vecchie è parte del sistema.
 
 ## Do's and Don'ts
 
