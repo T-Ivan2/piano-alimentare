@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { supabase } from '../supabase';
 import { MEAL_TYPES } from '../dates';
+import { activatePlan as activateInDb } from '../plans';
 import Sheet, { fieldStyle, outlineStyle, primaryStyle } from './Sheet';
 
 const clone = (x) => JSON.parse(JSON.stringify(x));
@@ -59,9 +60,8 @@ export default function GestionePiano({ theme, activePlan, onClose, onChanged, i
   };
 
   const activatePlan = async (id, refresh = true) => {
-    const { error: e1 } = await supabase.from('plans').update({ active: false }).neq('id', id);
-    const { error: e2 } = await supabase.from('plans').update({ active: true, status: 'ok' }).eq('id', id);
-    if (e1 || e2) { setMsg('Errore: ' + (e1 || e2).message); return; }
+    const error = await activateInDb(id);
+    if (error) { setMsg('Non sono riuscito ad attivare il piano: ' + error.message); return; }
     if (refresh) { setMsg('Piano attivato.'); load(); onChanged(); }
   };
 
@@ -154,10 +154,12 @@ export default function GestionePiano({ theme, activePlan, onClose, onChanged, i
             <input type="file" accept="application/pdf" className="sr-only" disabled={importing} onChange={importPdf} />
           </label>
           <p className="m-0 mt-2 text-[14px]" style={{ color: theme.muted }}>Di solito arriva da solo dalla mail: questo serve se il PDF ce l'hai sul telefono.</p>
-          <div className="grid grid-cols-2 gap-2 mt-4">
-            <button onClick={startNew} className="label min-h-12 px-2" style={outlineStyle(theme)}>Nuovo piano</button>
-            <button onClick={editActive} className="label min-h-12 px-2" style={outlineStyle(theme)}>Correggi l'attivo</button>
-          </div>
+          {activePlan && (
+            <div className="grid grid-cols-2 gap-2 mt-4">
+              <button onClick={startNew} className="label min-h-12 px-2" style={outlineStyle(theme)}>Nuovo piano</button>
+              <button onClick={editActive} className="label min-h-12 px-2" style={outlineStyle(theme)}>Correggi l'attivo</button>
+            </div>
+          )}
 
           <section className="mt-6" aria-labelledby="archivio">
             <h3 id="archivio" className="label m-0 pb-2" style={{ color: theme.muted, borderBottom: `1px solid ${theme.line}` }}>Archivio</h3>

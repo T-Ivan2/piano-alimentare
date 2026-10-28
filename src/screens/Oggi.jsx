@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { supabase } from '../supabase';
 import ThemeBand from '../components/ThemeBand';
 import Sostituzioni, { groupsFor } from '../components/Sostituzioni';
@@ -61,7 +61,7 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes, onPl
       .then(({ data }) => {
         const rows = data || [];
         const t = rows.find((r) => r.day === today);
-        if (t) setLog({ meals: t.meals || {}, water: t.water || 0, checks: t.checks || {}, subs: t.subs || {} });
+        if (t) { latest.current = { meals: t.meals || {}, water: t.water || 0, checks: t.checks || {}, subs: t.subs || {} }; setLog(latest.current); }
         const others = rows.filter((r) => r.day !== today)
           .reduce((n, r) => n + Object.values(r.meals || {}).filter(Boolean).length, 0);
         setWeek({ done: others });
@@ -70,16 +70,24 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes, onPl
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const save = async (next) => {
+  // Salvataggi in fila: ognuno parte dallo stato più recente e scrive dopo il precedente,
+  // così due tocchi veloci non si sovrascrivono
+  const latest = useRef(log);
+  const queue = useRef(Promise.resolve());
+  const save = (change) => {
+    const next = typeof change === 'function' ? change(latest.current) : change;
+    latest.current = next;
     setLog(next);
-    const { error } = await supabase.from('day_logs')
-      .upsert({ user_id: user.id, day: today, ...next, updated_at: new Date().toISOString() });
-    setSaveError(error ? next : null);
+    queue.current = queue.current.then(async () => {
+      const { error } = await supabase.from('day_logs')
+        .upsert({ user_id: user.id, day: today, ...latest.current, updated_at: new Date().toISOString() });
+      setSaveError(error ? latest.current : null);
+    });
   };
 
   const toggleMeal = (i) => {
     setMoves((m) => m + 1);
-    save({ ...log, meals: { ...log.meals, [i]: !log.meals[i] } });
+    save((l) => ({ ...l, meals: { ...l.meals, [i]: !l.meals[i] } }));
   };
 
   const done = meals.map((_, i) => !!log.meals[i]);
@@ -173,7 +181,7 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes, onPl
             const on = i < log.water;
             return (
               <button key={i} aria-label={`${i + 1} ${i === 0 ? 'bicchiere' : 'bicchieri'} su ${glasses}`} aria-pressed={on}
-                onClick={() => save({ ...log, water: log.water === i + 1 ? i : i + 1 })}
+                onClick={() => save((l) => ({ ...l, water: l.water === i + 1 ? i : i + 1 }))}
                 className="h-11 p-0" style={{ background: on ? theme.done : theme.surf, border: `1px solid ${on ? theme.done : theme.edge}` }} />
             );
           })}
@@ -187,8 +195,8 @@ export default function Oggi({ plan, theme, user, themesOn, onToggleThemes, onPl
 
       {swap !== null && (
         <Sostituzioni plan={plan} theme={theme} mealType={mealName(swap)} text={meals[swap]} current={log.subs[swap]}
-          onPick={(label) => { save({ ...log, subs: { ...log.subs, [swap]: label } }); setSwap(null); }}
-          onClear={() => { const s = { ...log.subs }; delete s[swap]; save({ ...log, subs: s }); setSwap(null); }}
+          onPick={(label) => { const k = swap; save((l) => ({ ...l, subs: { ...l.subs, [k]: label } })); setSwap(null); }}
+          onClear={() => { const k = swap; save((l) => { const s = { ...l.subs }; delete s[k]; return { ...l, subs: s }; }); setSwap(null); }}
           onClose={() => setSwap(null)} />
       )}
     </div>

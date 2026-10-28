@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { supabase } from '../supabase';
 import { MEAL_TYPES, isoDay } from '../dates';
 import GestionePiano from './GestionePiano';
+import { activatePlan } from '../plans';
 import Sheet, { outlineStyle, primaryStyle } from './Sheet';
 
 const MEASURES = [['peso', 'Peso', 'kg', 'weight'], ['massa_grassa_plica', 'Massa grassa plica', '%', 'fat_plica'], ['massa_grassa_bia', 'Massa grassa BIA', '%', 'fat_bia'],
@@ -29,9 +30,8 @@ export default function Revisione({ theme, pending, activePlan, onClose, onDone 
 
   const confirm = async () => {
     setBusy(true); setMsg('');
-    const { error: e1 } = await supabase.from('plans').update({ active: false }).neq('id', pending.id);
-    const { error: e2 } = await supabase.from('plans').update({ active: true, status: 'ok' }).eq('id', pending.id);
-    if (e1 || e2) { setBusy(false); setMsg('Errore: ' + (e1 || e2).message); return; }
+    const error = await activatePlan(pending.id);
+    if (error) { setBusy(false); setMsg('Non sono riuscito ad attivare il piano: ' + error.message); return; }
     const rec = { source: 'carlotta', label: m.etichetta || pending.month_label, taken_on: isoDay(new Date()) };
     let any = false;
     MEASURES.forEach(([k, , , col]) => { if (m[k] != null) { rec[col] = m[k]; any = true; } });
