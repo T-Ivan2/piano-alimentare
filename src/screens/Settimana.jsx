@@ -23,17 +23,36 @@ export default function Settimana({ plan, theme, user }) {
   const [sel, setSel] = useState(todayIdx);
   const [logs, setLogs] = useState({});
   const [tipError, setTipError] = useState('');
+  const [loadOk, setLoadOk] = useState(false); // senza lettura riuscita non si scrive, per non sovrascrivere il diario
   const tabs = useRef([]);
 
   useEffect(() => {
     supabase.from('day_logs').select('*').gte('day', isoDay(start)).lte('day', isoDay(dates[6]))
-      .then(({ data }) => setLogs(Object.fromEntries((data || []).map((r) => [r.day, r]))));
+      .then(({ data, error }) => {
+        if (error) { setTipError("Non riesco a leggere il diario: sei offline? Riapri la scheda per riprovare."); return; }
+        setLogs(Object.fromEntries((data || []).map((r) => [r.day, r])));
+        setLoadOk(true);
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Correggere un giorno già passato: si scrive solo la colonna dei pasti di quel giorno
+  const toggleDayMeal = async (iso, i) => {
+    if (!loadOk) return;
+    const prev = logs[iso]?.meals || {};
+    const meals = { ...prev, [i]: !prev[i] };
+    setLogs((l) => ({ ...l, [iso]: { ...(l[iso] || { day: iso }), meals } }));
+    const { error } = await supabase.from('day_logs').upsert({ user_id: user.id, day: iso, meals, updated_at: new Date().toISOString() });
+    if (error) {
+      setLogs((l) => ({ ...l, [iso]: { ...(l[iso] || { day: iso }), meals: prev } }));
+      setTipError('Non sono riuscito a salvare, riprova.');
+    } else setTipError('');
+  };
 
   const checks = logs[today]?.checks || {};
   // I consigli del mese si spuntano ogni giorno: stanno nel diario di oggi
   const toggleTip = async (t) => {
+    if (!loadOk) return;
     const next = { ...checks, [t]: !checks[t] };
     setLogs((l) => ({ ...l, [today]: { ...(l[today] || { day: today }), checks: next } }));
     const { error } = await supabase.from('day_logs')
@@ -114,7 +133,7 @@ export default function Settimana({ plan, theme, user }) {
           <p className="label m-0 mt-1" style={{ color: theme.done }}>Acqua {litres(log.water * GLASS_ML)} L</p>
         )}
 
-        <div className={`mt-3 grid ${isPast ? 'grid-cols-[52px_1fr_80px]' : 'grid-cols-[52px_1fr]'} gap-3 pb-1 label text-[11px]`}
+        <div className={`mt-3 grid ${isPast ? 'grid-cols-[52px_1fr_96px]' : 'grid-cols-[52px_1fr]'} gap-3 pb-1 label text-[11px]`}
           style={{ color: theme.muted, borderBottom: `1px solid ${theme.line}` }} aria-hidden="true">
           <span>Ora</span><span>Pasto</span>{isPast && <span className="text-center">Stato</span>}
         </div>
@@ -122,7 +141,7 @@ export default function Settimana({ plan, theme, user }) {
           const done = !!log?.meals?.[i];
           const sub = log?.subs?.[i];
           return (
-            <div key={i} className={`grid ${isPast ? 'grid-cols-[52px_1fr_80px]' : 'grid-cols-[52px_1fr]'} gap-3 items-start py-3`}
+            <div key={i} className={`grid ${isPast ? 'grid-cols-[52px_1fr_96px]' : 'grid-cols-[52px_1fr]'} gap-3 items-start py-3`}
               style={{ borderBottom: `1px solid ${theme.line}` }}>
               <span className="font-display font-semibold text-[19px] leading-tight" style={{ color: done ? theme.muted : theme.text }}>{times[i] || ''}</span>
               <div className="min-w-0">
@@ -136,12 +155,18 @@ export default function Settimana({ plan, theme, user }) {
                   <p className="m-0 mt-1 text-[15px] leading-snug" style={{ color: done ? theme.muted : theme.text }}>{text}</p>
                 )}
               </div>
-              {isPast && (
-                <span className="label min-h-8 flex items-center justify-center gap-1"
-                  style={done ? { background: theme.done, color: theme.onAcc } : { color: theme.muted, border: `1px solid ${theme.line}` }}>
-                  {done && <CheckIcon size={12} />}{stateOf(i, done)}
-                </span>
-              )}
+              {isPast && (() => {
+                const st = stateOf(i, done);
+                return (
+                  <button onClick={() => toggleDayMeal(iso, i)} disabled={!loadOk} aria-pressed={done}
+                    aria-label={`${mealName(i)} di ${day.nome}: ${st.toLowerCase()}. ${done ? 'Tocca per annullare' : 'Segna come fatto'}`}
+                    className="label min-h-11 px-1 flex items-center justify-center gap-1.5 disabled:opacity-40"
+                    style={done ? { background: theme.done, color: theme.onAcc, border: `1px solid ${theme.done}` }
+                      : { background: 'transparent', color: st === 'Adesso' ? theme.acc : theme.text, border: `1px solid ${st === 'Adesso' ? theme.acc : theme.edge}` }}>
+                    {done ? <CheckIcon size={12} /> : <span className="w-3 h-3 shrink-0" style={{ border: '1.5px solid currentColor' }} aria-hidden="true" />}{st}
+                  </button>
+                );
+              })()}
             </div>
           );
         })}
@@ -149,7 +174,7 @@ export default function Settimana({ plan, theme, user }) {
 
       {tips.length > 0 && (
         <section aria-labelledby="consigli" className="mt-6">
-          <h2 id="consigli" className="label m-0 pb-2" style={{ color: theme.muted, borderBottom: `1px solid ${theme.line}` }}>Consigli del mese · oggi</h2>
+          <h2 id="consigli" className="label m-0 pb-2" style={{ color: theme.muted, borderBottom: `1px solid ${theme.line}` }}>Da fare oggi</h2>
           {tips.map((t) => {
             const on = !!checks[t];
             return (

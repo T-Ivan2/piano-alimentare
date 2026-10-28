@@ -26,7 +26,7 @@ export default function Sostituzioni({ plan, theme, mealType, text, current, onP
   return (
     <Sheet theme={theme} title={`Sostituisci: ${mealType.toLowerCase()}`} subtitle={text} onClose={onClose}>
       {current && (
-        <div className="mb-4 flex justify-between items-center gap-3 pl-3 py-1 pr-1" style={{ border: `1px solid ${theme.acc}` }}>
+        <div className="mb-4 flex justify-between items-center gap-3 pl-3 py-1 pr-1" style={{ border: `1px solid ${theme.text}` }}>
           <span className="text-[15px] min-w-0">Scelto: <b>{current}</b></span>
           <button onClick={onClear} className="label min-h-11 px-3 shrink-0" style={outlineStyle(theme, theme.danger)}>Rimuovi</button>
         </div>
@@ -59,11 +59,11 @@ export default function Sostituzioni({ plan, theme, mealType, text, current, onP
                 className="w-full flex items-center gap-3 min-h-[52px] py-2 text-left bg-transparent border-0 text-[16px]"
                 style={{ color: theme.text, borderBottom: `1px solid ${theme.line}` }}>
                 <span className="w-6 h-6 shrink-0 flex items-center justify-center"
-                  style={on ? { background: theme.acc, color: theme.onAcc } : { border: `1px solid ${theme.edge}` }}>
+                  style={on ? { background: theme.text, color: theme.bg } : { border: `1px solid ${theme.edge}` }}>
                   {on && <CheckIcon />}
                 </span>
                 <span className="flex-1 min-w-0">{name}</span>
-                <span className="font-display font-semibold text-[19px] whitespace-nowrap" style={{ color: on ? theme.acc : theme.text }}>{qty}</span>
+                <span className="font-display font-semibold text-[19px] whitespace-nowrap" style={{ color: theme.text }}>{qty}</span>
               </button>
             );
           })}

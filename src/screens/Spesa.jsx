@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { supabase } from '../supabase';
 import { isoDay, startOfWeek } from '../dates';
 import { CheckIcon } from '../components/Icons';
+import { readCache, writeCache } from '../cache';
 
 const UNDO_MS = 6000;
 
@@ -13,14 +14,30 @@ export default function Spesa({ plan, theme, user }) {
   const [undo, setUndo] = useState(null); // lista prima dell'azzeramento, finché si può annullare
   const timer = useRef(null);
 
-  useEffect(() => {
+  // 'loading' | 'ok' | 'offline' (copia locale) | 'error': senza una lettura valida non si salva, per non azzerare la lista vera
+  const [status, setStatus] = useState('loading');
+  const load = () => {
+    setStatus('loading');
     supabase.from('shopping').select('checks').eq('week_start', week).maybeSingle()
-      .then(({ data }) => data && setChecks(data.checks || {}));
-  }, [week]);
+      .then(({ data, error }) => {
+        if (error) {
+          const cached = readCache(`spesa:${week}`);
+          if (cached) { setChecks(cached); setStatus('offline'); } else setStatus('error');
+          return;
+        }
+        setChecks(data?.checks || {});
+        writeCache(`spesa:${week}`, data?.checks || {});
+        setStatus('ok');
+      });
+  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(load, [week]);
   useEffect(() => () => clearTimeout(timer.current), []);
 
   const save = async (next) => {
+    if (status !== 'ok' && status !== 'offline') return;
     setChecks(next);
+    writeCache(`spesa:${week}`, next);
     const { error } = await supabase.from('shopping').upsert({ user_id: user.id, week_start: week, checks: next });
     setErr(error ? 'Non sono riuscito a salvare, riprova.' : '');
   };
@@ -60,6 +77,16 @@ export default function Spesa({ plan, theme, user }) {
         <button onClick={reset} disabled={!done} className="theme-action label min-h-11 px-4 bg-transparent shrink-0 disabled:opacity-40"
           style={{ border: `1px solid ${theme.edge}`, color: theme.text }}>Azzera</button>
       </header>
+
+      {status === 'offline' && (
+        <p role="status" className="m-0 mt-4 px-3 py-2 text-[15px]" style={{ border: `1px solid ${theme.edge}`, color: theme.muted }}>Sei offline: vedi l'ultima copia salvata sul telefono.</p>
+      )}
+      {status === 'error' && (
+        <div role="alert" className="mt-4 px-3 py-3 flex items-center justify-between gap-3" style={{ border: `1px solid ${theme.danger}`, background: theme.surf }}>
+          <span className="text-[16px]">Non riesco a leggere la lista. Finché non la leggo non segno niente.</span>
+          <button onClick={load} className="label min-h-11 px-3 shrink-0" style={{ color: theme.danger, border: `1px solid ${theme.danger}`, background: 'transparent' }}>Riprova</button>
+        </div>
+      )}
 
       <section className="mt-4" aria-label="Avanzamento della spesa">
         <div className="flex justify-between items-baseline">

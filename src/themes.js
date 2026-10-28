@@ -17,7 +17,7 @@ const T = {
   estate:       { name: 'Estate',         acc: '#FFB627', greet: 'Buona estate, {n}', tag: 'Idratati bene oggi' },
   settembre:    { name: 'Settembre',      acc: '#D4F24A', greet: 'Si ricomincia, {n}', tag: 'Nuova stagione, stesse buone abitudini' },
   halloween:    { name: 'Halloween',      acc: '#FF7A1A', greet: 'Dolcetto o scherzetto, {n}', tag: 'Niente paura, sei in pista' },
-  natale:       { name: 'Natale',         acc: '#FF3D57', greet: 'Buone feste, {n}', tag: 'Goditi la giornata' },
+  natale:       { name: 'Natale',         acc: '#6BFF8F', greet: 'Buone feste, {n}', tag: 'Goditi la giornata' },
   capodanno:    { name: 'Capodanno',      acc: '#FFD966', greet: 'Buon anno, {n}', tag: 'Che anno!' },
   epifania:     { name: 'Epifania',       acc: '#B18CFF', greet: 'Buona Epifania, {n}', tag: 'Si riparte con calma' },
   valentino:    { name: 'San Valentino',  acc: '#FF4F8B', greet: 'Buon San Valentino, {n}', tag: 'Volersi bene, anche a tavola' },

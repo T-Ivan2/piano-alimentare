@@ -2,7 +2,7 @@ const TABS = [['oggi', 'Oggi'], ['settimana', 'Settimana'], ['spesa', 'Spesa'], 
 
 export default function Nav({ tab, setTab, theme }) {
   return (
-    <nav className="theme-nav fixed bottom-0 inset-x-0 z-10" style={{ background: theme.nav }}>
+    <nav aria-label="Sezioni" className="theme-nav fixed bottom-0 inset-x-0 z-10" style={{ background: theme.nav }}>
       <div className="max-w-md mx-auto grid grid-cols-4 px-2" style={{ paddingBottom: 'max(14px, env(safe-area-inset-bottom))' }}>
         {TABS.map(([k, label]) => (
           <button key={k} onClick={() => setTab(k)} aria-current={tab === k ? 'page' : undefined}

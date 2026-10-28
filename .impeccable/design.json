@@ -1,49 +1,281 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-28T12:00:00Z",
+  "generatedAt": "2026-10-28T18:03:31.180856Z",
   "title": "Design System: Piano Alimentare",
   "extensions": {
     "colorMeta": {
-      "accent": { "role": "primary", "displayName": "Giallo Acido", "canonical": "#FCEE0A", "note": "Accento del tema base. Gli altri 15 accenti per tema sono in src/themes.js e sostituiscono solo questo valore (es. Halloween #FF7A1A, Natale #FF3D57, Inverno #A8C8FF).", "tonalRamp": ["#2B2800", "#4D4800", "#787000", "#A59B00", "#D3C700", "#FCEE0A", "#FDF47A", "#FEFAC8"] },
-      "on-accent": { "role": "neutral", "displayName": "Nero Terminale (su accento)", "canonical": "#0B0F14", "tonalRamp": ["#05070A", "#0B0F14", "#161D25", "#232D38", "#36434F", "#56636F", "#8792A0", "#C4CBD3"] },
-      "done": { "role": "secondary", "displayName": "Ciano Fatto", "canonical": "#04DAF6", "tonalRamp": ["#00262C", "#00434D", "#006A78", "#0093A6", "#00BDD5", "#04DAF6", "#7BEAF9", "#C6F6FC"] },
-      "danger": { "role": "tertiary", "displayName": "Rosso Allarme", "canonical": "#FF4D5E", "tonalRamp": ["#3A0509", "#5E0D15", "#8A1724", "#B82435", "#E33748", "#FF4D5E", "#FF919B", "#FFD0D4"] },
-      "bg": { "role": "neutral", "displayName": "Nero Terminale", "canonical": "#0B0F14", "tonalRamp": ["#05070A", "#0B0F14", "#161D25", "#232D38", "#36434F", "#56636F", "#8792A0", "#C4CBD3"] },
-      "surf": { "role": "neutral", "displayName": "Lavagna Notte", "canonical": "#121A22", "tonalRamp": ["#070B0F", "#121A22", "#1C2630", "#2A3642", "#3E4C59", "#5E6C79", "#8F9BA6", "#C9D0D7"] },
-      "surf2": { "role": "neutral", "displayName": "Lavagna Alta", "canonical": "#1C2630", "tonalRamp": ["#0A0F14", "#121A22", "#1C2630", "#2A3642", "#3E4C59", "#5E6C79", "#8F9BA6", "#C9D0D7"] },
-      "nav": { "role": "neutral", "displayName": "Fondo Nav", "canonical": "#0E1319", "tonalRamp": ["#06080B", "#0E1319", "#18202A", "#25303C", "#384551", "#586571", "#8994A0", "#C5CCD3"] },
-      "text": { "role": "neutral", "displayName": "Bianco Freddo", "canonical": "#E6EDF2", "tonalRamp": ["#1A2027", "#323B44", "#4F5A65", "#717D88", "#98A3AD", "#BFC8D0", "#E6EDF2", "#F6F9FB"] },
-      "muted": { "role": "neutral", "displayName": "Grigio Strumento", "canonical": "#8FA0AE", "tonalRamp": ["#171D22", "#28313A", "#3E4A55", "#5A6874", "#768693", "#8FA0AE", "#B9C4CD", "#E1E7EC"] },
-      "line": { "role": "neutral", "displayName": "Filetto", "canonical": "#24303B", "tonalRamp": ["#0C1015", "#161E26", "#24303B", "#34424F", "#4A5967", "#6A7986", "#98A4AF", "#CDD4DA"] },
-      "edge": { "role": "neutral", "displayName": "Contorno Controlli", "canonical": "#5E7180", "tonalRamp": ["#141A1F", "#232C34", "#36434E", "#4A5866", "#5E7180", "#7D8E9B", "#A9B6C0", "#D8DFE4"] }
+      "accent": {
+        "role": "primary",
+        "displayName": "Giallo Acido",
+        "canonical": "#FCEE0A",
+        "note": "Accento del tema base. Gli altri 15 accenti per tema sono in src/themes.js e sostituiscono solo questo valore (es. Halloween #FF7A1A, Natale #FF3D57, Inverno #A8C8FF).",
+        "tonalRamp": [
+          "#2B2800",
+          "#4D4800",
+          "#787000",
+          "#A59B00",
+          "#D3C700",
+          "#FCEE0A",
+          "#FDF47A",
+          "#FEFAC8"
+        ]
+      },
+      "on-accent": {
+        "role": "neutral",
+        "displayName": "Nero Terminale (su accento)",
+        "canonical": "#0B0F14",
+        "tonalRamp": [
+          "#05070A",
+          "#0B0F14",
+          "#161D25",
+          "#232D38",
+          "#36434F",
+          "#56636F",
+          "#8792A0",
+          "#C4CBD3"
+        ]
+      },
+      "done": {
+        "role": "secondary",
+        "displayName": "Ciano Fatto",
+        "canonical": "#04DAF6",
+        "tonalRamp": [
+          "#00262C",
+          "#00434D",
+          "#006A78",
+          "#0093A6",
+          "#00BDD5",
+          "#04DAF6",
+          "#7BEAF9",
+          "#C6F6FC"
+        ]
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Rosso Allarme",
+        "canonical": "#FF4D5E",
+        "tonalRamp": [
+          "#3A0509",
+          "#5E0D15",
+          "#8A1724",
+          "#B82435",
+          "#E33748",
+          "#FF4D5E",
+          "#FF919B",
+          "#FFD0D4"
+        ]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Nero Terminale",
+        "canonical": "#0B0F14",
+        "tonalRamp": [
+          "#05070A",
+          "#0B0F14",
+          "#161D25",
+          "#232D38",
+          "#36434F",
+          "#56636F",
+          "#8792A0",
+          "#C4CBD3"
+        ]
+      },
+      "surf": {
+        "role": "neutral",
+        "displayName": "Lavagna Notte",
+        "canonical": "#121A22",
+        "tonalRamp": [
+          "#070B0F",
+          "#121A22",
+          "#1C2630",
+          "#2A3642",
+          "#3E4C59",
+          "#5E6C79",
+          "#8F9BA6",
+          "#C9D0D7"
+        ]
+      },
+      "surf2": {
+        "role": "neutral",
+        "displayName": "Lavagna Alta",
+        "canonical": "#1C2630",
+        "tonalRamp": [
+          "#0A0F14",
+          "#121A22",
+          "#1C2630",
+          "#2A3642",
+          "#3E4C59",
+          "#5E6C79",
+          "#8F9BA6",
+          "#C9D0D7"
+        ]
+      },
+      "nav": {
+        "role": "neutral",
+        "displayName": "Fondo Nav",
+        "canonical": "#0E1319",
+        "tonalRamp": [
+          "#06080B",
+          "#0E1319",
+          "#18202A",
+          "#25303C",
+          "#384551",
+          "#586571",
+          "#8994A0",
+          "#C5CCD3"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Bianco Freddo",
+        "canonical": "#E6EDF2",
+        "tonalRamp": [
+          "#1A2027",
+          "#323B44",
+          "#4F5A65",
+          "#717D88",
+          "#98A3AD",
+          "#BFC8D0",
+          "#E6EDF2",
+          "#F6F9FB"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Grigio Strumento",
+        "canonical": "#8FA0AE",
+        "tonalRamp": [
+          "#171D22",
+          "#28313A",
+          "#3E4A55",
+          "#5A6874",
+          "#768693",
+          "#8FA0AE",
+          "#B9C4CD",
+          "#E1E7EC"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Filetto",
+        "canonical": "#24303B",
+        "tonalRamp": [
+          "#0C1015",
+          "#161E26",
+          "#24303B",
+          "#34424F",
+          "#4A5967",
+          "#6A7986",
+          "#98A4AF",
+          "#CDD4DA"
+        ]
+      },
+      "edge": {
+        "role": "neutral",
+        "displayName": "Contorno Controlli",
+        "canonical": "#5E7180",
+        "tonalRamp": [
+          "#141A1F",
+          "#232C34",
+          "#36434E",
+          "#4A5866",
+          "#5E7180",
+          "#7D8E9B",
+          "#A9B6C0",
+          "#D8DFE4"
+        ]
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Nome del pasto di adesso nel pannello, maiuscolo, nell'accento. Uno per schermata." },
-      "display-close": { "displayName": "Display chiusura", "purpose": "Titolo del pannello a giornata finita." },
-      "headline": { "displayName": "Headline", "purpose": "Saluto del tema in testa a Oggi." },
-      "title": { "displayName": "Title", "purpose": "Nome del pasto nelle righe del tabellone, maiuscolo." },
-      "time": { "displayName": "Orario", "purpose": "Orario nel pannello; nel tabellone 600 a 19px." },
-      "body-lg": { "displayName": "Body grande", "purpose": "Menù del pasto di adesso in testo pieno." },
-      "body": { "displayName": "Body", "purpose": "Frasi, voci di menu, consigli del mese." },
-      "body-sm": { "displayName": "Body piccolo", "purpose": "Menù delle righe del tabellone (una riga), tag del tema, note." },
-      "label": { "displayName": "Label", "purpose": "Etichetta tecnica maiuscola: intestazioni di sezione, data e ora, pulsanti, contatori. Varianti 11px (colonne del tabellone), 14px (nav), 17px (lastra Fatto)." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "Nome del pasto di adesso nel pannello, maiuscolo, nell'accento. Uno per schermata."
+      },
+      "display-close": {
+        "displayName": "Display chiusura",
+        "purpose": "Titolo del pannello a giornata finita."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Saluto del tema in testa a Oggi."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Nome del pasto nelle righe del tabellone, maiuscolo."
+      },
+      "time": {
+        "displayName": "Orario",
+        "purpose": "Orario nel pannello; nel tabellone 600 a 19px."
+      },
+      "body-lg": {
+        "displayName": "Body grande",
+        "purpose": "Menù del pasto di adesso in testo pieno."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Frasi, voci di menu, consigli del mese."
+      },
+      "body-sm": {
+        "displayName": "Body piccolo",
+        "purpose": "Menù delle righe del tabellone (una riga), tag del tema, note."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Etichetta tecnica maiuscola: intestazioni di sezione, data e ora, pulsanti, contatori. Varianti 11px (colonne del tabellone), 14px (nav), 17px (lastra Fatto)."
+      }
     },
     "shapes": [
-      { "name": "cut-panel", "value": "clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%)", "purpose": "Angolo tagliato in basso a destra del pannello del pasto; cornice su due strati (esterno edge con 1px di padding, interno surf con taglio 19.6px)." },
-      { "name": "cut-slab", "value": "clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)", "purpose": "Lastra primaria \"Fatto\"." },
-      { "name": "cut-profile", "value": "clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px)", "purpose": "Pulsante profilo, angolo in alto a sinistra." },
-      { "name": "ruler", "value": "height: 6px; border-top: 1px solid #24303B; background: repeating-linear-gradient(90deg, #24303B 0 1px, transparent 1px 8px)", "purpose": "Righello a tacche che chiude la testata a tutta larghezza." }
+      {
+        "name": "cut-panel",
+        "value": "clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%)",
+        "purpose": "Angolo tagliato in basso a destra del pannello del pasto; cornice su due strati (esterno edge con 1px di padding, interno surf con taglio 19.6px)."
+      },
+      {
+        "name": "cut-slab",
+        "value": "clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)",
+        "purpose": "Lastra primaria \"Fatto\"."
+      },
+      {
+        "name": "cut-profile",
+        "value": "clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px)",
+        "purpose": "Pulsante profilo, angolo in alto a sinistra."
+      },
+      {
+        "name": "ruler",
+        "value": "height: 6px; border-top: 1px solid #24303B; background: repeating-linear-gradient(90deg, #24303B 0 1px, transparent 1px 8px)",
+        "purpose": "Righello a tacche che chiude la testata a tutta larghezza."
+      }
     ],
     "shadows": [
-      { "name": "nav-active-rule", "value": "inset 0 2px var(--theme-accent, #FCEE0A)", "purpose": "Filetto di stato sopra la voce di nav attiva. Non è un rilievo: il sistema è piatto." }
+      {
+        "name": "nav-active-rule",
+        "value": "inset 0 2px var(--theme-accent, #FCEE0A)",
+        "purpose": "Filetto di stato sopra la voce di nav attiva. Non è un rilievo: il sistema è piatto."
+      }
     ],
     "motion": [
-      { "name": "glitch-in", "value": "glitch-in 300ms steps(5, end) backwards", "purpose": "Ingresso a fette del pannello solo quando cambia il pasto di adesso; mai all'apertura. Spento con prefers-reduced-motion." },
-      { "name": "press", "value": "transform 180ms ease; scale(.97) azioni, scale(.96) nav", "purpose": "Risposta alla pressione." },
-      { "name": "hover-brighten", "value": "filter 180ms ease; brightness(1.1)", "purpose": "Hover delle azioni piene." }
+      {
+        "name": "glitch-in",
+        "value": "glitch-in 300ms steps(5, end) backwards",
+        "purpose": "Ingresso a fette del pannello solo quando cambia il pasto di adesso; mai all'apertura. Spento con prefers-reduced-motion."
+      },
+      {
+        "name": "press",
+        "value": "transform 180ms ease; scale(.97) azioni, scale(.96) nav",
+        "purpose": "Risposta alla pressione."
+      },
+      {
+        "name": "hover-brighten",
+        "value": "filter 180ms ease; brightness(1.1)",
+        "purpose": "Hover delle azioni piene."
+      }
     ],
     "breakpoints": [
-      { "name": "sm", "value": "640px", "purpose": "Margini laterali da 16px a 20px; colonna sempre max 448px." }
+      {
+        "name": "sm",
+        "value": "640px",
+        "purpose": "Margini laterali da 16px a 20px; colonna sempre max 448px."
+      }
     ],
     "duotone": {
       "value": "feColorMatrix scala di grigi + feComponentTransfer table: ombre e toni medi = bg, luci = accento; opacità 0.8; illustrazione intera 216×72",
@@ -120,23 +352,56 @@
       "Un solo gesto di movimento: l'ingresso a glitch quando cambia il pasto di adesso."
     ],
     "rules": [
-      { "name": "La Regola dell'Accento Unico", "body": "L'accento segna una cosa sola: ciò che conta adesso (il pasto di adesso, la sua azione, la scheda attiva). Se compare su un elemento che non è \"adesso\" o \"azione principale\", è sbagliato.", "section": "colors" },
-      { "name": "La Regola del Ciano Riservato", "body": "Il ciano significa \"fatto\" o \"acqua\", nient'altro. Non è un secondo accento e non decora.", "section": "colors" },
-      { "name": "La Regola del Contorno Leggibile", "body": "I controlli hanno il bordo in Contorno Controlli (edge), non in Filetto (line): il filetto separa, il contorno si tocca.", "section": "colors" },
-      { "name": "La Regola della Macchina e della Voce", "body": "Rajdhani per ciò che si legge come strumento (nomi, orari, stati, comandi), Barlow per ciò che si legge come frase. Il menù di un pasto non va mai in Rajdhani.", "section": "typography" },
-      { "name": "La Regola dell'Etichetta come Intestazione", "body": "L'etichetta maiuscola è il titolo della sezione stessa (\"La giornata\", \"Acqua\"), mai un occhiello sopra un altro titolo.", "section": "typography" },
-      { "name": "La Regola Senza Aloni", "body": "Niente glow, niente aloni neon, niente veli a gradiente: il cyberpunk qui è geometria e contrasto, non luce diffusa.", "section": "elevation" },
-      { "name": "La Regola del Taglio", "body": "Gli angoli si tagliano, non si arrotondano. Il taglio va sull'elemento che porta l'azione o l'identità (pannello, lastra, profilo), non su ogni contenitore.", "section": "shapes" }
+      {
+        "name": "La Regola dell'Accento Unico",
+        "body": "L'accento segna una cosa sola: ciò che conta adesso (il pasto di adesso, la sua azione, la scheda attiva). Se compare su un elemento che non è \"adesso\" o \"azione principale\", è sbagliato.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regola del Ciano Riservato",
+        "body": "Il ciano significa \"fatto\" o \"acqua\", nient'altro. Non è un secondo accento e non decora. Unica eccezione dichiarata: la sottile striscia LED ciano-magenta dipinta nelle illustrazioni dei temi, che sta dentro l'immagine e non nell'interfaccia.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regola della Selezione Bianca",
+        "body": "Ciò che l'utente ha scelto (una sostituzione, un gruppo di promemoria acceso, un'opzione) si segna in Bianco Freddo: casella piena bianca con spunta scura o contorno bianco. L'accento resta a \"adesso\" e all'azione principale.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regola del Contorno Leggibile",
+        "body": "I controlli hanno il bordo in Contorno Controlli (edge), non in Filetto (line): il filetto separa, il contorno si tocca.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regola della Macchina e della Voce",
+        "body": "Rajdhani per ciò che si legge come strumento (nomi, orari, stati, comandi), Barlow per ciò che si legge come frase. Il menù di un pasto non va mai in Rajdhani.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regola dell'Etichetta come Intestazione",
+        "body": "L'etichetta maiuscola è il titolo della sezione stessa (\"La giornata\", \"Acqua\"), mai un occhiello sopra un altro titolo.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regola Senza Aloni",
+        "body": "Niente glow, niente aloni neon, niente veli a gradiente: il cyberpunk qui è geometria e contrasto, non luce diffusa.",
+        "section": "elevation"
+      },
+      {
+        "name": "La Regola del Taglio",
+        "body": "Gli angoli si tagliano, non si arrotondano. Il taglio va sull'elemento che porta l'azione o l'identità (pannello, lastra, profilo), non su ogni contenitore.",
+        "section": "shapes"
+      }
     ],
     "dos": [
-      "**Do** usa l'accento solo per il pasto di adesso, l'azione principale e la voce di nav attiva.",
-      "**Do** usa il ciano (#04DAF6) solo per \"fatto\" e per l'acqua, e il rosso (#FF4D5E) solo per errori e \"Esci\".",
+      "**Do** usa l'accento solo per il pasto di adesso, l'azione principale e la scheda o voce di nav attiva; le selezioni dell'utente vanno in bianco.",
+      "**Do** usa il ciano (#04DAF6) solo per \"fatto\" e per l'acqua, e il rosso (#FF4D5E) solo per errori e azioni distruttive, come testo o contorno.",
       "**Do** dai a ogni controllo un bordo da 1px in edge (#5E7180), che tiene almeno 3:1; i filetti in line servono solo a separare.",
       "**Do** taglia gli angoli a 45° con `clip-path` (20px il pannello, 12px la lastra, 10px il profilo) e disegna la cornice di una forma tagliata con due strati.",
       "**Do** scrivi nomi, orari, stati e comandi in Rajdhani maiuscolo; menù e frasi in Barlow.",
       "**Do** tieni ogni area toccabile ad almeno 44px e l'azione principale in basso a destra.",
       "**Do** cambia solo l'accento, il saluto e la fascia illustrata da un tema all'altro; i neutri restano condivisi.",
-      "**Do** mostra l'illustrazione del tema sempre intera (216×72) e in bicromia fondo/accento.",
+      "**Do** tieni le illustrazioni dei temi sobrie: nature morte serali a colori smorzati, tocco cyberpunk leggero, mai personaggi o stile da bambini.",
       "**Do** limita il glitch (300ms, steps(5)) al cambio del pasto di adesso."
     ],
     "donts": [

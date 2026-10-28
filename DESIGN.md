@@ -167,13 +167,13 @@ Il mondo rifiuta in modo esplicito: veli a gradiente, bagliori e aloni neon, bor
 Neutri freddi quasi neri, un accento acido che cambia col tema e due ruoli fissi (ciano e rosso) che non cambiano mai.
 
 ### Primary
-- **Giallo Acido** (accent): il tema base. È il colore del pasto di adesso (nome, orario, stato), della lastra "Fatto", della voce di nav attiva, dell'anello di focus e della selezione testo. Gli altri 15 accenti (Autunno, Halloween, Natale, Inverno...) stanno in `src/themes.js` e sostituiscono soltanto questo valore; il testo sopra l'accento è sempre **Nero Terminale** (on-accent).
+- **Giallo Acido** (accent): il tema base. È il colore del pasto di adesso (nome, orario, stato), della lastra "Fatto", della voce di nav attiva, dell'anello di focus e della selezione testo. Gli altri 15 accenti (Autunno, Halloween, Natale, Inverno...) stanno in `src/themes.js` e sostituiscono soltanto questo valore; nessun accento può somigliare al Rosso Allarme (per questo Natale è verde neon, #6BFF8F); il testo sopra l'accento è sempre **Nero Terminale** (on-accent).
 
 ### Secondary
 - **Ciano Fatto** (done): solo per lo stato "fatto" (pulsante di stato pieno, casella spuntata dei consigli) e per l'acqua (segmenti accesi, contatore in litri). Non cambia col tema.
 
 ### Tertiary
-- **Rosso Allarme** (danger): solo errori di salvataggio, il loro "Riprova" e la voce "Esci". Mai decorativo.
+- **Rosso Allarme** (danger): errori (con il loro "Riprova") e azioni distruttive: "Esci", "Scarta", "Rimuovi", "Disattiva", le X che tolgono una riga. Sempre come testo o contorno, mai come lastra piena; mai decorativo.
 
 ### Neutral
 - **Nero Terminale** (bg): fondo di pagina, `theme-color` del browser e del manifest, testo sopra accento e ciano.
@@ -188,7 +188,9 @@ Neutri freddi quasi neri, un accento acido che cambia col tema e due ruoli fissi
 ### Named Rules
 **La Regola dell'Accento Unico.** L'accento segna una cosa sola: ciò che conta adesso (il pasto di adesso, la sua azione, la scheda attiva). Se compare su un elemento che non è "adesso" o "azione principale", è sbagliato.
 
-**La Regola del Ciano Riservato.** Il ciano significa "fatto" o "acqua", nient'altro. Non è un secondo accento e non decora.
+**La Regola del Ciano Riservato.** Il ciano significa "fatto" o "acqua", nient'altro. Non è un secondo accento e non decora. Unica eccezione dichiarata: la sottile striscia LED ciano-magenta dipinta nelle illustrazioni dei temi, che sta dentro l'immagine e non nell'interfaccia.
+
+**La Regola della Selezione Bianca.** Ciò che l'utente ha scelto (una sostituzione, un gruppo di promemoria acceso, un'opzione) si segna in Bianco Freddo: casella piena bianca con spunta scura o contorno bianco. L'accento resta a "adesso" e all'azione principale.
 
 **La Regola del Contorno Leggibile.** I controlli hanno il bordo in Contorno Controlli (edge), non in Filetto (line): il filetto separa, il contorno si tocca.
 
@@ -258,7 +260,9 @@ Il cuore della schermata. Cornice 1px edge su due strati tagliati (20px in basso
 ### Tabellone (signature)
 La giornata come un tabellone delle partenze. Intestazione di sezione in etichetta con contatore "oggi · sett.", poi le colonne ORA / PASTO / STATO in etichetta da 11px. Ogni riga: orario in Rajdhani, nome del pasto in Title maiuscolo con il menù sotto in Body piccolo su una riga, e nella colonna Stato una parola che è anche il tasto da 44px per segnare il pasto.
 - **Stati:** FATTO (pieno ciano, spunta, testo scuro; riga in muted), ADESSO e PROSSIMO (contorno e testo nell'accento, casella quadrata), DOPO e APERTO (contorno edge, testo chiaro). APERTO è un pasto passato non segnato: nessun colore di colpa.
-- **Riga a fuoco:** fondo Lavagna Notte e contorno 1px nell'accento; orario nell'accento; il menù non si ripete (sta nel pannello).
+- **Riga a fuoco:** fondo Lavagna Notte e contorno 1px nell'accento; orario nell'accento; il menù non si ripete (sta nel pannello) e lo stato è solo un indicatore (rombo pieno + "Adesso"/"Prossimo" nell'accento), non un tasto: l'unico controllo per segnarlo è la lastra "Fatto" del pannello.
+- **Ordine in Oggi:** pannello del pasto di adesso, poi l'acqua, poi il tabellone: i due gesti più frequenti stanno in alto.
+- **In Settimana:** gli stati dei giorni passati sono tasti dello stesso stile, per correggere un pasto dimenticato.
 - **Righe normali:** divise da filetti in line.
 
 ### Acqua
@@ -266,6 +270,11 @@ Riga di segmenti rettangolari alti 44px, uno per bicchiere. Spento: Lavagna Nott
 
 ### Fascia illustrata (signature)
 Fascia a tutta larghezza in rapporto 3:1 (circa 130px sul telefono) tra la testata e il righello, in Oggi e nel login. Ogni tema ha un'illustrazione dipinta generata: una natura morta serale, sobria e dettagliata, a colori smorzati su fondo quasi nero, senza facce né stile infantile, con un tocco cyberpunk discreto (una sottile striscia LED ciano-magenta sul bordo del tavolo, riflessi al neon appena accennati, piccoli dettagli cromati). Le immagini sono JPEG 1170×390 già appoggiati sul colore del fondo, con il prompt di generazione incorporato; si scarica solo quella del tema attivo. È decorazione: non porta informazioni e non compete con il pasto di adesso.
+
+### Avvisi di stato
+- **Offline:** riga con contorno edge e testo muted, "Sei offline: vedi l'ultima copia salvata sul telefono". Piano, diario di oggi e lista della spesa hanno una copia locale.
+- **Lettura fallita senza copia:** riquadro con contorno rosso, frase che spiega e tasto "Riprova"; finché la lettura non riesce i controlli che scrivono sono disattivati, per non sovrascrivere i dati veri.
+- **Esito di un'azione importante:** dopo "Conferma e attiva" il pannello mostra l'esito ("Da oggi" nell'accento, cosa cambia) con "Annulla" a contorno e "Chiudi" come lastra.
 
 ### Lista dei consigli (Settimana)
 Righe a tutta larghezza alte almeno 48px, divise da filetti, con una casella quadrata da 24px: contorno edge se aperta, piena ciano con spunta se fatta. Intestazione in etichetta muted con filetto sotto.
@@ -309,8 +318,8 @@ Titolo "Bentornato" in Display chiusura nell'accento, sottotitolo, la fascia ill
 ## Do's and Don'ts
 
 ### Do:
-- **Do** usa l'accento solo per il pasto di adesso, l'azione principale e la voce di nav attiva.
-- **Do** usa il ciano (#04DAF6) solo per "fatto" e per l'acqua, e il rosso (#FF4D5E) solo per errori e "Esci".
+- **Do** usa l'accento solo per il pasto di adesso, l'azione principale e la scheda o voce di nav attiva; le selezioni dell'utente vanno in bianco.
+- **Do** usa il ciano (#04DAF6) solo per "fatto" e per l'acqua, e il rosso (#FF4D5E) solo per errori e azioni distruttive, come testo o contorno.
 - **Do** dai a ogni controllo un bordo da 1px in edge (#5E7180), che tiene almeno 3:1; i filetti in line servono solo a separare.
 - **Do** taglia gli angoli a 45° con `clip-path` (20px il pannello, 12px la lastra, 10px il profilo) e disegna la cornice di una forma tagliata con due strati.
 - **Do** scrivi nomi, orari, stati e comandi in Rajdhani maiuscolo; menù e frasi in Barlow.

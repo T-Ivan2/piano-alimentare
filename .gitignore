@@ -11,3 +11,4 @@ dist
 # Banco di prova locale con dati finti (strumento di sviluppo)
 preview-harness/
 .claude/launch.json
+.impeccable/critique/

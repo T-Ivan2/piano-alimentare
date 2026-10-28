@@ -3,6 +3,7 @@ import { supabase } from '../supabase';
 import { MEAL_TYPES } from '../dates';
 import { activatePlan as activateInDb } from '../plans';
 import Sheet, { fieldStyle, outlineStyle, primaryStyle } from './Sheet';
+import { italianError } from '../errors';
 
 const clone = (x) => JSON.parse(JSON.stringify(x));
 
@@ -46,10 +47,10 @@ export default function GestionePiano({ theme, activePlan, onClose, onChanged, i
     let id = draft.id;
     if (id) {
       const { error } = await supabase.from('plans').update(row).eq('id', id);
-      if (error) { setBusy(false); setMsg('Errore: ' + error.message); return; }
+      if (error) { setBusy(false); setMsg('Non sono riuscito a salvare il piano: ' + italianError(error) + '.'); return; }
     } else {
       const { data, error } = await supabase.from('plans').insert({ ...row, active: false }).select('id').single();
-      if (error) { setBusy(false); setMsg('Errore: ' + error.message); return; }
+      if (error) { setBusy(false); setMsg('Non sono riuscito a salvare il piano: ' + italianError(error) + '.'); return; }
       id = data.id;
     }
     if (activate) await activatePlan(id, false);
@@ -59,16 +60,19 @@ export default function GestionePiano({ theme, activePlan, onClose, onChanged, i
     load(); onChanged();
   };
 
-  const activatePlan = async (id, refresh = true) => {
+  // quiet: il cambio dall'archivio ha già la sua barra con l'annulla, niente secondo messaggio
+  const activatePlan = async (id, refresh = true, quiet = false) => {
     const error = await activateInDb(id);
-    if (error) { setMsg('Non sono riuscito ad attivare il piano: ' + error.message); return; }
-    if (refresh) { setMsg('Piano attivato.'); load(); onChanged(); }
+    if (error) { setMsg('Non sono riuscito ad attivare il piano: ' + italianError(error) + '.'); return false; }
+    if (refresh) { if (!quiet) setMsg('Piano attivato.'); load(); onChanged(); }
+    return true;
   };
 
   // Cambio del piano attivo dall'archivio: subito, con qualche secondo per tornare indietro
   const switchTo = async (id) => {
     const prev = plans.find((p) => p.active)?.id;
-    await activatePlan(id);
+    setMsg('');
+    if (!(await activatePlan(id, true, !!prev))) return;
     if (prev) {
       setUndo(prev);
       clearTimeout(timer.current);
@@ -79,8 +83,7 @@ export default function GestionePiano({ theme, activePlan, onClose, onChanged, i
     clearTimeout(timer.current);
     const prev = undo;
     setUndo(null);
-    await activatePlan(prev);
-    setMsg('Ripristinato il piano di prima.');
+    if (await activatePlan(prev, true, true)) setMsg('Ripristinato il piano di prima.');
   };
 
   const importPdf = async (e) => {
@@ -102,9 +105,9 @@ export default function GestionePiano({ theme, activePlan, onClose, onChanged, i
         headers: { 'content-type': 'application/json', authorization: `Bearer ${session.access_token}` },
         body: JSON.stringify({ pdf_base64: b64, filename: file.name }),
       });
-      setMsg(res.ok ? 'PDF inviato. Lo sto leggendo: ti arriva una notifica quando il piano è pronto da verificare (1-3 minuti).' : `Invio non riuscito (${res.status}).`);
+      setMsg(res.ok ? 'PDF inviato. Lo sto leggendo: ti arriva una notifica quando il piano è pronto da verificare (1-3 minuti).' : 'Invio non riuscito: il server ha risposto con un errore, riprova tra poco.');
     } catch (err) {
-      setMsg('Invio non riuscito: ' + err.message);
+      setMsg('Invio non riuscito: ' + italianError(err) + '.');
     }
     setImporting(false);
   };
@@ -148,7 +151,7 @@ export default function GestionePiano({ theme, activePlan, onClose, onChanged, i
 
       {!draft && (
         <>
-          <label className="cut-br theme-action label min-h-12 px-4 flex items-center justify-center cursor-pointer text-[17px]"
+          <label className="cut-br theme-action focus-within-ring label min-h-12 px-4 flex items-center justify-center cursor-pointer text-[17px]"
             style={{ ...primaryStyle(theme), opacity: importing ? 0.6 : 1 }}>
             {importing ? 'Invio del PDF…' : 'Importa il PDF di Carlotta'}
             <input type="file" accept="application/pdf" className="sr-only" disabled={importing} onChange={importPdf} />
@@ -209,19 +212,27 @@ export default function GestionePiano({ theme, activePlan, onClose, onChanged, i
 
           <section aria-labelledby="menu">
             <h3 id="menu" className="label m-0 pb-2" style={{ color: theme.muted, borderBottom: `1px solid ${theme.line}` }}>Menù settimanale</h3>
-            <div className="grid grid-cols-7 gap-1 mt-2" role="tablist" aria-label="Giorno da modificare">
+            <div className="grid grid-cols-7 gap-1 mt-2" role="tablist" aria-label="Giorno da modificare"
+              onKeyDown={(e) => {
+                const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+                if (!d) return;
+                e.preventDefault();
+                const n = (day + d + 7) % 7;
+                setDay(n);
+                e.currentTarget.children[n]?.focus();
+              }}>
               {draft.data.giorni.map((g, i) => {
                 const on = i === day;
                 return (
-                  <button key={g.nome} role="tab" aria-selected={on} aria-label={g.nome} onClick={() => setDay(i)} className="label text-[11px] min-h-11 border-0"
+                  <button key={g.nome} role="tab" aria-selected={on} tabIndex={on ? 0 : -1} aria-label={g.nome} onClick={() => setDay(i)} className="label text-[11px] min-h-11 border-0"
                     style={{ background: on ? theme.surf : 'transparent', color: on ? theme.acc : theme.text, boxShadow: on ? `inset 0 2px ${theme.acc}` : `inset 0 -1px ${theme.line}` }}>
                     {g.nome.slice(0, 3)}
                   </button>
                 );
               })}
             </div>
-            {MEAL_TYPES.map((t, i) => (
-              <label key={t} className="flex flex-col gap-1 mt-3 text-[14px]" style={{ color: theme.muted }}>{t}
+            {draft.data.giorni[day].pasti.map((_, i) => (
+              <label key={i} className="flex flex-col gap-1 mt-3 text-[14px]" style={{ color: theme.muted }}>{MEAL_TYPES[i] || `Pasto ${i + 1}`}
                 <textarea rows={2} value={draft.data.giorni[day].pasti[i]} onChange={(e) => setData((d) => { d.giorni[day].pasti[i] = e.target.value; })}
                   className="px-3 py-2 text-[16px] leading-snug resize-y" style={field} />
               </label>
@@ -277,7 +288,7 @@ function ListEditor({ theme, title, hint, items, onChange }) {
             <RemoveButton theme={theme} label={`Rimuovi ${v || 'riga'}`} onClick={() => onChange(items.filter((_, j) => j !== i))} />
           </div>
         ))}
-        <button onClick={() => onChange([...items, ''])} className="label min-h-11 px-3 self-start" style={outlineStyle(theme)}>Aggiungi</button>
+        <button onClick={() => onChange([...items, ''])} className="label min-h-11 px-3 mt-1.5 self-start" style={outlineStyle(theme)}>Aggiungi</button>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { VAPID_PUBLIC_KEY } from '../config';
 import { MEAL_TYPES, MEAL_TIMES } from '../dates';
 import Sheet, { fieldStyle, outlineStyle, primaryStyle } from './Sheet';
 import { CheckIcon } from './Icons';
+import { italianError } from '../errors';
 
 const DEFAULTS = { pastiOn: true, pasti: MEAL_TIMES, acquaOn: true, acqua: ['10:30', '12:30', '15:30', '18:00'] };
 
@@ -25,7 +26,9 @@ export default function Promemoria({ theme, user, onClose }) {
     (async () => {
       if (!supported()) return setState('unsupported');
       if (Notification.permission === 'denied') return setState('denied');
-      const reg = await navigator.serviceWorker.ready;
+      // senza service worker attivo (es. in sviluppo) "ready" non arriva mai: dopo 4 secondi si spiega invece di aspettare
+      const reg = await Promise.race([navigator.serviceWorker.ready, new Promise((r) => setTimeout(() => r(null), 4000))]);
+      if (!reg) return setState('nosw');
       const sub = await reg.pushManager.getSubscription();
       if (!sub) return setState('off');
       setEndpoint(sub.endpoint);
@@ -42,7 +45,7 @@ export default function Promemoria({ theme, user, onClose }) {
       { user_id: user.id, endpoint: s.endpoint, subscription: s.toJSON(), reminders: next, enabled: true },
       { onConflict: 'endpoint' }
     );
-    setMsg(error ? 'Non sono riuscito a salvare: ' + error.message : 'Salvato');
+    setMsg(error ? 'Non sono riuscito a salvare: ' + italianError(error) + '.' : 'Salvato');
     if (!error) setTimeout(() => setMsg(''), 1500);
   };
 
@@ -70,9 +73,9 @@ export default function Promemoria({ theme, user, onClose }) {
     <button type="button" onClick={() => onChange(!on)} aria-pressed={on}
       className="w-full min-h-12 flex items-center justify-between gap-3 bg-transparent border-0 p-0 text-left" style={{ color: theme.text }}>
       <span className="font-display font-bold uppercase tracking-wide text-[19px]">{label}</span>
-      <span className="label flex items-center gap-2" style={{ color: on ? theme.acc : theme.muted }}>
+      <span className="label flex items-center gap-2" style={{ color: on ? theme.text : theme.muted }}>
         {on ? 'Attivi' : 'Spenti'}
-        <span className="w-6 h-6 flex items-center justify-center" style={on ? { background: theme.acc, color: theme.onAcc } : { border: `1px solid ${theme.edge}` }}>
+        <span className="w-6 h-6 flex items-center justify-center" style={on ? { background: theme.text, color: theme.bg } : { border: `1px solid ${theme.edge}` }}>
           {on && <CheckIcon />}
         </span>
       </span>
@@ -83,6 +86,7 @@ export default function Promemoria({ theme, user, onClose }) {
   return (
     <Sheet theme={theme} title="Promemoria" subtitle="Notifiche per i pasti e l'acqua" onClose={onClose}>
       {state === 'loading' && <p className="m-0 text-[16px]" style={{ color: theme.muted }}>Controllo le notifiche…</p>}
+      {state === 'nosw' && <p className="m-0 text-[16px]" style={{ color: theme.muted }}>Le notifiche funzionano nell'app installata sul telefono. Aprila dalla schermata Home e riprova da lì.</p>}
       {state === 'unsupported' && <p className="m-0 text-[16px]" style={{ color: theme.muted }}>Questo browser non supporta le notifiche. Installa l'app dalla schermata Home (menu ⋮ → Installa app) e riprova da lì.</p>}
       {state === 'denied' && <p className="m-0 text-[16px]" style={{ color: theme.muted }}>Le notifiche sono bloccate. Riattivale nelle impostazioni del sito in Chrome (lucchetto accanto all'indirizzo → Notifiche → Consenti), poi riapri questa finestra.</p>}
       {state === 'off' && (

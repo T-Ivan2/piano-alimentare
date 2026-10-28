@@ -21,7 +21,7 @@ body { color: var(--theme-text, #E6EDF2); -webkit-tap-highlight-color: transpare
 button, input, textarea { font: inherit; }
 p, li { text-wrap: pretty; } /* niente parole orfane a fine paragrafo */
 button { cursor: pointer; touch-action: manipulation; }
-button:focus-visible, input:focus-visible, a:focus-visible {
+button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible, summary:focus-visible, .focus-within-ring:has(input:focus-visible) {
   outline: 2px solid var(--theme-accent, #FCEE0A);
   outline-offset: 3px;
 }
@@ -58,6 +58,11 @@ button:focus-visible, input:focus-visible, a:focus-visible {
 /* Fascia illustrata: illustrazione del tema a tutta larghezza (3:1), già sul colore del fondo */
 .band-painted { aspect-ratio: 3 / 1; overflow: hidden; }
 .band-painted img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* "Vedi i dati": la freccia ruota quando il riquadro è aperto */
+summary::-webkit-details-marker { display: none; }
+.details-chevron { transition: transform .18s ease; }
+details[open] .details-chevron { transform: rotate(90deg); }
 
 /* Gesto distintivo: il pannello del pasto entra con un glitch a fette */
 @keyframes glitch-in {

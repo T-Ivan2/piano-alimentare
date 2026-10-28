@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../supabase';
 import { isoDay } from '../dates';
+import { italianError } from '../errors';
 
 const fmt = (v) => (v == null ? '–' : Number(v).toLocaleString('it-IT', { maximumFractionDigits: 1 }));
 const signed = (v) => (v > 0 ? '+' : v < 0 ? '−' : '±') + fmt(Math.abs(v));
@@ -21,7 +22,7 @@ export default function Progressi({ theme }) {
 
   const load = () => supabase.from('measurements').select('*')
     .order('taken_on', { ascending: true, nullsFirst: true }).order('id')
-    .then(({ data, error }) => { if (error) setErr('Non riesco a leggere le misure: ' + error.message); else setRows(data || []); setLoaded(true); });
+    .then(({ data, error }) => { if (error) setErr('Non riesco a leggere le misure: ' + italianError(error) + '.'); else setRows(data || []); setLoaded(true); });
   useEffect(() => { load(); }, []);
 
   const weights = rows.filter((r) => r.weight != null);
@@ -38,11 +39,12 @@ export default function Progressi({ theme }) {
       const v = num(form[k]);
       if (Number.isFinite(v) && v > 0) rec[k] = v; else wrong[k] = true;
     });
+    if (!form.taken_on) wrong.taken_on = true;
     setBad(wrong);
     if (Object.keys(wrong).length) return;
     if (FIELDS.every(([k]) => rec[k] == null)) { setErr('Scrivi almeno una misura.'); return; }
     const { error } = await supabase.from('measurements').insert(rec);
-    if (error) { setErr('Non sono riuscito a salvare: ' + error.message); return; }
+    if (error) { setErr('Non sono riuscito a salvare: ' + italianError(error) + '.'); return; }
     setForm(null); setErr(''); load();
   };
 
@@ -137,7 +139,7 @@ function WeightChart({ weights, theme, delta }) {
   const W = 358, H = 168, L = 34, R = 14, T = 16, B = 26;
   const vals = weights.map((r) => +r.weight);
   // tre righe di griglia a passo intero uguale
-  const lo = Math.floor(Math.min(...vals)) - 1;
+  const lo = Math.floor(Math.min(...vals) - .5) - 1; // margine sotto il valore più basso
   const step = Math.max(1, Math.ceil((Math.ceil(Math.max(...vals)) + 1 - lo) / 2));
   const hi = lo + 2 * step;
   const ticks = [lo, lo + step, hi];
@@ -164,7 +166,7 @@ function WeightChart({ weights, theme, delta }) {
         {ticks.map((t) => (
           <g key={t}>
             <line x1={L} x2={W - R} y1={y(t)} y2={y(t)} stroke={theme.line} strokeWidth="1" />
-            <text x={L - 8} y={y(t) + 4} textAnchor="end" fill={theme.muted} style={{ font: '600 12px Rajdhani, sans-serif' }}>{t}</text>
+            <text x={L - 8} y={y(t) + 4} textAnchor="end" fill={theme.muted} style={{ font: '600 13px Rajdhani, sans-serif' }}>{t}</text>
           </g>
         ))}
         <line x1={x(sel)} x2={x(sel)} y1={T - 6} y2={H - B} stroke={theme.edge} strokeWidth="1" strokeDasharray="2 3" />
@@ -178,7 +180,7 @@ function WeightChart({ weights, theme, delta }) {
                 fill={filled ? c : theme.bg} stroke={i === sel ? theme.acc : c} strokeWidth={i === sel ? 2.5 : 2}
                 // anello del colore di fondo: separa il punto dalla linea
                 paintOrder="stroke" />
-              <text x={x(i)} y={H - 8} textAnchor="middle" fill={i === sel ? theme.text : theme.muted} style={{ font: '600 11px Rajdhani, sans-serif' }}>
+              <text x={x(i)} y={H - 8} textAnchor="middle" fill={i === sel ? theme.text : theme.muted} style={{ font: '600 12px Rajdhani, sans-serif' }}>
                 {label(r).replace('Mese ', 'M')}
               </text>
             </g>
@@ -201,7 +203,10 @@ function WeightChart({ weights, theme, delta }) {
         </p>
       )}
       <details className="mt-2">
-        <summary className="label min-h-11 flex items-center cursor-pointer" style={{ color: theme.muted }}>Vedi i dati</summary>
+        <summary className="label min-h-11 inline-flex items-center gap-2 px-3 cursor-pointer list-none" style={{ color: theme.text, border: `1px solid ${theme.edge}` }}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="square" aria-hidden="true" className="details-chevron"><path d="M9 5l7 7-7 7" /></svg>
+          Vedi i dati
+        </summary>
         <table className="w-full text-[15px] mt-1" style={{ borderCollapse: 'collapse' }}>
           <tbody>
             {[...weights].reverse().map((r) => (
@@ -226,7 +231,7 @@ function Board({ title, head, rows, theme }) {
       <table className="w-full" style={{ borderCollapse: 'collapse' }}>
         <thead>
           <tr className="label text-[11px]" style={{ color: theme.muted }}>
-            {head.map((h, i) => <th key={h} className={`font-[inherit] pt-2 pb-1 ${i ? 'text-right' : 'text-left'}`}>{h}</th>)}
+            {head.map((h, i) => <th key={h} className={`font-[inherit] pt-2 pb-1 ${i ? 'text-right w-28' : 'text-left'}`}>{h}</th>)}
           </tr>
         </thead>
         <tbody>
