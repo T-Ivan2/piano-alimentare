@@ -55,11 +55,9 @@ button:focus-visible, input:focus-visible, a:focus-visible {
   background: repeating-linear-gradient(90deg, var(--theme-line, #24303B) 0 1px, transparent 1px 8px);
 }
 
-/* Fascia illustrata: l'illustrazione del tema in bicromia fondo/accento (filtro SVG in Oggi) */
-.theme-illustration svg { display: block; width: 100%; height: auto; }
-.band-art { position: relative; overflow: hidden; }
-/* l'illustrazione si vede sempre intera (3:1): lune, soli e ghirlande stanno in alto in molti temi */
-.band-art .theme-illustration { position: absolute; bottom: 0; left: 50%; width: 216px; transform: translateX(-50%); margin: 0; filter: url(#duo); opacity: .8; }
+/* Fascia illustrata: illustrazione del tema a tutta larghezza (3:1), già sul colore del fondo */
+.band-painted { aspect-ratio: 3 / 1; overflow: hidden; }
+.band-painted img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* Gesto distintivo: il pannello del pasto entra con un glitch a fette */
 @keyframes glitch-in {

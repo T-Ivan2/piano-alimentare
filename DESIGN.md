@@ -265,7 +265,7 @@ La giornata come un tabellone delle partenze. Intestazione di sezione in etichet
 Riga di segmenti rettangolari alti 44px, uno per bicchiere. Spento: Lavagna Notte con bordo edge. Acceso: pieno ciano. Il contatore in litri sta a destra dell'intestazione, in etichetta ciano. Toccare l'ultimo segmento acceso lo spegne.
 
 ### Fascia illustrata (signature)
-Fascia alta 72px a tutta larghezza sotto la testata, chiusa dal righello. L'illustrazione del tema è sempre intera a 216×72 (rapporto 3:1), centrata e appoggiata in basso, con opacità 0.8. Un filtro SVG in bicromia (scala di grigi, poi `feComponentTransfer`) porta ombre e toni medi al colore di fondo e solo le luci all'accento del tema: l'illustrazione diventa una sagoma luminosa dentro il fondo, senza riquadro.
+Fascia a tutta larghezza in rapporto 3:1 (circa 130px sul telefono) tra la testata e il righello, in Oggi e nel login. Ogni tema ha un'illustrazione dipinta generata: una natura morta serale, sobria e dettagliata, a colori smorzati su fondo quasi nero, senza facce né stile infantile, con un tocco cyberpunk discreto (una sottile striscia LED ciano-magenta sul bordo del tavolo, riflessi al neon appena accennati, piccoli dettagli cromati). Le immagini sono JPEG 1170×390 già appoggiati sul colore del fondo, con il prompt di generazione incorporato; si scarica solo quella del tema attivo. È decorazione: non porta informazioni e non compete con il pasto di adesso.
 
 ### Lista dei consigli (Settimana)
 Righe a tutta larghezza alte almeno 48px, divise da filetti, con una casella quadrata da 24px: contorno edge se aperta, piena ciano con spunta se fatta. Intestazione in etichetta muted con filetto sotto.
@@ -306,9 +306,6 @@ Quando un'azione non si può annullare dopo (scartare un piano importato, uscire
 ### Login
 Titolo "Bentornato" in Display chiusura nell'accento, sottotitolo, la fascia illustrata del tema con il righello, due campi e la lastra "Entra" a destra. Gli errori di Supabase sono tradotti in italiano.
 
-### In sospeso
-Le illustrazioni dei 16 temi verranno ridisegnate in stile cyberpunk; la bicromia è la soluzione nel frattempo.
-
 ## Do's and Don'ts
 
 ### Do:
@@ -319,7 +316,7 @@ Le illustrazioni dei 16 temi verranno ridisegnate in stile cyberpunk; la bicromi
 - **Do** scrivi nomi, orari, stati e comandi in Rajdhani maiuscolo; menù e frasi in Barlow.
 - **Do** tieni ogni area toccabile ad almeno 44px e l'azione principale in basso a destra.
 - **Do** cambia solo l'accento, il saluto e la fascia illustrata da un tema all'altro; i neutri restano condivisi.
-- **Do** mostra l'illustrazione del tema sempre intera (216×72) e in bicromia fondo/accento.
+- **Do** tieni le illustrazioni dei temi sobrie: nature morte serali a colori smorzati, tocco cyberpunk leggero, mai personaggi o stile da bambini.
 - **Do** limita il glitch (300ms, steps(5)) al cambio del pasto di adesso.
 
 ### Don't:
