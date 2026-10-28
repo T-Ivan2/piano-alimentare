@@ -1,0 +1,418 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T18:03:31.180856Z",
+  "title": "Design System: Piano Alimentare",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Giallo Acido",
+        "canonical": "#FCEE0A",
+        "note": "Accento del tema base. Gli altri 15 accenti per tema sono in src/themes.js e sostituiscono solo questo valore (es. Halloween #FF7A1A, Natale #FF3D57, Inverno #A8C8FF).",
+        "tonalRamp": [
+          "#2B2800",
+          "#4D4800",
+          "#787000",
+          "#A59B00",
+          "#D3C700",
+          "#FCEE0A",
+          "#FDF47A",
+          "#FEFAC8"
+        ]
+      },
+      "on-accent": {
+        "role": "neutral",
+        "displayName": "Nero Terminale (su accento)",
+        "canonical": "#0B0F14",
+        "tonalRamp": [
+          "#05070A",
+          "#0B0F14",
+          "#161D25",
+          "#232D38",
+          "#36434F",
+          "#56636F",
+          "#8792A0",
+          "#C4CBD3"
+        ]
+      },
+      "done": {
+        "role": "secondary",
+        "displayName": "Ciano Fatto",
+        "canonical": "#04DAF6",
+        "tonalRamp": [
+          "#00262C",
+          "#00434D",
+          "#006A78",
+          "#0093A6",
+          "#00BDD5",
+          "#04DAF6",
+          "#7BEAF9",
+          "#C6F6FC"
+        ]
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Rosso Allarme",
+        "canonical": "#FF4D5E",
+        "tonalRamp": [
+          "#3A0509",
+          "#5E0D15",
+          "#8A1724",
+          "#B82435",
+          "#E33748",
+          "#FF4D5E",
+          "#FF919B",
+          "#FFD0D4"
+        ]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Nero Terminale",
+        "canonical": "#0B0F14",
+        "tonalRamp": [
+          "#05070A",
+          "#0B0F14",
+          "#161D25",
+          "#232D38",
+          "#36434F",
+          "#56636F",
+          "#8792A0",
+          "#C4CBD3"
+        ]
+      },
+      "surf": {
+        "role": "neutral",
+        "displayName": "Lavagna Notte",
+        "canonical": "#121A22",
+        "tonalRamp": [
+          "#070B0F",
+          "#121A22",
+          "#1C2630",
+          "#2A3642",
+          "#3E4C59",
+          "#5E6C79",
+          "#8F9BA6",
+          "#C9D0D7"
+        ]
+      },
+      "surf2": {
+        "role": "neutral",
+        "displayName": "Lavagna Alta",
+        "canonical": "#1C2630",
+        "tonalRamp": [
+          "#0A0F14",
+          "#121A22",
+          "#1C2630",
+          "#2A3642",
+          "#3E4C59",
+          "#5E6C79",
+          "#8F9BA6",
+          "#C9D0D7"
+        ]
+      },
+      "nav": {
+        "role": "neutral",
+        "displayName": "Fondo Nav",
+        "canonical": "#0E1319",
+        "tonalRamp": [
+          "#06080B",
+          "#0E1319",
+          "#18202A",
+          "#25303C",
+          "#384551",
+          "#586571",
+          "#8994A0",
+          "#C5CCD3"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Bianco Freddo",
+        "canonical": "#E6EDF2",
+        "tonalRamp": [
+          "#1A2027",
+          "#323B44",
+          "#4F5A65",
+          "#717D88",
+          "#98A3AD",
+          "#BFC8D0",
+          "#E6EDF2",
+          "#F6F9FB"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Grigio Strumento",
+        "canonical": "#8FA0AE",
+        "tonalRamp": [
+          "#171D22",
+          "#28313A",
+          "#3E4A55",
+          "#5A6874",
+          "#768693",
+          "#8FA0AE",
+          "#B9C4CD",
+          "#E1E7EC"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Filetto",
+        "canonical": "#24303B",
+        "tonalRamp": [
+          "#0C1015",
+          "#161E26",
+          "#24303B",
+          "#34424F",
+          "#4A5967",
+          "#6A7986",
+          "#98A4AF",
+          "#CDD4DA"
+        ]
+      },
+      "edge": {
+        "role": "neutral",
+        "displayName": "Contorno Controlli",
+        "canonical": "#5E7180",
+        "tonalRamp": [
+          "#141A1F",
+          "#232C34",
+          "#36434E",
+          "#4A5866",
+          "#5E7180",
+          "#7D8E9B",
+          "#A9B6C0",
+          "#D8DFE4"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Nome del pasto di adesso nel pannello, maiuscolo, nell'accento. Uno per schermata."
+      },
+      "display-close": {
+        "displayName": "Display chiusura",
+        "purpose": "Titolo del pannello a giornata finita."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Saluto del tema in testa a Oggi."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Nome del pasto nelle righe del tabellone, maiuscolo."
+      },
+      "time": {
+        "displayName": "Orario",
+        "purpose": "Orario nel pannello; nel tabellone 600 a 19px."
+      },
+      "body-lg": {
+        "displayName": "Body grande",
+        "purpose": "Menù del pasto di adesso in testo pieno."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Frasi, voci di menu, consigli del mese."
+      },
+      "body-sm": {
+        "displayName": "Body piccolo",
+        "purpose": "Menù delle righe del tabellone (una riga), tag del tema, note."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Etichetta tecnica maiuscola: intestazioni di sezione, data e ora, pulsanti, contatori. Varianti 11px (colonne del tabellone), 14px (nav), 17px (lastra Fatto)."
+      }
+    },
+    "shapes": [
+      {
+        "name": "cut-panel",
+        "value": "clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%)",
+        "purpose": "Angolo tagliato in basso a destra del pannello del pasto; cornice su due strati (esterno edge con 1px di padding, interno surf con taglio 19.6px)."
+      },
+      {
+        "name": "cut-slab",
+        "value": "clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)",
+        "purpose": "Lastra primaria \"Fatto\"."
+      },
+      {
+        "name": "cut-profile",
+        "value": "clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px)",
+        "purpose": "Pulsante profilo, angolo in alto a sinistra."
+      },
+      {
+        "name": "ruler",
+        "value": "height: 6px; border-top: 1px solid #24303B; background: repeating-linear-gradient(90deg, #24303B 0 1px, transparent 1px 8px)",
+        "purpose": "Righello a tacche che chiude la testata a tutta larghezza."
+      }
+    ],
+    "shadows": [
+      {
+        "name": "nav-active-rule",
+        "value": "inset 0 2px var(--theme-accent, #FCEE0A)",
+        "purpose": "Filetto di stato sopra la voce di nav attiva. Non è un rilievo: il sistema è piatto."
+      }
+    ],
+    "motion": [
+      {
+        "name": "glitch-in",
+        "value": "glitch-in 300ms steps(5, end) backwards",
+        "purpose": "Ingresso a fette del pannello solo quando cambia il pasto di adesso; mai all'apertura. Spento con prefers-reduced-motion."
+      },
+      {
+        "name": "press",
+        "value": "transform 180ms ease; scale(.97) azioni, scale(.96) nav",
+        "purpose": "Risposta alla pressione."
+      },
+      {
+        "name": "hover-brighten",
+        "value": "filter 180ms ease; brightness(1.1)",
+        "purpose": "Hover delle azioni piene."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px",
+        "purpose": "Margini laterali da 16px a 20px; colonna sempre max 448px."
+      }
+    ],
+    "duotone": {
+      "value": "feColorMatrix scala di grigi + feComponentTransfer table: ombre e toni medi = bg, luci = accento; opacità 0.8; illustrazione intera 216×72",
+      "purpose": "Fascia illustrata del tema in bicromia, nell'accento del tema corrente."
+    }
+  },
+  "components": [
+    {
+      "name": "Lastra Fatto",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Azione principale del pannello, in basso a destra. Una per schermata.",
+      "html": "<button class=\"ds-btn-primary\">FATTO</button>",
+      "css": ".ds-btn-primary { font-family: Rajdhani, Barlow, system-ui, sans-serif; font-weight: 700; font-size: 17px; letter-spacing: .16em; text-transform: uppercase; min-height: 48px; padding: 0 28px; border: 0; border-radius: 0; background: #FCEE0A; color: #0B0F14; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%); cursor: pointer; transition: filter .18s ease, transform .18s ease; } .ds-btn-primary:hover { filter: brightness(1.1); } .ds-btn-primary:active { transform: scale(.97); } .ds-btn-primary:focus-visible { outline: 2px solid #FCEE0A; outline-offset: 3px; }"
+    },
+    {
+      "name": "Pulsante a contorno",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Azione secondaria (Sostituisci, Cambia).",
+      "html": "<button class=\"ds-btn-outline\">SOSTITUISCI</button>",
+      "css": ".ds-btn-outline { font-family: Rajdhani, Barlow, system-ui, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; min-height: 48px; padding: 0 16px; background: transparent; color: #E6EDF2; border: 1px solid #5E7180; border-radius: 0; cursor: pointer; } .ds-btn-outline:hover { border-color: #8FA0AE; } .ds-btn-outline:focus-visible { outline: 2px solid #FCEE0A; outline-offset: 3px; }"
+    },
+    {
+      "name": "Pannello del pasto di adesso",
+      "kind": "card",
+      "refersTo": "now-panel",
+      "description": "Il centro della schermata: cornice 1px su due strati tagliati, nome del pasto enorme nell'accento, menù, azioni.",
+      "html": "<section class=\"ds-now\"><div class=\"ds-now-in\"><div class=\"ds-now-top\"><h2 class=\"ds-now-name\">PRANZO</h2><p class=\"ds-now-time\"><span>13:00</span><span class=\"ds-now-state\">ADESSO</span></p></div><p class=\"ds-now-menu\">Verdure + 50 g pane + 200 g carne</p><div class=\"ds-now-act\"><button class=\"ds-now-sec\">SOSTITUISCI</button><button class=\"ds-now-pri\">FATTO</button></div></div></section>",
+      "css": ".ds-now { padding: 1px; background: #5E7180; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%); max-width: 358px; } .ds-now-in { background: #121A22; color: #E6EDF2; padding: 12px 16px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 19.6px), calc(100% - 19.6px) 100%, 0 100%); font-family: Barlow, system-ui, sans-serif; } .ds-now-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; } .ds-now-name { margin: 0; font-family: Rajdhani, system-ui, sans-serif; font-weight: 700; font-size: 48px; line-height: .9; text-transform: uppercase; color: #FCEE0A; } .ds-now-time { margin: 0; padding-top: 4px; text-align: right; font-family: Rajdhani, system-ui, sans-serif; font-weight: 700; font-size: 22px; line-height: 1; } .ds-now-time span { display: block; } .ds-now-state { margin-top: 4px; font-size: 13px; letter-spacing: .16em; color: #FCEE0A; } .ds-now-menu { margin: 12px 0 0; font-size: 18px; line-height: 1.4; } .ds-now-act { margin-top: 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; } .ds-now-sec, .ds-now-pri { font-family: Rajdhani, system-ui, sans-serif; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; min-height: 48px; border-radius: 0; cursor: pointer; } .ds-now-sec { font-size: 13px; padding: 0 16px; background: transparent; color: #E6EDF2; border: 1px solid #5E7180; } .ds-now-pri { font-size: 17px; padding: 0 28px; border: 0; background: #FCEE0A; color: #0B0F14; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%); } .ds-now-pri:hover { filter: brightness(1.1); } .ds-now-sec:focus-visible, .ds-now-pri:focus-visible { outline: 2px solid #FCEE0A; outline-offset: 3px; }"
+    },
+    {
+      "name": "Riga del tabellone",
+      "kind": "custom",
+      "refersTo": "state-toggle",
+      "description": "ORA / PASTO / STATO; la parola di stato è anche il tasto da 44px. Stati: FATTO (ciano), ADESSO/PROSSIMO (accento), DOPO/APERTO (edge).",
+      "html": "<div class=\"ds-board\"><div class=\"ds-row\"><span class=\"ds-t\">08:00</span><span class=\"ds-m ds-done-t\">COLAZIONE<small>125 g yogurt + 4 biscotti</small></span><button class=\"ds-st ds-st-done\" aria-pressed=\"true\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"square\"><path d=\"M4 12l5 5L20 6\"/></svg>FATTO</button></div><div class=\"ds-row ds-focus\"><span class=\"ds-t\">13:00</span><span class=\"ds-m\">PRANZO</span><button class=\"ds-st ds-st-now\"><i></i>ADESSO</button></div><div class=\"ds-row\"><span class=\"ds-t\">16:30</span><span class=\"ds-m\">SPUNTINO<small>150 g skyr bianco + 30 g muesli</small></span><button class=\"ds-st\"><i></i>DOPO</button></div></div>",
+      "css": ".ds-board { background: #0B0F14; color: #E6EDF2; max-width: 358px; padding: 0 8px; } .ds-row { display: grid; grid-template-columns: 52px 1fr 96px; gap: 12px; align-items: center; padding: 6px 8px; margin: 0 -8px; border-bottom: 1px solid #24303B; } .ds-focus { background: #121A22; outline: 1px solid #FCEE0A; outline-offset: -1px; border-bottom: 0; } .ds-t { font-family: Rajdhani, system-ui, sans-serif; font-weight: 600; font-size: 19px; } .ds-focus .ds-t { color: #FCEE0A; } .ds-m { font-family: Rajdhani, system-ui, sans-serif; font-weight: 700; font-size: 19px; letter-spacing: .025em; text-transform: uppercase; } .ds-m small { display: block; font-family: Barlow, system-ui, sans-serif; font-weight: 400; font-size: 14px; letter-spacing: 0; text-transform: none; color: #8FA0AE; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .ds-done-t { color: #8FA0AE; } .ds-st { min-height: 44px; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 8px; font-family: Rajdhani, system-ui, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; background: transparent; color: #E6EDF2; border: 1px solid #5E7180; border-radius: 0; cursor: pointer; } .ds-st i { width: 12px; height: 12px; border: 1.5px solid currentColor; box-sizing: border-box; } .ds-st-now { color: #FCEE0A; border-color: #FCEE0A; } .ds-st-done { background: #04DAF6; color: #0B0F14; border-color: #04DAF6; } .ds-st:focus-visible { outline: 2px solid #FCEE0A; outline-offset: 3px; }"
+    },
+    {
+      "name": "Acqua a segmenti",
+      "kind": "custom",
+      "refersTo": "water-segment",
+      "description": "Un segmento da 44px per bicchiere da 250ml; acceso in ciano.",
+      "html": "<div class=\"ds-water\"><button class=\"ds-w on\" aria-pressed=\"true\"></button><button class=\"ds-w on\" aria-pressed=\"true\"></button><button class=\"ds-w on\" aria-pressed=\"true\"></button><button class=\"ds-w\" aria-pressed=\"false\"></button><button class=\"ds-w\" aria-pressed=\"false\"></button><button class=\"ds-w\" aria-pressed=\"false\"></button></div>",
+      "css": ".ds-water { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; max-width: 358px; } .ds-w { height: 44px; padding: 0; background: #121A22; border: 1px solid #5E7180; border-radius: 0; cursor: pointer; } .ds-w.on { background: #04DAF6; border-color: #04DAF6; } .ds-w:focus-visible { outline: 2px solid #FCEE0A; outline-offset: 3px; }"
+    },
+    {
+      "name": "Navigazione in basso",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "Quattro voci testuali; attiva nell'accento con filetto superiore di 2px.",
+      "html": "<nav class=\"ds-nav\"><button class=\"ds-nav-i\" aria-current=\"page\">OGGI</button><button class=\"ds-nav-i\">SETTIMANA</button><button class=\"ds-nav-i\">SPESA</button><button class=\"ds-nav-i\">PROGRESSI</button></nav>",
+      "css": ".ds-nav { display: grid; grid-template-columns: repeat(4, 1fr); padding: 0 8px 14px; background: #0E1319; border-top: 1px solid #24303B; max-width: 390px; } .ds-nav-i { min-height: 48px; padding: 4px 4px 0; background: transparent; border: 0; font-family: Rajdhani, system-ui, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; color: #8FA0AE; cursor: pointer; transition: color .18s ease, box-shadow .18s ease, transform .18s ease; } .ds-nav-i[aria-current=\"page\"] { color: #FCEE0A; box-shadow: inset 0 2px #FCEE0A; } .ds-nav-i:active { transform: scale(.96); } .ds-nav-i:focus-visible { outline: 2px solid #FCEE0A; outline-offset: 3px; }"
+    },
+    {
+      "name": "Etichetta e righello",
+      "kind": "custom",
+      "refersTo": "label",
+      "description": "Intestazione di sezione in etichetta tecnica, con il righello a tacche che chiude la testata.",
+      "html": "<div class=\"ds-head\"><h2 class=\"ds-label\">LA GIORNATA</h2><span class=\"ds-label\">1/4 OGGI · 8/12 SETT.</span></div><div class=\"ds-ruler\"></div>",
+      "css": ".ds-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 8px; border-bottom: 1px solid #24303B; max-width: 358px; } .ds-label { margin: 0; font-family: Rajdhani, system-ui, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: #8FA0AE; } .ds-ruler { margin-top: 16px; height: 6px; max-width: 390px; border-top: 1px solid #24303B; background: repeating-linear-gradient(90deg, #24303B 0 1px, transparent 1px 8px); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Il terminale del pasto",
+    "overview": "Un'interfaccia da Cyberpunk 2077, ma pulita: fondo quasi nero e freddo, filetti da 1px, angoli tagliati a 45°, etichette tecniche in maiuscolo con tracking largo, un solo accento acido. Il mondo è sempre scuro (`color-scheme: dark`); un tema chiaro non è previsto. Il pasto di adesso è la schermata: un pannello a cornice tagliata ne occupa il centro e la giornata scorre sotto come un tabellone orario. L'app si legge in pochi secondi, a una mano, e il pollice trova l'azione principale in basso a destra.\n\nLa densità è da cruscotto, non da app del benessere: niente saluto gigante, niente anelli, niente pile di card tutte uguali. Il carattere viene dalla geometria (tagli, righello a tacche, griglia a colonne fisse) e dalla tipografia condensata, non da effetti di luce. I temi stagionali cambiano solo il colore d'accento, il saluto e la fascia illustrata; i neutri, i ruoli fissi e la forma restano identici in tutti i 16 temi.\n\nIl mondo rifiuta in modo esplicito: veli a gradiente, bagliori e aloni neon, bordi sinistri colorati come accento, etichette-kicker sopra i titoli, ciano fuori da \"fatto\" e acqua.",
+    "keyCharacteristics": [
+      "Scuro sempre, freddo, con superfici a due livelli e filetti da 1px.",
+      "Un solo accento per tema, riservato al pasto di adesso, all'azione principale e alla voce di nav attiva.",
+      "Angoli tagliati a 45° al posto degli arrotondamenti; raggio zero ovunque.",
+      "Rajdhani per nomi, orari e controlli; Barlow per i testi.",
+      "Profondità piatta: nessuna ombra, nessun bagliore.",
+      "Un solo gesto di movimento: l'ingresso a glitch quando cambia il pasto di adesso."
+    ],
+    "rules": [
+      {
+        "name": "La Regola dell'Accento Unico",
+        "body": "L'accento segna una cosa sola: ciò che conta adesso (il pasto di adesso, la sua azione, la scheda attiva). Se compare su un elemento che non è \"adesso\" o \"azione principale\", è sbagliato.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regola del Ciano Riservato",
+        "body": "Il ciano significa \"fatto\" o \"acqua\", nient'altro. Non è un secondo accento e non decora. Unica eccezione dichiarata: la sottile striscia LED ciano-magenta dipinta nelle illustrazioni dei temi, che sta dentro l'immagine e non nell'interfaccia.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regola della Selezione Bianca",
+        "body": "Ciò che l'utente ha scelto (una sostituzione, un gruppo di promemoria acceso, un'opzione) si segna in Bianco Freddo: casella piena bianca con spunta scura o contorno bianco. L'accento resta a \"adesso\" e all'azione principale.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regola del Contorno Leggibile",
+        "body": "I controlli hanno il bordo in Contorno Controlli (edge), non in Filetto (line): il filetto separa, il contorno si tocca.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regola della Macchina e della Voce",
+        "body": "Rajdhani per ciò che si legge come strumento (nomi, orari, stati, comandi), Barlow per ciò che si legge come frase. Il menù di un pasto non va mai in Rajdhani.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regola dell'Etichetta come Intestazione",
+        "body": "L'etichetta maiuscola è il titolo della sezione stessa (\"La giornata\", \"Acqua\"), mai un occhiello sopra un altro titolo.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regola Senza Aloni",
+        "body": "Niente glow, niente aloni neon, niente veli a gradiente: il cyberpunk qui è geometria e contrasto, non luce diffusa.",
+        "section": "elevation"
+      },
+      {
+        "name": "La Regola del Taglio",
+        "body": "Gli angoli si tagliano, non si arrotondano. Il taglio va sull'elemento che porta l'azione o l'identità (pannello, lastra, profilo), non su ogni contenitore.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** usa l'accento solo per il pasto di adesso, l'azione principale e la scheda o voce di nav attiva; le selezioni dell'utente vanno in bianco.",
+      "**Do** usa il ciano (#04DAF6) solo per \"fatto\" e per l'acqua, e il rosso (#FF4D5E) solo per errori e azioni distruttive, come testo o contorno.",
+      "**Do** dai a ogni controllo un bordo da 1px in edge (#5E7180), che tiene almeno 3:1; i filetti in line servono solo a separare.",
+      "**Do** taglia gli angoli a 45° con `clip-path` (20px il pannello, 12px la lastra, 10px il profilo) e disegna la cornice di una forma tagliata con due strati.",
+      "**Do** scrivi nomi, orari, stati e comandi in Rajdhani maiuscolo; menù e frasi in Barlow.",
+      "**Do** tieni ogni area toccabile ad almeno 44px e l'azione principale in basso a destra.",
+      "**Do** cambia solo l'accento, il saluto e la fascia illustrata da un tema all'altro; i neutri restano condivisi.",
+      "**Do** tieni le illustrazioni dei temi sobrie: nature morte serali a colori smorzati, tocco cyberpunk leggero, mai personaggi o stile da bambini.",
+      "**Do** limita il glitch (300ms, steps(5)) al cambio del pasto di adesso."
+    ],
+    "donts": [
+      "**Don't** usare veli a gradiente sulle superfici o sulla fascia illustrata.",
+      "**Don't** usare bagliori, aloni neon o ombre di profondità.",
+      "**Don't** usare bordi sinistri colorati come accento su righe o card.",
+      "**Don't** mettere etichette-kicker sopra i titoli: l'etichetta maiuscola è il titolo.",
+      "**Don't** usare il ciano fuori da \"fatto\" e acqua.",
+      "**Don't** arrotondare gli angoli nelle superfici nuove.",
+      "**Don't** introdurre un tema chiaro: il mondo è sempre scuro.",
+      "**Don't** marcare i pasti saltati con colori di colpa: restano in tono neutro come APERTO."
+    ]
+  }
+}

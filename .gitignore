@@ -2,3 +2,13 @@ node_modules
 dist
 .env
 .env.local
+
+# Impeccable: file di lavoro (bozzetti, catture, pagina di scelta)
+.impeccable/mocks/
+.impeccable/questions/
+.impeccable/review/
+
+# Banco di prova locale con dati finti (strumento di sviluppo)
+preview-harness/
+.claude/launch.json
+.impeccable/critique/

@@ -1,24 +1,31 @@
-// Palette stagionali e personali: scelte in automatico in base alla data.
+// Temi stagionali e personali: scelti in automatico in base alla data.
 // Priorità: personali > ricorrenze > stagioni > base.
-// Ogni palette mantiene la stessa gerarchia di superfici e contrasto.
+// Il mondo è unico (scuro, stile cyberpunk): ogni tema cambia solo il colore d'accento e il saluto.
+
+// Neutri condivisi: fondo, superfici, testo. "edge" è il contorno dei controlli (almeno 3:1 sulle superfici).
+const NEUTRAL = {
+  bg: '#0B0F14', surf: '#121A22', surf2: '#1C2630', nav: '#0E1319',
+  text: '#E6EDF2', muted: '#8FA0AE', line: '#24303B', edge: '#5E7180',
+  done: '#04DAF6', danger: '#FF4D5E', glow: 'transparent'
+};
 
 const T = {
-  base:         { name: 'Base',           bg: '#171C18', surf: '#222A23', surf2: '#303B30', nav: '#1D251F', acc: '#C1D98A', glow: 'rgba(152, 180, 104, .15)', text: '#F2F3E8', muted: '#B5C1AA', line: 'rgba(193, 217, 138, .14)', greet: null, tag: 'Stai andando bene' },
-  autunno:      { name: 'Autunno',        bg: '#201710', surf: '#302219', surf2: '#433025', nav: '#281C14', acc: '#F0A45E', glow: 'rgba(214, 116, 54, .17)', text: '#F7EEE3', muted: '#C8AA91', line: 'rgba(240, 164, 94, .16)', greet: 'Buon autunno, {n}', tag: 'Passo dopo passo' },
-  inverno:      { name: 'Inverno',        bg: '#111A24', surf: '#1D2935', surf2: '#2A3948', nav: '#17222D', acc: '#A9D5F2', glow: 'rgba(103, 163, 202, .18)', text: '#EDF5FA', muted: '#A9BDCC', line: 'rgba(169, 213, 242, .16)', greet: 'Stai al caldo, {n}', tag: 'Costanza anche al freddo' },
-  primavera:    { name: 'Primavera',      bg: '#201820', surf: '#302531', surf2: '#423345', nav: '#281F29', acc: '#F3A9C4', glow: 'rgba(208, 124, 159, .17)', text: '#F8EDF3', muted: '#C9B2C0', line: 'rgba(243, 169, 196, .17)', greet: 'Buona primavera, {n}', tag: 'Tutto rifiorisce' },
-  estate:       { name: 'Estate',         bg: '#1D1911', surf: '#2C2518', surf2: '#3D3320', nav: '#252014', acc: '#F5B45E', glow: 'rgba(233, 157, 60, .16)', text: '#F8F1E3', muted: '#C6B79A', line: 'rgba(245, 180, 94, .16)', greet: 'Buona estate, {n}', tag: 'Idratati bene oggi' },
-  settembre:    { name: 'Settembre',      bg: '#191B15', surf: '#272A1E', surf2: '#373B29', nav: '#202218', acc: '#E2C36D', glow: 'rgba(184, 157, 73, .16)', text: '#F2F1E5', muted: '#BBB99D', line: 'rgba(226, 195, 109, .16)', greet: 'Si ricomincia, {n}', tag: 'Nuova stagione, stesse buone abitudini' },
-  halloween:    { name: 'Halloween',      bg: '#191321', surf: '#282034', surf2: '#392D49', nav: '#211A2B', acc: '#FF9B52', glow: 'rgba(163, 87, 218, .19)', text: '#F5EFF9', muted: '#BBAFC9', line: 'rgba(255, 155, 82, .18)', greet: 'Dolcetto o scherzetto, {n}', tag: 'Niente paura, sei in pista' },
-  natale:       { name: 'Natale',         bg: '#151D1A', surf: '#202D27', surf2: '#2D4036', nav: '#1A2621', acc: '#E9C875', glow: 'rgba(91, 151, 107, .18)', text: '#F4F2E8', muted: '#B6C2B3', line: 'rgba(233, 200, 117, .17)', greet: 'Buone feste, {n}', tag: 'Goditi la giornata' },
-  capodanno:    { name: 'Capodanno',      bg: '#181621', surf: '#252333', surf2: '#353247', nav: '#1E1C29', acc: '#F0D18B', glow: 'rgba(127, 108, 190, .18)', text: '#F3F0FA', muted: '#B9B4CA', line: 'rgba(240, 209, 139, .17)', greet: 'Buon anno, {n}', tag: 'Che anno!' },
-  epifania:     { name: 'Epifania',       bg: '#121A2B', surf: '#1D2740', surf2: '#2B3854', nav: '#182238', acc: '#F0D276', glow: 'rgba(91, 134, 206, .2)', text: '#EEF2FB', muted: '#AEBBD5', line: 'rgba(140, 180, 240, .17)', greet: 'Buona Epifania, {n}', tag: 'Si riparte con calma' },
-  valentino:    { name: 'San Valentino',  bg: '#21151B', surf: '#322129', surf2: '#472D38', nav: '#291C23', acc: '#F49BAF', glow: 'rgba(218, 95, 129, .19)', text: '#F9EDF0', muted: '#CCAFB8', line: 'rgba(244, 155, 175, .17)', greet: 'Buon San Valentino, {n}', tag: 'Volersi bene, anche a tavola' },
-  carnevale:    { name: 'Carnevale',      bg: '#1A1724', surf: '#292438', surf2: '#39324D', nav: '#211D2D', acc: '#F3C96A', glow: 'rgba(118, 91, 195, .2)', text: '#F4F0FA', muted: '#BEB5D0', line: 'rgba(243, 201, 106, .18)', greet: 'Buon Carnevale, {n}', tag: 'Una chiacchiera ci sta' },
-  pasqua:       { name: 'Pasqua',         bg: '#1B1D15', surf: '#292D1D', surf2: '#3A4027', nav: '#232519', acc: '#E9DC82', glow: 'rgba(147, 170, 92, .18)', text: '#F4F2E6', muted: '#BCC09F', line: 'rgba(233, 220, 130, .18)', greet: 'Buona Pasqua, {n}', tag: 'Festa con equilibrio' },
-  ferragosto:   { name: 'Ferragosto',     bg: '#111E20', surf: '#1B2D30', surf2: '#294145', nav: '#172629', acc: '#73D8D5', glow: 'rgba(65, 176, 176, .2)', text: '#EAF7F5', muted: '#A8C9C7', line: 'rgba(115, 216, 213, .17)', greet: 'Buon Ferragosto, {n}', tag: 'Acqua, acqua, acqua' },
-  compleanno:   { name: 'Compleanno',     bg: '#201720', surf: '#302431', surf2: '#433246', nav: '#281E29', acc: '#F2A8D0', glow: 'rgba(187, 104, 173, .2)', text: '#F8EDF5', muted: '#C8B0C2', line: 'rgba(242, 168, 208, .18)', greet: 'Buon compleanno, {n}', tag: 'Festeggia senza pensieri' },
-  anniversario: { name: 'Anniversario',   bg: '#191A16', surf: '#28291F', surf2: '#39392A', nav: '#212219', acc: '#E8C17D', glow: 'rgba(149, 128, 74, .16)', text: '#F3F0E6', muted: '#BEB8A5', line: 'rgba(232, 193, 125, .17)', greet: '{m} mesi di percorso, {n}', tag: 'Guarda quanta strada' }
+  base:         { name: 'Base',           acc: '#FCEE0A', greet: null, tag: 'Stai andando bene' },
+  autunno:      { name: 'Autunno',        acc: '#FF9F1C', greet: 'Buon autunno, {n}', tag: 'Passo dopo passo' },
+  inverno:      { name: 'Inverno',        acc: '#A8C8FF', greet: 'Stai al caldo, {n}', tag: 'Costanza anche al freddo' },
+  primavera:    { name: 'Primavera',      acc: '#FF6FB5', greet: 'Buona primavera, {n}', tag: 'Tutto rifiorisce' },
+  estate:       { name: 'Estate',         acc: '#FFB627', greet: 'Buona estate, {n}', tag: 'Idratati bene oggi' },
+  settembre:    { name: 'Settembre',      acc: '#D4F24A', greet: 'Si ricomincia, {n}', tag: 'Nuova stagione, stesse buone abitudini' },
+  halloween:    { name: 'Halloween',      acc: '#FF7A1A', greet: 'Dolcetto o scherzetto, {n}', tag: 'Niente paura, sei in pista' },
+  natale:       { name: 'Natale',         acc: '#6BFF8F', greet: 'Buone feste, {n}', tag: 'Goditi la giornata' },
+  capodanno:    { name: 'Capodanno',      acc: '#FFD966', greet: 'Buon anno, {n}', tag: 'Che anno!' },
+  epifania:     { name: 'Epifania',       acc: '#B18CFF', greet: 'Buona Epifania, {n}', tag: 'Si riparte con calma' },
+  valentino:    { name: 'San Valentino',  acc: '#FF4F8B', greet: 'Buon San Valentino, {n}', tag: 'Volersi bene, anche a tavola' },
+  carnevale:    { name: 'Carnevale',      acc: '#E45BFF', greet: 'Buon Carnevale, {n}', tag: 'Una chiacchiera ci sta' },
+  pasqua:       { name: 'Pasqua',         acc: '#C6F36B', greet: 'Buona Pasqua, {n}', tag: 'Festa con equilibrio' },
+  ferragosto:   { name: 'Ferragosto',     acc: '#5CFFB0', greet: 'Buon Ferragosto, {n}', tag: 'Acqua, acqua, acqua' },
+  compleanno:   { name: 'Compleanno',     acc: '#FF8AD8', greet: 'Buon compleanno, {n}', tag: 'Festeggia senza pensieri' },
+  anniversario: { name: 'Anniversario',   acc: '#F2C14E', greet: '{m} mesi di percorso, {n}', tag: 'Guarda quanta strada' }
 };
 
 export const PERSON = { name: 'Ivan', birthday: [7, 2], start: new Date(2025, 11, 2) };
@@ -73,5 +80,5 @@ export function getTheme(date = new Date(), enabled = true) {
   const h = date.getHours();
   const fallback = h < 13 ? 'Buongiorno, {n}' : h < 18 ? 'Buon pomeriggio, {n}' : 'Buona sera, {n}';
   const greet = (t.greet || fallback).replace('{n}', PERSON.name).replace('{m}', r.months || '');
-  return { key: r.key, ...t, onAcc: '#171713', active: `color-mix(in srgb, ${t.acc} 15%, ${t.surf})`, greet };
+  return { key: r.key, ...NEUTRAL, ...t, onAcc: '#0B0F14', active: `color-mix(in srgb, ${t.acc} 14%, ${NEUTRAL.surf})`, greet };
 }

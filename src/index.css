@@ -1,54 +1,79 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Fraunces", Georgia, serif;
-  --font-sans: "Nunito Sans", system-ui, sans-serif;
+  --font-display: "Rajdhani", "Barlow", system-ui, sans-serif;
+  --font-sans: "Barlow", system-ui, sans-serif;
 }
 
 :root {
-  font-family: "Nunito Sans", system-ui, sans-serif;
+  font-family: "Barlow", system-ui, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color-scheme: dark;
-  font-optical-sizing: auto;
+  font-variant-numeric: tabular-nums;
 }
 
 html, body, #root { min-height: 100%; margin: 0; }
-html { background: #171C18; }
-body { color: var(--theme-text, #F2F3E8); -webkit-tap-highlight-color: transparent; }
-button, input { font: inherit; }
+html { background: #0B0F14; }
+body { color: var(--theme-text, #E6EDF2); -webkit-tap-highlight-color: transparent; caret-color: var(--theme-accent, #FCEE0A); }
+button, input, textarea { font: inherit; }
+p, li { text-wrap: pretty; } /* niente parole orfane a fine paragrafo */
 button { cursor: pointer; touch-action: manipulation; }
-button:focus-visible, input:focus-visible {
-  outline: 2px solid var(--theme-accent, #C1D98A);
+button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible, summary:focus-visible, .focus-within-ring:has(input:focus-visible) {
+  outline: 2px solid var(--theme-accent, #FCEE0A);
   outline-offset: 3px;
 }
-::selection { background: var(--theme-accent, #C1D98A); color: var(--theme-on-accent, #171C18); }
-.text-muted { color: var(--theme-muted, #B5C1AA); }
-.theme-page {
-  color: var(--theme-text, #F2F3E8);
-  background-image: radial-gradient(ellipse 115% 34rem at 50% -12rem, var(--theme-glow, transparent), transparent 75%);
-}
-.theme-card {
-  border: 1px solid var(--theme-line, transparent);
-  box-shadow: 0 10px 32px rgba(0, 0, 0, .10);
-}
-.theme-nav {
-  border-top: 1px solid var(--theme-line, transparent);
-  box-shadow: 0 -12px 30px rgba(0, 0, 0, .16);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-.theme-nav button { transition: color .18s ease, background-color .18s ease, transform .18s ease; }
-.theme-nav button:active { transform: scale(.95); }
-.theme-nav button[aria-current="page"] { background: var(--theme-active, rgba(255,255,255,.08)); }
+::selection { background: var(--theme-accent, #FCEE0A); color: var(--theme-on-accent, #0B0F14); }
+* { scrollbar-color: var(--theme-edge, #5E7180) transparent; scrollbar-width: thin; }
+.text-muted { color: var(--theme-muted, #8FA0AE); }
+
+.theme-page { color: var(--theme-text, #E6EDF2); }
+.theme-card { border: 1px solid var(--theme-line, transparent); }
+.theme-nav { border-top: 1px solid var(--theme-line, transparent); }
+.theme-nav button { transition: color .18s ease, box-shadow .18s ease, transform .18s ease; }
+.theme-nav button:active { transform: scale(.96); }
+.theme-nav button[aria-current="page"] { box-shadow: inset 0 2px var(--theme-accent, #FCEE0A); }
 .theme-action { transition: filter .18s ease, transform .18s ease; }
-.theme-action:hover { filter: brightness(1.08); }
+.theme-action:hover { filter: brightness(1.1); }
 .theme-action:active { transform: scale(.97); }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+/* Linguaggio del mondo: angoli tagliati a 45°, etichette tecniche, righello a tacche */
+.cut-br { clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--cut, 12px)), calc(100% - var(--cut, 12px)) 100%, 0 100%); }
+.cut-tl { clip-path: polygon(var(--cut, 10px) 0, 100% 0, 100% 100%, 0 100%, 0 var(--cut, 10px)); }
+.label {
+  font-family: "Rajdhani", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.ruler {
+  height: 6px;
+  border-top: 1px solid var(--theme-line, #24303B);
+  background: repeating-linear-gradient(90deg, var(--theme-line, #24303B) 0 1px, transparent 1px 8px);
 }
 
-.theme-illustration svg { display: block; width: 100%; height: auto; }
+/* Fascia illustrata: illustrazione del tema a tutta larghezza (3:1), già sul colore del fondo */
+.band-painted { aspect-ratio: 3 / 1; overflow: hidden; }
+.band-painted img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* "Vedi i dati": la freccia ruota quando il riquadro è aperto */
+summary::-webkit-details-marker { display: none; }
+.details-chevron { transition: transform .18s ease; }
+details[open] .details-chevron { transform: rotate(90deg); }
+
+/* Gesto distintivo: il pannello del pasto entra con un glitch a fette */
+@keyframes glitch-in {
+  0%   { clip-path: inset(0 0 100% 0); transform: translateX(-6px); filter: brightness(1.6); }
+  20%  { clip-path: inset(10% 0 55% 0); transform: translateX(5px); }
+  40%  { clip-path: inset(48% 0 12% 0); transform: translateX(-3px); }
+  60%  { clip-path: inset(0 0 30% 0); transform: translateX(2px); }
+  80%  { clip-path: inset(0 0 4% 0); transform: translateX(0); filter: brightness(1.15); }
+}
+.glitch-in { animation: glitch-in .3s steps(5, end) backwards; } /* backwards: a fine animazione torna l'angolo tagliato */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation: none !important; }
+}
